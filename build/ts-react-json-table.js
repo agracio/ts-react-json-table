@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-    if(typeof exports === 'object' && typeof module === 'object')
-        module.exports = factory(require(undefined));
-    else if(typeof define === 'function' && define.amd)
-        define([], factory);
-    else if(typeof exports === 'object')
-        exports["JsonTable"] = factory(require(undefined));
-    else
-        root["JsonTable"] = factory(root["React"]);
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require(null));
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["JsonTable"] = factory(require(null));
+	else
+		root["JsonTable"] = factory(root["React"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
