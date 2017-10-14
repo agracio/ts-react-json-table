@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("React"));
-	else if(typeof define === 'function' && define.amd)
-		define(["React"], factory);
-	else {
-		var a = typeof exports === 'object' ? factory(require("React")) : factory(root["React"]);
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
+    if(typeof exports === 'object' && typeof module === 'object')
+        module.exports = factory(require(undefined));
+    else if(typeof define === 'function' && define.amd)
+        define([], factory);
+    else if(typeof exports === 'object')
+        exports["JsonTable"] = factory(require(undefined));
+    else
+        root["JsonTable"] = factory(root["React"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -280,6 +280,6 @@ module.exports = JsonTable;
 module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ })
-/******/ ])["JsonTable"];
+/******/ ]);
 });
 //# sourceMappingURL=ts-react-json-table.js.map
