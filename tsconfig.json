@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+//        "lib": [
+//            "es6",
+//            "dom"
+//        ],
+        "jsx": "react",
+        "outDir": "./dist",
+        "sourceMap": true,
+        "declaration": false,
+        "noEmitOnError": false,
+        "removeComments": true,
+        "noImplicitAny": false,
+        "preserveConstEnums": true
+    },
+    "include": [
+        "./src/*.ts",
+        "./src/*.tsx",
+        "./test/*.ts",
+        "./typings/index.d.ts",
+        "./ts-react-json-table.d.ts"
+    ],
+    "exclude": [
+        "node_modules/**/*ts"
+    ],
+    "compileOnSave": false,
+    "buildOnSave": false
+}

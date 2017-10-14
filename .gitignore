@@ -1,0 +1,7 @@
+node_modules/
+src/**/*.js
+src/**/*.map
+lib/
+publish/
+.idea/workspace.xml
+!src/lib

@@ -1,0 +1,9 @@
+/node_modules
+/.idea
+/.vscode
+*.tgz
+/*.zip
+/*.json
+!package.json
+!tsconfig.json
+/content
