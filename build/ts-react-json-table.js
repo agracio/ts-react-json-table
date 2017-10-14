@@ -280,6 +280,6 @@ module.exports = JsonTable;
 module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ })
-/******/ ]);
+/******/ ])["JsonTable"];
 });
 //# sourceMappingURL=ts-react-json-table.js.map
