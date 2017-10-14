@@ -3,6 +3,11 @@ src/**/*.js
 src/**/*.map
 lib/
 publish/
-.idea/workspace.xml
 !src/lib
 /dist
+.idea/workspace.xml
+/*.zip
+/*.tgz
+/*.json
+!package.json
+!tsconfig.json
