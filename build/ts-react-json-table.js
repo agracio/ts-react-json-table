@@ -270,6 +270,7 @@ var Footer = (function (_super) {
     };
     return Footer;
 }(React.Component));
+module.exports = JsonTable;
 
 
 /***/ }),
