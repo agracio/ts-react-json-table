@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("React"));
+	else if(typeof define === 'function' && define.amd)
+		define(["React"], factory);
+	else if(typeof exports === 'object')
+		exports["JsonTable"] = factory(require("React"));
+	else
+		root["JsonTable"] = factory(root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -267,8 +277,9 @@ module.exports = JsonTable;
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = undefined;
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ })
 /******/ ]);
+});
 //# sourceMappingURL=ts-react-json-table.js.map
