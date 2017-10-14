@@ -3,10 +3,10 @@
 		module.exports = factory(require("React"));
 	else if(typeof define === 'function' && define.amd)
 		define(["React"], factory);
-	else if(typeof exports === 'object')
-		exports["JsonTable"] = factory(require("React"));
-	else
-		root["JsonTable"] = factory(root["React"]);
+	else {
+		var a = typeof exports === 'object' ? factory(require("React")) : factory(root["React"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -276,7 +276,7 @@ module.exports = JsonTable;
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
-console.log(__WEBPACK_EXTERNAL_MODULE_1__)
+
 module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ })
