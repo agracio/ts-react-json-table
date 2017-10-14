@@ -270,13 +270,12 @@ var Footer = (function (_super) {
     };
     return Footer;
 }(React.Component));
-module.exports = JsonTable;
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
-
+console.log(__WEBPACK_EXTERNAL_MODULE_1__)
 module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ })
