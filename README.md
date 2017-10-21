@@ -1,11 +1,12 @@
 # React JSON table
 
 ##### Simple table component to display JSON data.
-=======
 
-This is based on excellent `react-json-table` https://github.com/arqex/react-json-table. The component is written in TypeScript and supports React 16.x. It attempts to be fully backward compatible with `react-json-table`.
 
------
+> This is based on excellent `react-json-table` https://github.com/arqex/react-json-table. 
+The component is written in TypeScript and supports React 16.x. 
+It attempts to be fully backward compatible with `react-json-table`.
+
 
 ##Features:
 
