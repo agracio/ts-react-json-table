@@ -7,7 +7,7 @@
 The component is written in TypeScript and supports React 16.x. 
 It attempts to be fully backward compatible with `react-json-table`.
 
-## Features:
+## Features
 
 Features are similar to original `react-json-table`
 
@@ -46,3 +46,17 @@ var items = [
 
 ReactDOM.render(<JsonTable rows={ items } />, document.body);
 ```
+JSFiddle demo: https://jsfiddle.net/agracio/vx1yfna0/
+
+## Usage
+
+### props
+Prop name | Type | Description
+---|---|---
+rows | Array[Object] (required) | JSON stringified data.
+columns | *Array[String\|Object]* (optional) | The columns and their order for the table. If it is a `string` the value attribute of the current row that matches it will be shown as cell content. But also it is possible to use an `object` to customize the column, see [column definition](#column-definition).
+className | *string* (optional)| Class to use for the `<table>` element.
+settings | *Object* (optional)| Table settings, see [table settings](#table-settings).
+onClickCell | *Function* (optional)| Callback triggered when a cell is clicked: `fn( event, columnName, rowData )`.
+onClickRow | *Function* (optional)| Callback triggered when a row is clicked: `fn( event, rowData )`
+onClickHeader | *Function* (optional)| Callback triggered when a column header is clicked: `fn( event, columnName )`
