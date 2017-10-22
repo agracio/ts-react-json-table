@@ -44,7 +44,7 @@ var items = [
   {"id": 14225,"name": "Leach Durham","age": 23,"phone": "+44 (0)208 280 9572","color": "green"}
 ];
 
-ReactDOM.render(<JsonTable rows={ items } />, document.body);
+ReactDOM.render(<JsonTable rows = {items} />, document.body);
 ```
 JSFiddle demo: https://jsfiddle.net/agracio/vx1yfna0/
 
@@ -54,9 +54,9 @@ JSFiddle demo: https://jsfiddle.net/agracio/vx1yfna0/
 Prop name | Type | Description
 ---|---|---
 rows | Array[Object] (required) | JSON stringified data.
-columns | *Array[String\|Object]* (optional) | The columns and their order for the table. If it is a `string` the value attribute of the current row that matches it will be shown as cell content. But also it is possible to use an `object` to customize the column, see [column definition](#column-definition).
+columns | *Array[String\|Object]* (optional) | The columns and their order for the table. If it is a `string` the value attribute of the current row that matches it will be shown as cell content. It is possible to use an `object` to customize the column, see [column definition](#column-definition).
 className | *string* (optional)| Class to use for the `<table>` element.
-settings | *Object* (optional)| Table settings, see [table settings](#table-settings).
+settings | *TableSettings* (optional)| Table settings, see [table settings](#table-settings).
 onClickCell | *Function* (optional)| Callback triggered when a cell is clicked: `fn( event, columnName, rowData )`.
 onClickRow | *Function* (optional)| Callback triggered when a row is clicked: `fn( event, rowData )`
 onClickHeader | *Function* (optional)| Callback triggered when a column header is clicked: `fn( event, columnName )`
