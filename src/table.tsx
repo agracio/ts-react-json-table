@@ -1,6 +1,6 @@
 import * as React from "react";
 
-class JsonTable extends React.Component<TableProps, {}> {
+export class JsonTable extends React.Component<TableProps, {}> {
 
     private columns: Column[] | any[];
     private settings: TableSettings;
@@ -21,11 +21,18 @@ class JsonTable extends React.Component<TableProps, {}> {
 
         let header = this.settings.header ? <Header settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader}/> : null;
 
-        return <table className={this.className}>
-                {header}
-                <Body settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
-                <Footer/>
-            </table>;
+        let table = <table className={this.className}>
+            {header}
+            <Body settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
+            <Footer/>
+        </table>;
+
+        return this.settings.freezeHeader ?
+            <div className="scrollingtable">
+                <div>
+                    <div>{table}</div>
+                </div>
+            </div> : table;
     }
 
     private createSettings(){
@@ -143,12 +150,13 @@ class Cell extends React.Component<CellProps, {}> {
 
 class Header extends React.Component<HeaderProps, {}> {
     public render(){
+        let th = this.props.settings.freezeHeader ? <th className="scrollbarhead"></th> : null;
         return <thead><tr>
             {this.props.columns.map((column: any, index: number) =>{
                 let key = `trjt-th-${index}`;
                 return <HeaderCell settings={this.props.settings} column={column} reactKey={key} key={key} onClickHeader={this.props.onClickHeader}/>;
             })}
-        </tr>
+            {th}</tr>
         </thead>;
     }
 
@@ -162,7 +170,8 @@ class HeaderCell extends React.Component<HeaderCellProps, {}> {
         if(headerClass) {
             className = headerClass( className, this.props.column.key);
         }
-        return <th className={className} onClick={this.onClick.bind(this, this.props.column.key)} data-key={this.props.column.key}>{this.props.column.label}</th>;
+        let content = this.props.settings.freezeHeader ? <div itemProp={this.props.column.label}></div> : this.props.column.label;
+        return <th className={className} onClick={this.onClick.bind(this, this.props.column.key)} data-key={this.props.column.key}>{content}</th>;
     }
 
     private onClick(key, e){
@@ -178,6 +187,4 @@ class Footer extends React.Component<any, {}> {
         return <tfoot/>;
     }
 }
-
-export {JsonTable};
 module.exports = JsonTable;

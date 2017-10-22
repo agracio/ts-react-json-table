@@ -54,25 +54,27 @@ gulp.task('webpack', ['clean_webpack', 'build'], function() {
     logBuildResult();
     if(!buildDone){ return;}
     console.log(chalk.blue('Creating webpack in', paths.webpack));
-  return gulp.src(paths.webpackEntry)
+    return gulp.src(paths.webpackEntry)
       .pipe(webpack({
           output: {
-              filename: paths.webpackName
+              libraryTarget: 'umd',
+              filename: paths.webpackName,
+              library: 'JsonTable',
+              //libraryExport: 'JsonTable',
           },
           module: {
               rules: [
                   {test: /\.js$/, loader: "source-map-loader"}
               ],
-              loaders: [
-                  // { test: /\.css$/, loader: 'style!css' },
-                  //{ test: /\.json/, loader: 'json-loader' },
-              ]
-        },
+          },
           externals: {
-              fs: 'empty',
-              net: 'empty',
-              tls: 'empty',
-      },
+              react: {
+                  commonjs: null,
+                  commonjs2: null,
+                  //amd: "React",
+                  root: 'React'
+              }
+          },
           devtool: "#source-map"
     }))
     .pipe(gulp.dest(paths.webpack));
@@ -80,20 +82,17 @@ gulp.task('webpack', ['clean_webpack', 'build'], function() {
 
 gulp.task('minify',['webpack'], function() {
     gulp.src(paths.webpack + paths.webpackName)
-        .pipe(minify())
+        .pipe(minify({
+            ext:{
+                min:'.min.js'
+            }
+        }))
         .pipe(gulp.dest(paths.webpack))
 });
-
-gulp.task('html', function () {
-    return gulp.src(paths.html)
-        .pipe(connect.reload());
-});
-
 
 gulp.task('publish_npm', function () {
     return run('npm publish').exec();
 });
-
 
 gulp.task('publish', function () {
     sequence('clean', 'minify', 'publish_pack', 'publish_npm');

@@ -6,6 +6,7 @@ interface TableSettings{
     keyField?: string,
     noRowsMessage?: string,
     rowClass?: Function,
+    freezeHeader?: boolean
 }
 
 interface TableProps{
@@ -63,4 +64,10 @@ interface Column{
     key: string,
     label?: string,
     cell?: any
+}
+
+declare module 'ts-react-json-table'{
+    import * as React from 'react';
+    class JsonTable extends React.Component<TableProps, {}>{}
+    export = JsonTable;
 }

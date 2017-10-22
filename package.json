@@ -1,6 +1,6 @@
 {
   "name": "ts-react-json-table",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/table.js",
   "scripts": {
@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/agracio/ts-react-json-table",
   "devDependencies": {
-    "chalk": "^2.1.0",
+    "@types/node": "^8.0.46",
+    "chalk": "^2.2.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-minify": "^1.0.0",
@@ -35,9 +36,7 @@
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
-    "@types/react": "^16.0.10",
-    "@types/react-dom": "^16.0.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "@types/react": "^16.0.16",
+    "react": "^16.0.0"
   }
 }
