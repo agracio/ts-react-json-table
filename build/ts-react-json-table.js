@@ -109,10 +109,14 @@ var JsonTable = (function (_super) {
     };
     JsonTable.prototype.render = function () {
         var header = this.settings.header ? React.createElement(Header, { settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader }) : null;
-        return React.createElement("table", { className: this.className },
+        var table = React.createElement("table", { className: this.className },
             header,
             React.createElement(Body, { settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
             React.createElement(Footer, null));
+        return this.settings.freezeHeader ?
+            React.createElement("div", { className: "scrollingtable" },
+                React.createElement("div", null,
+                    React.createElement("div", null, table))) : table;
     };
     JsonTable.prototype.createSettings = function () {
         if (this.props.settings) {
@@ -231,11 +235,14 @@ var Header = (function (_super) {
     }
     Header.prototype.render = function () {
         var _this = this;
+        var th = this.props.settings.freezeHeader ? React.createElement("th", { className: "scrollbarhead" }) : null;
         return React.createElement("thead", null,
-            React.createElement("tr", null, this.props.columns.map(function (column, index) {
-                var key = "trjt-th-" + index;
-                return React.createElement(HeaderCell, { settings: _this.props.settings, column: column, reactKey: key, key: key, onClickHeader: _this.props.onClickHeader });
-            })));
+            React.createElement("tr", null,
+                this.props.columns.map(function (column, index) {
+                    var key = "trjt-th-" + index;
+                    return React.createElement(HeaderCell, { settings: _this.props.settings, column: column, reactKey: key, key: key, onClickHeader: _this.props.onClickHeader });
+                }),
+                th));
     };
     return Header;
 }(React.Component));
@@ -251,7 +258,8 @@ var HeaderCell = (function (_super) {
         if (headerClass) {
             className = headerClass(className, this.props.column.key);
         }
-        return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.props.column.key), "data-key": this.props.column.key }, this.props.column.label);
+        var content = this.props.settings.freezeHeader ? React.createElement("div", { itemProp: this.props.column.label }) : this.props.column.label;
+        return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.props.column.key), "data-key": this.props.column.key }, content);
     };
     HeaderCell.prototype.onClick = function (key, e) {
         if (this.props.onClickHeader) {
