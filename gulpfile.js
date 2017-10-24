@@ -90,12 +90,16 @@ gulp.task('minify',['webpack'], function() {
         .pipe(gulp.dest(paths.webpack))
 });
 
+gulp.task('copy-css', function() {
+    return gulp.src('./src/**/*.css').pipe(gulp.dest(paths.webpack))
+});
+
 gulp.task('publish_npm', function () {
     return run('npm publish').exec();
 });
 
 gulp.task('publish', function () {
-    sequence('clean', 'minify', 'publish_pack', 'publish_npm');
+    sequence('clean', 'minify','copy-css', 'publish_pack', 'publish_npm');
 });
 
 gulp.task('publish_pack', function () {
@@ -103,5 +107,5 @@ gulp.task('publish_pack', function () {
 });
 
 gulp.task('pack', function () {
-    sequence('clean', 'minify', 'publish_pack');
+    sequence('clean', 'minify', 'copy-css', 'publish_pack');
 });
