@@ -82,7 +82,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
 
 class Body extends React.Component<BodyProps, {}> {
     public render(){
-        let rows = this.props.rows.length > 0 ?
+        let rows = this.props.rows && this.props.rows.length > 0 ?
             this.props.rows.map((row: any, index: number) =>{
                 let key = `trjt-tr-${index}`;
                 return <Row row={row} columns={this.props.columns} onClickCell={this.props.onClickCell} onClickRow={this.props.onClickRow} index={index} key={key} reactKey={key} settings={this.props.settings}/>;

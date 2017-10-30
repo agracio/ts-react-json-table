@@ -170,7 +170,7 @@ var Body = (function (_super) {
     }
     Body.prototype.render = function () {
         var _this = this;
-        var rows = this.props.rows.length > 0 ?
+        var rows = this.props.rows && this.props.rows.length > 0 ?
             this.props.rows.map(function (row, index) {
                 var key = "trjt-tr-" + index;
                 return React.createElement(Row, { row: row, columns: _this.props.columns, onClickCell: _this.props.onClickCell, onClickRow: _this.props.onClickRow, index: index, key: key, reactKey: key, settings: _this.props.settings });

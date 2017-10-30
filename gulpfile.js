@@ -6,11 +6,12 @@ const tsb = require('gulp-tsb');
 const chalk = require('chalk');
 const minify = require('gulp-minify');
 const run = require('gulp-run');
+const fs = require('fs');
 
 let buildDone = false;
 
 const paths = {
-    src: ['src/**', 'test/**', './*.ts', './typings/index.d.ts'],
+    src: ['src/**', 'test/**', './*.ts', 'typings/index.d.ts'],
     out: './dist',
     test: './dist/test/**/*.js',
     webpack: './build/',
@@ -18,13 +19,18 @@ const paths = {
     webpackName: 'ts-react-json-table.js'
 };
 
+const tsconfig = JSON.parse(fs.readFileSync('tsconfig1.json'))
+
 function handleBuildError (error) {
     console.log(chalk.red(error.toString()));
     buildDone = false;
 }
 
+
+
 function createCompilation(){
     return tsb.create('tsconfig.json', false, null, function(error){handleBuildError(error)});
+    //return tsb.create(tsconfig.compilerOptions, false, null, function(error){handleBuildError(error)});
 }
 
 function logBuildResult(){

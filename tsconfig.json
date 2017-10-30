@@ -14,11 +14,13 @@
         "removeComments": true,
         "noImplicitAny": false,
         "preserveConstEnums": true
+        //"types": []
+//      "typeRoots" : ["./typings"]
     },
     "include": [
         "./src/*.ts",
         "./src/*.tsx",
-        "./test/*.ts",
+//        "./test/*.ts",
         "./typings/index.d.ts",
         "./ts-react-json-table.d.ts"
     ],
