@@ -258,7 +258,9 @@ var HeaderCell = (function (_super) {
         if (headerClass) {
             className = headerClass(className, this.props.column.key);
         }
-        var content = this.props.settings.freezeHeader ? React.createElement("div", { itemProp: this.props.column.label }) : this.props.column.label;
+        var content = this.props.settings.freezeHeader ? React.createElement("div", null,
+            React.createElement("div", null, this.props.column.label),
+            React.createElement("div", null, this.props.column.label)) : this.props.column.label;
         return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.props.column.key), "data-key": this.props.column.key }, content);
     };
     HeaderCell.prototype.onClick = function (key, e) {

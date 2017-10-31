@@ -170,7 +170,8 @@ class HeaderCell extends React.Component<HeaderCellProps, {}> {
         if(headerClass) {
             className = headerClass( className, this.props.column.key);
         }
-        let content = this.props.settings.freezeHeader ? <div itemProp={this.props.column.label}></div> : this.props.column.label;
+        //let content = this.props.settings.freezeHeader ? <div itemProp={this.props.column.label}></div> : this.props.column.label;
+        let content = this.props.settings.freezeHeader ? <div><div>{this.props.column.label}</div><div>{this.props.column.label}</div></div> : this.props.column.label;
         return <th className={className} onClick={this.onClick.bind(this, this.props.column.key)} data-key={this.props.column.key}>{content}</th>;
     }
 
