@@ -11,13 +11,12 @@ export class JsonTable extends React.Component<TableProps, {}> {
         classPrefix: 'json',
     };
 
-    public componentWillMount(){
+    public render(){
+
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || `${this.settings.classPrefix}Table`;
-    }
 
-    public render(){
 
         let header = this.settings.header ? <Header settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader}/> : null;
 
@@ -168,7 +167,7 @@ class HeaderCell extends React.Component<HeaderCellProps, {}> {
         let headerClass = this.props.settings.headerClass;
         let className = `${classPrefix}Column`;
         if(headerClass) {
-            className = headerClass( className, this.props.column.key);
+            className = headerClass(className, this.props.column.key);
         }
         //let content = this.props.settings.freezeHeader ? <div itemProp={this.props.column.label}></div> : this.props.column.label;
         let content = this.props.settings.freezeHeader ? <div><div>{this.props.column.label}</div><div>{this.props.column.label}</div></div> : this.props.column.label;

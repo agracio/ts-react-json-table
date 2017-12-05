@@ -102,12 +102,10 @@ var JsonTable = (function (_super) {
         };
         return _this;
     }
-    JsonTable.prototype.componentWillMount = function () {
+    JsonTable.prototype.render = function () {
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || this.settings.classPrefix + "Table";
-    };
-    JsonTable.prototype.render = function () {
         var header = this.settings.header ? React.createElement(Header, { settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader }) : null;
         var table = React.createElement("table", { className: this.className },
             header,
