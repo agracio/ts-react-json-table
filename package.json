@@ -1,6 +1,6 @@
 {
   "name": "ts-react-json-table",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "dist/table.js",
   "scripts": {
@@ -36,7 +36,6 @@
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
-    "edge": "^7.10.1",
     "react": "^16.0.0"
   }
 }
