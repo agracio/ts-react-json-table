@@ -45,6 +45,7 @@ interface CellProps{
     item: any,
     settings: TableSettings,
     onClickCell?: Function,
+    row: any,
 }
 
 interface HeaderProps{

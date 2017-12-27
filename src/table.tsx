@@ -111,7 +111,7 @@ class Row extends React.Component<RowProps, {}> {
                 // }else if(this.props.settings.)
                 let item = typeof column.cell == 'function' ? column.cell(this.props.row, column.key) : this.props.row[column.cell];
                 let key = `${this.props.reactKey}-td-${index}`;
-                return <Cell onClickCell={this.props.onClickCell} settings={this.props.settings} item={item} column={column} key={key} reactKey={key}/>;
+                return <Cell onClickCell={this.props.onClickCell} settings={this.props.settings} item={item} column={column} key={key} reactKey={key} row={this.props.row}/>;
             })}
         </tr>;
     }
@@ -129,7 +129,7 @@ class Cell extends React.Component<CellProps, {}> {
         let cellClass = this.props.settings.cellClass;
         let className = `${classPrefix}Cell ${classPrefix}Cell_${this.props.column.key}`;
         if(cellClass) {
-            className = cellClass(className, this.props.column.key, this.props.item);
+            className = cellClass(className, this.props.column.key, this.props.row);
         }
         return <td
             className={className}
