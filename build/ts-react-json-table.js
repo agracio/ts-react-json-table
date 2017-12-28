@@ -195,7 +195,7 @@ var Row = (function (_super) {
         return React.createElement("tr", { className: className, key: this.props.reactKey, onClick: this.onClick.bind(this, this.props.row) }, this.props.columns.map(function (column, index) {
             var item = typeof column.cell == 'function' ? column.cell(_this.props.row, column.key) : _this.props.row[column.cell];
             var key = _this.props.reactKey + "-td-" + index;
-            return React.createElement(Cell, { onClickCell: _this.props.onClickCell, settings: _this.props.settings, item: item, column: column, key: key, reactKey: key });
+            return React.createElement(Cell, { onClickCell: _this.props.onClickCell, settings: _this.props.settings, item: item, column: column, key: key, reactKey: key, row: _this.props.row });
         }));
     };
     Row.prototype.onClick = function (item, e) {
@@ -215,7 +215,7 @@ var Cell = (function (_super) {
         var cellClass = this.props.settings.cellClass;
         var className = classPrefix + "Cell " + classPrefix + "Cell_" + this.props.column.key;
         if (cellClass) {
-            className = cellClass(className, this.props.column.key, this.props.item);
+            className = cellClass(className, this.props.column.key, this.props.row);
         }
         return React.createElement("td", { className: className, key: this.props.reactKey, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key, this.props.item) }, this.props.item);
     };

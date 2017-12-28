@@ -29,11 +29,11 @@ and [ts-react-json-table.min.js](https://github.com/agracio/ts-react-json-table/
 
 ## Quickstart
 
- ```js
+```js
 const JsonTable = require('ts-react-json-table');
 //or
 import JsonTable = require('ts-react-json-table');
- ```
+```
  
 ```js
 var items = [
@@ -54,24 +54,24 @@ ReactDOM.render(<JsonTable rows = {items} />, document.body);
 
 Prop | Type | Description
 ---|---|---
-rows | Array[Object] (required) | JSON data.
-columns | *Array[String\|Object]* (optional) | The columns and their order for the table. If it is a `string` the value attribute of the current row that matches it will be shown as cell content. It is possible to use an `object` to customize the column, see [column definition](#column-definition).
+rows | Array\[Object\] (required) | JSON data.
+columns | *Array\[String\|Object\]* (optional) | The columns and their order for the table. If it is a `string` the value attribute of the current row that matches it will be shown as cell content. It is possible to use an `object` to customize the column, see [column definition](#column-definition).
 className | *string* (optional)| Class to use for `<table>` element.
 settings | *TableSettings* (optional)| Table settings, see [table settings](#table-settings).
-onClickCell | *Function* (optional)| Callback triggered when a cell is clicked: `fn( event, columnName, rowData )`.
-onClickRow | *Function* (optional)| Callback triggered when a row is clicked: `fn( event, rowData )`
-onClickHeader | *Function* (optional)| Callback triggered when a column header is clicked: `fn( event, columnName )`
+onClickCell | *Function* (optional)| Callback triggered when a cell is clicked: `fn(event, columnName, rowData)`.
+onClickRow | *Function* (optional)| Callback triggered when a row is clicked: `fn(event, rowData)`
+onClickHeader | *Function* (optional)| Callback triggered when a column header is clicked: `fn(event, columnName)`
 
 ### table settings
 
 Setting name | Type | Description
 ---|---|---
-`cellClass` | *Function* (optional) | Cell custom class using `fn( currentClass, columnKey, rowData )`.
+`cellClass` | *Function* (optional) | Cell custom class using `fn(currentClass, columnKey, rowData)`.
 `classPrefix` | *string* (optional) | JsonTable uses `class` attributes for its markup like `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in the case it is conflicting with other classes in your app.
 `header` | *boolean* (optional) | Determines whether to show table header. Default is `true`.
-`headerClass` | *Function* (optional) | Header custom class using `fn( currentClass, columnKey )`.
+`headerClass` | *Function* (optional) | Header custom class using `fn(currentClass, columnKey)`.
 `noRowsMessage` | *string*\/*ReactComponent*  (optional) | Message shown when the table has no rows. Default is *"No items"*.
-`rowClass` | *Function* (optional) | Row custom class using `fn( currentClass, rowData )`.
+`rowClass` | *Function* (optional) | Row custom class using `fn(currentClass, rowData)`.
 `cellRenderer` | *Function* (optional) | If provided, this function will be used to render all the cells' content, so it is a way of programmatically customize every cell. If no provided, the cell contents will just be `item[field]`, the value of the item for that field.
 
 
