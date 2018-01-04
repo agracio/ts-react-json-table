@@ -176,3 +176,4 @@ export class JsonTable extends React.Component<TableProps, {}> {
         return columns;
     }
 }
+module.exports = JsonTable;

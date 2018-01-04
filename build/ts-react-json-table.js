@@ -305,6 +305,7 @@ var JsonTable = /** @class */ (function (_super) {
     return JsonTable;
 }(React.Component));
 exports.JsonTable = JsonTable;
+module.exports = JsonTable;
 
 
 /***/ }),

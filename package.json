@@ -23,20 +23,20 @@
   },
   "homepage": "https://github.com/agracio/ts-react-json-table",
   "devDependencies": {
-    "@types/node": "^8.0.57",
+    "@types/node": "^8.5.5",
     "chalk": "^2.3.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-minify": "^2.1.0",
     "gulp-run": "^1.7.1",
     "gulp-tsb": "^2.0.5",
-    "run-sequence": "^2.2.0",
+    "run-sequence": "^2.2.1",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.2",
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
-    "@types/react": "^16.0.28",
+    "@types/react": "^16.0.34",
     "react": "^16.2.0"
   }
 }
