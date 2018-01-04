@@ -592,7 +592,7 @@ var GridRowCell = /** @class */ (function (_super) {
         }
         var item = this.props.item;
         if (typeof this.props.item === 'object') {
-            var objectDisplayStyle = this.props.column.objectDisplayStyle || ObjectDisplayStyle.string;
+            var objectDisplayStyle = this.props.column.objectDisplayStyle || 'string';
             switch (objectDisplayStyle) {
                 case 'string':
                     item = utils_1.Utils.flattenToString(this.props.item);

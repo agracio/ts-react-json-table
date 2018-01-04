@@ -29,16 +29,16 @@ interface ColumnSetting{
     label?: string,
     cell?: Function | string,
     group?: string,
-    objectDisplayStyle?: ObjectDisplayStyle
+    objectDisplayStyle?: string
 }
 
-declare enum ObjectDisplayStyle {
-    string = "string",
-    json = "json",
-    jsonSpaced = "jsonSpaced",
-    flatJson = "flatJson",
-    flatJsonSpaced = "flatJsonSpaced",
-}
+// declare enum ObjectDisplayStyle {
+//     string = "string",
+//     json = "json",
+//     jsonSpaced = "jsonSpaced",
+//     flatJson = "flatJson",
+//     flatJsonSpaced = "flatJsonSpaced",
+// }
 
 declare module 'ts-react-json-table'{
     import * as React from 'react';

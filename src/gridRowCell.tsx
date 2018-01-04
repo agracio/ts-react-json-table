@@ -22,7 +22,7 @@ export class GridRowCell extends React.Component<RowCellProps, {}> {
         let item: any = this.props.item;
 
         if( typeof this.props.item === 'object'){
-            let objectDisplayStyle: ObjectDisplayStyle = this.props.column.objectDisplayStyle || ObjectDisplayStyle.string;
+            let objectDisplayStyle = this.props.column.objectDisplayStyle || 'string';
 
             switch (objectDisplayStyle) {
                 case 'string':
