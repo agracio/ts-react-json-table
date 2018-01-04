@@ -62,7 +62,7 @@ gulp.task('webpack', ['clean_webpack', 'build'], function() {
               libraryTarget: 'commonjs-module',
               filename: paths.webpackName,
               library: 'JsonTable',
-              //libraryExport: 'JsonTable',
+              libraryExport: 'JsonTable',
           },
           module: {
               rules: [

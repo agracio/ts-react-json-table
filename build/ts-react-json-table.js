@@ -648,5 +648,5 @@ exports.GridFooter = GridFooter;
 
 
 /***/ })
-/******/ ]);
+/******/ ])["JsonTable"];
 //# sourceMappingURL=ts-react-json-table.js.map
