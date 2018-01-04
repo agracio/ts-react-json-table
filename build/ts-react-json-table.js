@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,59 +81,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-// https://gist.github.com/penguinboy/762197
-var Utils = /** @class */ (function () {
-    function Utils() {
-    }
-    Utils.flatten = function (obj) {
-        var toReturn = {};
-        for (var i in obj) {
-            if (!obj.hasOwnProperty(i))
-                continue;
-            if ((typeof obj[i]) == 'object') {
-                var flatObject = Utils.flatten(obj[i]);
-                for (var x in flatObject) {
-                    if (!flatObject.hasOwnProperty(x))
-                        continue;
-                    toReturn[i + '.' + x] = flatObject[x];
-                }
-            }
-            else {
-                toReturn[i] = obj[i];
-            }
-        }
-        return toReturn;
-    };
-    Utils.flattenToString = function (obj) {
-        var flat = Utils.flatten(obj);
-        var values = Object.keys(flat).map(function (key) {
-            return key + ": " + flat[key];
-        });
-        return values.join(', ');
-    };
-    // https://stackoverflow.com/a/45322101
-    Utils.getObjectByKey = function (obj, key) {
-        if (key.indexOf('.') !== 1) {
-            return key.split('.').reduce(function (prev, curr) {
-                return prev ? prev[curr] : null;
-            }, obj);
-        }
-        else {
-            return obj[key];
-        }
-    };
-    return Utils;
-}());
-exports.Utils = Utils;
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -150,8 +97,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var gridHeader_1 = __webpack_require__(3);
-var gridBody_1 = __webpack_require__(6);
+var gridHeader_1 = __webpack_require__(2);
+var gridBody_1 = __webpack_require__(5);
 var gridFooter_1 = __webpack_require__(9);
 var JsonTable = /** @class */ (function (_super) {
     __extends(JsonTable, _super);
@@ -309,7 +256,7 @@ module.exports = JsonTable;
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -326,7 +273,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var gridHeaderRow_1 = __webpack_require__(4);
+var gridHeaderRow_1 = __webpack_require__(3);
 var GridHeader = /** @class */ (function (_super) {
     __extends(GridHeader, _super);
     function GridHeader() {
@@ -344,7 +291,7 @@ exports.GridHeader = GridHeader;
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -361,7 +308,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var gridHeaderRowCell_1 = __webpack_require__(5);
+var gridHeaderRowCell_1 = __webpack_require__(4);
 var GridHeaderRow = /** @class */ (function (_super) {
     __extends(GridHeaderRow, _super);
     function GridHeaderRow() {
@@ -380,7 +327,7 @@ exports.GridHeaderRow = GridHeaderRow;
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -462,7 +409,7 @@ exports.GridHeaderRowCell = GridHeaderRowCell;
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -479,7 +426,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var gridRow_1 = __webpack_require__(7);
+var gridRow_1 = __webpack_require__(6);
 var GridBody = /** @class */ (function (_super) {
     __extends(GridBody, _super);
     function GridBody() {
@@ -502,7 +449,7 @@ exports.GridBody = GridBody;
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -519,8 +466,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var gridRowCell_1 = __webpack_require__(8);
-var utils_1 = __webpack_require__(1);
+var gridRowCell_1 = __webpack_require__(7);
+var utils_1 = __webpack_require__(8);
 var GridRow = /** @class */ (function (_super) {
     __extends(GridRow, _super);
     function GridRow() {
@@ -544,7 +491,29 @@ var GridRow = /** @class */ (function (_super) {
             else {
                 item = _this.props.row[column.cell];
             }
-            //let item = typeof column.cell == 'function' ? column.cell(this.props.row, column.key) : this.props.row[column.cell];
+            if (typeof item === 'object' && typeof column.cell !== 'function') {
+                var objectDisplayStyle = column.objectDisplayStyle || 'string';
+                var preClassName = _this.props.settings.classPrefix + "CellPre " + _this.props.settings.classPrefix + "CellPre_" + column.key;
+                switch (objectDisplayStyle) {
+                    case 'string':
+                        item = utils_1.Utils.flattenToString(item);
+                        break;
+                    case 'json':
+                        item = JSON.stringify(item);
+                        break;
+                    case 'jsonSpaced':
+                        item = React.createElement("pre", { className: preClassName }, JSON.stringify(item, null, 2));
+                        break;
+                    case 'flatJson':
+                        item = JSON.stringify(utils_1.Utils.flatten(item));
+                        break;
+                    case 'flatJsonSpaced':
+                        item = React.createElement("pre", { className: preClassName }, JSON.stringify(utils_1.Utils.flatten(item), null, 2));
+                        break;
+                    default:
+                        item = utils_1.Utils.flattenToString(item);
+                }
+            }
             var key = "jt-body-td-" + index;
             return React.createElement(gridRowCell_1.GridRowCell, { settings: _this.props.settings, onClickCell: _this.props.onClickCell, item: item, row: _this.props.row, column: column, key: key });
         }));
@@ -560,7 +529,7 @@ exports.GridRow = GridRow;
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -577,7 +546,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
-var utils_1 = __webpack_require__(1);
 var GridRowCell = /** @class */ (function (_super) {
     __extends(GridRowCell, _super);
     function GridRowCell() {
@@ -586,34 +554,10 @@ var GridRowCell = /** @class */ (function (_super) {
     GridRowCell.prototype.render = function () {
         var cellClass = this.props.settings.cellClass;
         var className = this.props.settings.classPrefix + "Cell " + this.props.settings.classPrefix + "Cell_" + this.props.column.key;
-        var preClassName = this.props.settings.classPrefix + "CellPre " + this.props.settings.classPrefix + "CellPre_" + this.props.column.key;
         if (cellClass) {
             className = cellClass(className, this.props.column.key, this.props.row);
         }
-        var item = this.props.item;
-        if (typeof this.props.item === 'object' && typeof this.props.item !== 'function') {
-            var objectDisplayStyle = this.props.column.objectDisplayStyle || 'string';
-            switch (objectDisplayStyle) {
-                case 'string':
-                    item = utils_1.Utils.flattenToString(this.props.item);
-                    break;
-                case 'json':
-                    item = JSON.stringify(this.props.item);
-                    break;
-                case 'jsonSpaced':
-                    item = React.createElement("pre", { className: preClassName }, JSON.stringify(this.props.item, null, 2));
-                    break;
-                case 'flatJson':
-                    item = JSON.stringify(utils_1.Utils.flatten(this.props.item));
-                    break;
-                case 'flatJsonSpaced':
-                    item = React.createElement("pre", { className: preClassName }, JSON.stringify(utils_1.Utils.flatten(this.props.item), null, 2));
-                    break;
-                default:
-                    item = utils_1.Utils.flattenToString(this.props.item);
-            }
-        }
-        return React.createElement("td", { className: className, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key, this.props.item) }, item);
+        return React.createElement("td", { className: className, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key, this.props.item) }, this.props.item);
     };
     GridRowCell.prototype.onClick = function (key, item, e) {
         if (this.props.onClickCell) {
@@ -623,6 +567,59 @@ var GridRowCell = /** @class */ (function (_super) {
     return GridRowCell;
 }(React.Component));
 exports.GridRowCell = GridRowCell;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+// https://gist.github.com/penguinboy/762197
+var Utils = /** @class */ (function () {
+    function Utils() {
+    }
+    Utils.flatten = function (obj) {
+        var toReturn = {};
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i))
+                continue;
+            if ((typeof obj[i]) == 'object') {
+                var flatObject = Utils.flatten(obj[i]);
+                for (var x in flatObject) {
+                    if (!flatObject.hasOwnProperty(x))
+                        continue;
+                    toReturn[i + '.' + x] = flatObject[x];
+                }
+            }
+            else {
+                toReturn[i] = obj[i];
+            }
+        }
+        return toReturn;
+    };
+    Utils.flattenToString = function (obj) {
+        var flat = Utils.flatten(obj);
+        var values = Object.keys(flat).map(function (key) {
+            return key + ": " + flat[key];
+        });
+        return values.join(', ');
+    };
+    // https://stackoverflow.com/a/45322101
+    Utils.getObjectByKey = function (obj, key) {
+        if (key.indexOf('.') !== 1) {
+            return key.split('.').reduce(function (prev, curr) {
+                return prev ? prev[curr] : null;
+            }, obj);
+        }
+        else {
+            return obj[key];
+        }
+    };
+    return Utils;
+}());
+exports.Utils = Utils;
 
 
 /***/ }),
