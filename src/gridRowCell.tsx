@@ -21,7 +21,7 @@ export class GridRowCell extends React.Component<RowCellProps, {}> {
         }
         let item: any = this.props.item;
 
-        if( typeof this.props.item === 'object'){
+        if(typeof this.props.item === 'object' && typeof this.props.item !== 'function'){
             let objectDisplayStyle = this.props.column.objectDisplayStyle || 'string';
 
             switch (objectDisplayStyle) {

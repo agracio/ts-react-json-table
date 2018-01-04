@@ -591,7 +591,7 @@ var GridRowCell = /** @class */ (function (_super) {
             className = cellClass(className, this.props.column.key, this.props.row);
         }
         var item = this.props.item;
-        if (typeof this.props.item === 'object') {
+        if (typeof this.props.item === 'object' && typeof this.props.item !== 'function') {
             var objectDisplayStyle = this.props.column.objectDisplayStyle || 'string';
             switch (objectDisplayStyle) {
                 case 'string':
