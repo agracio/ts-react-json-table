@@ -59,7 +59,7 @@ gulp.task('webpack', ['clean_webpack', 'build'], function() {
     return gulp.src(paths.webpackEntry)
       .pipe(webpack({
           output: {
-              libraryTarget: 'umd',
+              libraryTarget: 'commonjs-module',
               filename: paths.webpackName,
               library: 'JsonTable',
               //libraryExport: 'JsonTable',

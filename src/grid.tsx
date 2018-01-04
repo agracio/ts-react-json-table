@@ -1,12 +1,11 @@
 import * as React from "react";
-    import {GridHeader} from "./gridHeader";
+import {GridHeader} from "./gridHeader";
 import {GridBody} from "./gridBody";
 import {GridFooter} from "./gridFooter";
 
 export interface Column extends ColumnSetting{
     groupIndex?: Readonly<number>
     colSpan?: Readonly<number>
-
 }
 
 export class JsonTable extends React.Component<TableProps, {}> {
