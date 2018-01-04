@@ -11,8 +11,12 @@ interface TableSettings{
 
 interface TableProps{
     rows: any[],
-    columns?: any[],
+    columns?: ColumnSetting[],
+    columnDefinitions?: ColumnSetting[],
+    excludeColumns?: string[],
     className?: string,
+    theadClassName?: string,
+    caption?: string,
     settings?: TableSettings,
     onClickCell?: Function,
     onClickHeader?: Function,
@@ -20,51 +24,20 @@ interface TableProps{
     cellRenderer?: Function
 }
 
-interface BodyProps{
-    rows: any[],
-    columns: Column[],
-    settings: TableSettings,
-    onClickRow?: Function,
-    onClickCell?: Function,
-}
-
-interface RowProps{
-    row: any,
-    index: number,
-    reactKey: string,
-    columns?: Column[],
-    settings: TableSettings,
-    onClickRow?: Function,
-    onClickCell?: Function,
-}
-
-
-interface CellProps{
-    reactKey: string,
-    column: Column,
-    item: any,
-    settings: TableSettings,
-    onClickCell?: Function,
-    row: any,
-}
-
-interface HeaderProps{
-    columns: Column[],
-    settings: TableSettings,
-    onClickHeader?: Function,
-}
-
-interface HeaderCellProps{
-    reactKey: string,
-    column: Column,
-    settings: TableSettings,
-    onClickHeader?: Function,
-}
-
-interface Column{
+interface ColumnSetting{
     key: string,
     label?: string,
-    cell?: any
+    cell?: Function | string,
+    group?: string,
+    objectDisplayStyle?: ObjectDisplayStyle
+}
+
+declare enum ObjectDisplayStyle {
+    string = "string",
+    json = "json",
+    jsonSpaced = "jsonSpaced",
+    flatJson = "flatJson",
+    flatJsonSpaced = "flatJsonSpaced",
 }
 
 declare module 'ts-react-json-table'{

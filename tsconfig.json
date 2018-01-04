@@ -2,12 +2,15 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
+        "lib": [
+            "es6"
+        ],
         "jsx": "react",
         "outDir": "./dist",
         "sourceMap": true,
         "declaration": false,
         "noEmitOnError": false,
-        "removeComments": true,
+        "removeComments": false,
         "noImplicitAny": false,
         "preserveConstEnums": true
     },

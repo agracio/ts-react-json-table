@@ -15,7 +15,7 @@ const paths = {
     out: './dist',
     test: './dist/test/**/*.js',
     webpack: './build/',
-    webpackEntry: './dist/table.js',
+    webpackEntry: './dist/grid.js',
     webpackName: 'ts-react-json-table.js'
 };
 

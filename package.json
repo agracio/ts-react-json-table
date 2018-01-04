@@ -1,8 +1,8 @@
 {
   "name": "ts-react-json-table",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
-  "main": "dist/table.js",
+  "main": "dist/grid.js",
   "scripts": {
     "test": "gulp test",
     "build": "gulp build"
