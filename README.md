@@ -52,7 +52,7 @@ ReactDOM.render(<JsonTable rows = {items} />, document.body);
 Prop | Type | Description
 ---|---|---
 rows | Array\[Object\] (required) | JSON data.
-columns | *Array\[string\|ColumnSettings\]* (optional) | Table columns, if not defined all `rows` JSON data will be used. See [column settings](#column-settings).
+columns | *Array\[string\|ColumnSettings\]* (optional) | Table columns, if not defined all `rows` JSON data is used. See [column settings](#column-settings).
 excludeColumns | *Array\[string\]* (optional) | Exclude columns by key, allows to quickly exclude elements from `rows` JSON data without defining all `columns`. See [exclude columns](#exclude-columns)
 className | *string* (optional)| Class to use for `<table>` element.
 theadClassName | *string* (optional)| Class to use for `<thead>` element.
@@ -76,10 +76,10 @@ cellRenderer | *Function* (optional) | If provided, this function will be used t
 
 ### Column settings
 
-Setting name | Type | Description
+Setting&nbsp;name | Type | Description
 ---|---|---
 key | string | Object key of `rows` JSON data.
-label | *string* (optional) | Column header, if not defined `key` will be used.
+label | *string* (optional) | Column header, if not defined `key` is used.
 cell | *Function*\|*string* (optional) | Contents of table cell, if not defined `key` is used. Can be `string` or `function(row, columnKey)`
 group | *string* (optional) | Allows to group multiple items under same group header.
 
@@ -120,12 +120,12 @@ var columns = [
  
  **JSFiddle demo: https://jsfiddle.net/agracio/2dd7sxxs/**
  
- Only columns defined in `columns` prop will be shown in table.
+Only columns defined in `columns` prop will be shown in table.
 
 ### Exclude columns
 
 This allows to exclude columns from table without defining all columns. 
-For `rows` example above, if you wanted to show all columns except 'id' instead of defining `columns` prop 
+For `rows` example above, if you wanted to show all columns except 'id' instead of passing `columns` prop 
 
  ```js
 var columns = [
