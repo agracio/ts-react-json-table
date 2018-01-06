@@ -2,11 +2,14 @@ import * as React from "react";
 import {GridHeader} from "./gridHeader";
 import {GridBody} from "./gridBody";
 import {GridFooter} from "./gridFooter";
+import {polyfills} from "./plyfills";
 
 export interface Column extends ColumnSetting{
     groupIndex?: Readonly<number>
     colSpan?: Readonly<number>
 }
+
+polyfills();
 
 export class JsonTable extends React.Component<TableProps, {}> {
 
