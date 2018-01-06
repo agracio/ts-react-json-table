@@ -6,6 +6,7 @@ interface TableSettings{
     keyField?: string,
     noRowsMessage?: string,
     rowClass?: Function,
+    cellRenderer?: Function
     freezeHeader?: boolean
 }
 
@@ -21,7 +22,6 @@ interface TableProps{
     onClickCell?: Function,
     onClickHeader?: Function,
     onClickRow?: Function,
-    cellRenderer?: Function
 }
 
 interface ColumnSetting{

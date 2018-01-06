@@ -16,7 +16,6 @@ export class GridHeaderRowCell extends React.Component<HeaderRowCellProps, {}> {
 
     public render(){
         let headerClass = this.props.settings.headerClass;
-        let className = `${this.props.settings.classPrefix}Column`;
         //let label: string;
         let rowSpan: number = null;
         let colSpan: number = 1;
@@ -53,13 +52,14 @@ export class GridHeaderRowCell extends React.Component<HeaderRowCellProps, {}> {
         //this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header.replace(/\W+/g, '') : this.props.column.key;
         this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header : this.props.column.key;
 
+        let className = `${this.props.settings.classPrefix}Column ${this.props.settings.classPrefix}Column_${this.key.replace(/\W+/g, '')}`;
+
         if(headerClass) {
             className = headerClass(className, this.key);
         }
 
         let content = this.props.settings.freezeHeader ? <div><div>{this.header}</div><div>{this.header}</div></div> : this.header;
-        let th = skip ? null : this.createTh(className, rowSpan, colSpan, content);
-        return th;
+        return skip ? null : this.createTh(className, rowSpan, colSpan, content);
     }
 
     private createTh(className, rowSpan, colSpan, content){

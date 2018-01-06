@@ -72,7 +72,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
                 return {
                     key: key,
                     label: key,
-                    cell: this.props.cellRenderer || key,
+                    cell: this.settings.cellRenderer || key,
                 }
             });
         }
@@ -82,7 +82,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
                     return {
                         key: column,
                         label: column,
-                        cell: this.props.cellRenderer || column
+                        cell: this.settings.cellRenderer || column
                     };
                 }
                 if( typeof column == 'object' ){
@@ -93,7 +93,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
                     return {
                         key: key,
                         label: column.label || key,
-                        cell: this.props.cellRenderer || column.cell || key,
+                        cell: this.settings.cellRenderer || column.cell || key,
                         objectDisplayStyle: column.objectDisplayStyle,
                         group: column.group
                     };
@@ -131,14 +131,14 @@ export class JsonTable extends React.Component<TableProps, {}> {
                     if(dotIndex !== -1){
                         index = columns.findIndex((column: ColumnSetting) =>{return column.key === def.key.substring(0, dotIndex)});
                         if(copyObject(index, def)) {
-                            columns[index].cell = this.props.cellRenderer || def.cell || def.key;
+                            columns[index].cell = this.settings.cellRenderer || def.cell || def.key;
                         }else{
                             index = columns.findIndex((column: ColumnSetting) =>{return column.key.indexOf( def.key.substring(0, dotIndex + 1)) !== -1});
                             if(index !== -1) {
                                 let newIndex = index + 1;
                                 columns.splice(newIndex, 0, def);
                                 copyObject(newIndex, def);
-                                columns[newIndex].cell = this.props.cellRenderer || def.cell || def.key;
+                                columns[newIndex].cell = this.settings.cellRenderer || def.cell || def.key;
                             }
                         }
                     }

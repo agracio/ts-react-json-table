@@ -22,14 +22,14 @@ export class GridRowCell extends React.Component<RowCellProps, {}> {
         return <td
             className={className}
             data-key={this.props.column.key}
-            onClick={this.onClick.bind(this, this.props.column.key, this.props.item)}>
+            onClick={this.onClick.bind(this, this.props.column.key)}>
             {this.props.item}
         </td>;
     }
 
-    private onClick(key, item, e){
+    private onClick(key, e){
         if(this.props.onClickCell){
-            this.props.onClickCell(e, key, item);
+            this.props.onClickCell(e, key, this.props.row);
         }
     }
 
