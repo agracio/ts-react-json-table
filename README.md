@@ -74,7 +74,7 @@ noRowsMessage | *string*\|*ReactComponent*  (optional) | Message shown when the 
 rowClass | *Function* (optional) | Row custom class using `fn(currentClass, rowData)`.
 cellRenderer | *Function* (optional) | If provided, this function will be used to render all the cells' content, so it is a way of programmatically customize every cell. If no provided, the cell contents will just be `item[field]`, the value of the item for that field.
 
-### Columns settings
+### Column settings
 
 Setting name | Type | Description
 ---|---|---
@@ -120,7 +120,7 @@ var columns = [
  
  **JSFiddle demo: https://jsfiddle.net/agracio/2dd7sxxs/**
  
- Only columns defined in `columns` prop will be show in the table.
+ Only columns defined in `columns` prop will be shown in table.
 
 ### Exclude columns
 
@@ -136,7 +136,7 @@ var columns = [
 ];
  ```
  
- You can instead pass `excludeColumns` prop
+ You can pass `excludeColumns` prop
  
   ```js
  var excludeColumns = [
