@@ -38,4 +38,14 @@ export class Utils{
             return obj[key];
         }
     }
+
+    public static stringRandom(chars: number): string{
+        let text = "";
+        let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( let i = 0; i < chars; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
 }

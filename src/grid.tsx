@@ -2,7 +2,7 @@ import * as React from "react";
 import {GridHeader} from "./gridHeader";
 import {GridBody} from "./gridBody";
 import {GridFooter} from "./gridFooter";
-import {polyfills} from "./plyfills";
+import {polyfills} from "./polyfills";
 
 export interface Column extends ColumnSetting{
     groupIndex?: Readonly<number>
