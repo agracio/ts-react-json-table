@@ -100,6 +100,8 @@ var React = __webpack_require__(0);
 var gridHeader_1 = __webpack_require__(2);
 var gridBody_1 = __webpack_require__(5);
 var gridFooter_1 = __webpack_require__(9);
+var polyfills_1 = __webpack_require__(10);
+polyfills_1.polyfills();
 var JsonTable = /** @class */ (function (_super) {
     __extends(JsonTable, _super);
     function JsonTable() {
@@ -155,7 +157,7 @@ var JsonTable = /** @class */ (function (_super) {
                 return {
                     key: key,
                     label: key,
-                    cell: _this.props.cellRenderer || key,
+                    cell: _this.settings.cellRenderer || key,
                 };
             });
         }
@@ -165,7 +167,7 @@ var JsonTable = /** @class */ (function (_super) {
                     return {
                         key: column,
                         label: column,
-                        cell: _this.props.cellRenderer || column
+                        cell: _this.settings.cellRenderer || column
                     };
                 }
                 if (typeof column == 'object') {
@@ -175,7 +177,7 @@ var JsonTable = /** @class */ (function (_super) {
                     return {
                         key: key,
                         label: column.label || key,
-                        cell: _this.props.cellRenderer || column.cell || key,
+                        cell: _this.settings.cellRenderer || column.cell || key,
                         objectDisplayStyle: column.objectDisplayStyle,
                         group: column.group
                     };
@@ -209,7 +211,7 @@ var JsonTable = /** @class */ (function (_super) {
                     if (dotIndex_1 !== -1) {
                         index = columns.findIndex(function (column) { return column.key === def.key.substring(0, dotIndex_1); });
                         if (copyObject(index, def)) {
-                            columns[index].cell = _this.props.cellRenderer || def.cell || def.key;
+                            columns[index].cell = _this.settings.cellRenderer || def.cell || def.key;
                         }
                         else {
                             index = columns.findIndex(function (column) { return column.key.indexOf(def.key.substring(0, dotIndex_1 + 1)) !== -1; });
@@ -217,7 +219,7 @@ var JsonTable = /** @class */ (function (_super) {
                                 var newIndex = index + 1;
                                 columns.splice(newIndex, 0, def);
                                 copyObject(newIndex, def);
-                                columns[newIndex].cell = _this.props.cellRenderer || def.cell || def.key;
+                                columns[newIndex].cell = _this.settings.cellRenderer || def.cell || def.key;
                             }
                         }
                     }
@@ -351,7 +353,6 @@ var GridHeaderRowCell = /** @class */ (function (_super) {
     }
     GridHeaderRowCell.prototype.render = function () {
         var headerClass = this.props.settings.headerClass;
-        var className = this.props.settings.classPrefix + "Column";
         //let label: string;
         var rowSpan = null;
         var colSpan = 1;
@@ -386,14 +387,14 @@ var GridHeaderRowCell = /** @class */ (function (_super) {
         }
         //this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header.replace(/\W+/g, '') : this.props.column.key;
         this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header : this.props.column.key;
+        var className = this.props.settings.classPrefix + "Column " + this.props.settings.classPrefix + "Column_" + this.key.replace(/\W+/g, '');
         if (headerClass) {
             className = headerClass(className, this.key);
         }
         var content = this.props.settings.freezeHeader ? React.createElement("div", null,
             React.createElement("div", null, this.header),
             React.createElement("div", null, this.header)) : this.header;
-        var th = skip ? null : this.createTh(className, rowSpan, colSpan, content);
-        return th;
+        return skip ? null : this.createTh(className, rowSpan, colSpan, content);
     };
     GridHeaderRowCell.prototype.createTh = function (className, rowSpan, colSpan, content) {
         return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.key), "data-key": this.key, rowSpan: rowSpan, colSpan: colSpan }, content);
@@ -557,11 +558,11 @@ var GridRowCell = /** @class */ (function (_super) {
         if (cellClass) {
             className = cellClass(className, this.props.column.key, this.props.row);
         }
-        return React.createElement("td", { className: className, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key, this.props.item) }, this.props.item);
+        return React.createElement("td", { className: className, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key) }, this.props.item);
     };
-    GridRowCell.prototype.onClick = function (key, item, e) {
+    GridRowCell.prototype.onClick = function (key, e) {
         if (this.props.onClickCell) {
-            this.props.onClickCell(e, key, item);
+            this.props.onClickCell(e, key, this.props.row);
         }
     };
     return GridRowCell;
@@ -617,6 +618,13 @@ var Utils = /** @class */ (function () {
             return obj[key];
         }
     };
+    Utils.stringRandom = function (chars) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < chars; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    };
     return Utils;
 }());
 exports.Utils = Utils;
@@ -651,6 +659,130 @@ var GridFooter = /** @class */ (function (_super) {
     return GridFooter;
 }(React.Component));
 exports.GridFooter = GridFooter;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function polyfills() {
+    // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
+    if (!Array.prototype.findIndex) {
+        Object.defineProperty(Array.prototype, 'findIndex', {
+            value: function (predicate) {
+                // 1. Let O be ? ToObject(this value).
+                if (this == null) {
+                    throw new TypeError('"this" is null or not defined');
+                }
+                var o = Object(this);
+                // 2. Let len be ? ToLength(? Get(O, "length")).
+                var len = o.length >>> 0;
+                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+                if (typeof predicate !== 'function') {
+                    throw new TypeError('predicate must be a function');
+                }
+                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                var thisArg = arguments[1];
+                // 5. Let k be 0.
+                var k = 0;
+                // 6. Repeat, while k < len
+                while (k < len) {
+                    // a. Let Pk be ! ToString(k).
+                    // b. Let kValue be ? Get(O, Pk).
+                    // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+                    // d. If testResult is true, return k.
+                    var kValue = o[k];
+                    if (predicate.call(thisArg, kValue, k, o)) {
+                        return k;
+                    }
+                    // e. Increase k by 1.
+                    k++;
+                }
+                // 7. Return -1.
+                return -1;
+            }
+        });
+    }
+    // Production steps of ECMA-262, Edition 6, 22.1.2.1
+    if (!Array.from) {
+        Array.from = (function () {
+            var toStr = Object.prototype.toString;
+            var isCallable = function (fn) {
+                return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+            };
+            var toInteger = function (value) {
+                var number = Number(value);
+                if (isNaN(number)) {
+                    return 0;
+                }
+                if (number === 0 || !isFinite(number)) {
+                    return number;
+                }
+                return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+            };
+            var maxSafeInteger = Math.pow(2, 53) - 1;
+            var toLength = function (value) {
+                var len = toInteger(value);
+                return Math.min(Math.max(len, 0), maxSafeInteger);
+            };
+            // The length property of the from method is 1.
+            return function from(arrayLike /*, mapFn, thisArg */) {
+                // 1. Let C be the this value.
+                var C = this;
+                // 2. Let items be ToObject(arrayLike).
+                var items = Object(arrayLike);
+                // 3. ReturnIfAbrupt(items).
+                if (arrayLike == null) {
+                    throw new TypeError('Array.from requires an array-like object - not null or undefined');
+                }
+                // 4. If mapfn is undefined, then let mapping be false.
+                var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+                var T;
+                if (typeof mapFn !== 'undefined') {
+                    // 5. else
+                    // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+                    if (!isCallable(mapFn)) {
+                        throw new TypeError('Array.from: when provided, the second argument must be a function');
+                    }
+                    // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                    if (arguments.length > 2) {
+                        T = arguments[2];
+                    }
+                }
+                // 10. Let lenValue be Get(items, "length").
+                // 11. Let len be ToLength(lenValue).
+                var len = toLength(items.length);
+                // 13. If IsConstructor(C) is true, then
+                // 13. a. Let A be the result of calling the [[Construct]] internal method
+                // of C with an argument list containing the single item len.
+                // 14. a. Else, Let A be ArrayCreate(len).
+                var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+                // 16. Let k be 0.
+                var k = 0;
+                // 17. Repeat, while k < len… (also steps a - h)
+                var kValue;
+                while (k < len) {
+                    kValue = items[k];
+                    if (mapFn) {
+                        A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+                    }
+                    else {
+                        A[k] = kValue;
+                    }
+                    k += 1;
+                }
+                // 18. Let putStatus be Put(A, "length", len, true).
+                A.length = len;
+                // 20. Return A.
+                return A;
+            };
+        }());
+    }
+}
+exports.polyfills = polyfills;
 
 
 /***/ })
