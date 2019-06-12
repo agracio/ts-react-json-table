@@ -38,27 +38,28 @@ export class GridRow extends React.Component<RowProps, {}> {
                 }
 
                 if(typeof item === 'object' && typeof column.cell !== 'function'){
-                    let objectDisplayStyle = column.objectDisplayStyle || 'string';
                     let preClassName = `${this.props.settings.classPrefix}CellPre ${this.props.settings.classPrefix}CellPre_${column.key}`;
 
-                    switch (objectDisplayStyle) {
-                        case 'string':
-                            item = Utils.flattenToString(item);
-                            break;
-                        case 'json':
-                            item = JSON.stringify(item);
-                            break;
-                        case 'jsonSpaced':
-                            item = <pre className={preClassName}>{JSON.stringify(item, null, 2)}</pre>;
-                            break;
-                        case 'flatJson':
-                            item = JSON.stringify(Utils.flatten(item));
-                            break;
-                        case 'flatJsonSpaced':
-                            item = <pre className={preClassName}>{JSON.stringify(Utils.flatten(item), null, 2)}</pre>;
-                            break;
-                        default:
-                            item = Utils.flattenToString(item);
+                    if(column.objectDisplayStyle){
+                        switch (column.objectDisplayStyle) {
+                            case 'string':
+                                item = Utils.flattenToString(item);
+                                break;
+                            case 'json':
+                                item = JSON.stringify(item);
+                                break;
+                            case 'jsonSpaced':
+                                item = <pre className={preClassName}>{JSON.stringify(item, null, 2)}</pre>;
+                                break;
+                            case 'flatJson':
+                                item = JSON.stringify(Utils.flatten(item));
+                                break;
+                            case 'flatJsonSpaced':
+                                item = <pre className={preClassName}>{JSON.stringify(Utils.flatten(item), null, 2)}</pre>;
+                                break;
+                            default:
+                                item = Utils.flattenToString(item);
+                        }
                     }
                 }
 

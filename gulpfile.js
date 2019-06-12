@@ -6,7 +6,6 @@ const tsb = require('gulp-tsb');
 const chalk = require('chalk');
 const minify = require('gulp-minify');
 const run = require('gulp-run');
-const fs = require('fs');
 
 let buildDone = false;
 
