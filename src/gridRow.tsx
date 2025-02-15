@@ -1,23 +1,12 @@
 import * as React from "react";
 import {GridRowCell} from "./gridRowCell";
 import {Utils} from "./utils";
-import {Column} from "./grid";
-
-export interface RowProps{
-    row: any,
-    index: number,
-    columns: Column[],
-    settings: TableSettings,
-    onClickRow?: Function,
-    onClickCell?: Function,
-}
 
 export class GridRow extends React.Component<RowProps, {}> {
 
     public render(){
         let rowClass = this.props.settings.rowClass;
         let className = `${this.props.settings.classPrefix}Row ${this.props.settings.classPrefix}${this.props.index % 2 ? 'Odd' : 'Even'}`;
-
 
         if(rowClass) {
             className = rowClass(className, this.props.row);

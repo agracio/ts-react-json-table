@@ -1,14 +1,5 @@
 import * as React from "react";
 import {GridRow} from "./gridRow";
-import {Column} from "./grid";
-
-export interface BodyProps{
-    rows: any[],
-    columns: Column[],
-    settings: TableSettings,
-    onClickRow?: Function,
-    onClickCell?: Function,
-}
 
 export class GridBody extends React.Component<BodyProps, {}> {
     public render(){

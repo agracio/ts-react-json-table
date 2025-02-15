@@ -10,4 +10,5 @@ publish/
 /*.tgz
 /*.json
 !package.json
+!package-lock.json
 !tsconfig.json

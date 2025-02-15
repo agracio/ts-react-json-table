@@ -1,13 +1,4 @@
 import * as React from "react";
-import {Column} from "./grid";
-
-export interface RowCellProps{
-    column: Column,
-    item: any,
-    settings: TableSettings,
-    onClickCell?: Function,
-    row: any,
-}
 
 export class GridRowCell extends React.Component<RowCellProps, {}> {
 
@@ -32,5 +23,4 @@ export class GridRowCell extends React.Component<RowCellProps, {}> {
             this.props.onClickCell(e, key, this.props.row);
         }
     }
-
 }

@@ -4,7 +4,7 @@
 
 
 > This is based on excellent `react-json-table` https://github.com/arqex/react-json-table. 
-The component is written in TypeScript and supports React 16.x. 
+The component is written in TypeScript and supports React 19.x. 
 It attempts to be backward compatible with `react-json-table`.
 
 ## Features
@@ -23,8 +23,7 @@ Features are similar to original `react-json-table`
 npm install ts-react-json-table
 ```
 
-Or use the pre-built UMD files [ts-react-json-table.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.js) 
-and [ts-react-json-table.min.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.min.js) 
+Or use the pre-built UMD file [ts-react-json-table.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.js) 
 
 ## Quickstart
 
@@ -170,18 +169,7 @@ var columns = [
 ### Exclude columns
 
 This allows to exclude columns from table without defining all columns. 
-For `rows` example above, if you wanted to show all columns except 'id' instead of passing `columns` prop 
-
- ```js
-var columns = [
-    'name',
-    'age',
-    'phone',
-    'color'
-];
- ```
- 
- You can pass `excludeColumns` prop
+For `rows` example above, if you want to show all columns except 'id' 
  
   ```js
  var excludeColumns = [
@@ -190,5 +178,3 @@ var columns = [
   ```
 
 If both `columns` and `excludeColumns` props are passed, columns will be excluded even if they are defined in `columns` prop.
-
-## README update in progress...

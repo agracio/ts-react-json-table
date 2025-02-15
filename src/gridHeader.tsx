@@ -1,15 +1,5 @@
 import * as React from "react";
-import {GridHeaderRowCell} from "./gridHeaderRowCell";
 import {GridHeaderRow} from "./gridHeaderRow";
-import {Column} from "./grid";
-
-export interface HeaderProps{
-    columns: Column[],
-    settings: TableSettings,
-    onClickHeader?: Function,
-    grouping?: boolean,
-    theadClassName?: string,
-}
 
 export class GridHeader extends React.Component<HeaderProps, {}> {
     public render(){
