@@ -68,7 +68,7 @@ gulp.task('webpack', gulp.series('clean_webpack', 'build', function() {
           optimization: {
             minimize: false
           },
-          devtool: "#source-map"
+          devtool: "source-map"
     }))
     .pipe(gulp.dest(paths.webpack));
 }));

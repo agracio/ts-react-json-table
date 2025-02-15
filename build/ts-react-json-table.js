@@ -7,104 +7,21 @@
 		exports["JsonTable"] = factory(require(null));
 	else
 		root["JsonTable"] = factory(root["React"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
+})(self, (__WEBPACK_EXTERNAL_MODULE__45__) => {
+return /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
+/***/ 45:
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__45__;
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ 58:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
 
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -121,13 +38,332 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GridRow = void 0;
+var React = __webpack_require__(45);
+var gridRowCell_1 = __webpack_require__(346);
+var utils_1 = __webpack_require__(703);
+var GridRow = /** @class */ (function (_super) {
+    __extends(GridRow, _super);
+    function GridRow() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GridRow.prototype.render = function () {
+        var _this = this;
+        var rowClass = this.props.settings.rowClass;
+        var className = "".concat(this.props.settings.classPrefix, "Row ").concat(this.props.settings.classPrefix).concat(this.props.index % 2 ? 'Odd' : 'Even');
+        if (rowClass) {
+            className = rowClass(className, this.props.row);
+        }
+        return React.createElement("tr", { className: className, onClick: this.onClick.bind(this, this.props.row) }, this.props.columns.map(function (column, index) {
+            var item;
+            if (typeof column.cell === 'function') {
+                item = column.cell(_this.props.row, column.key);
+            }
+            else if (column.cell.indexOf('.') !== -1) {
+                item = utils_1.Utils.getObjectByKey(_this.props.row, column.cell);
+            }
+            else {
+                item = _this.props.row[column.cell];
+            }
+            if (typeof item === 'object' && typeof column.cell !== 'function') {
+                var preClassName = "".concat(_this.props.settings.classPrefix, "CellPre ").concat(_this.props.settings.classPrefix, "CellPre_").concat(column.key);
+                if (column.objectDisplayStyle) {
+                    switch (column.objectDisplayStyle) {
+                        case 'string':
+                            item = utils_1.Utils.flattenToString(item);
+                            break;
+                        case 'json':
+                            item = JSON.stringify(item);
+                            break;
+                        case 'jsonSpaced':
+                            item = React.createElement("pre", { className: preClassName }, JSON.stringify(item, null, 2));
+                            break;
+                        case 'flatJson':
+                            item = JSON.stringify(utils_1.Utils.flatten(item));
+                            break;
+                        case 'flatJsonSpaced':
+                            item = React.createElement("pre", { className: preClassName }, JSON.stringify(utils_1.Utils.flatten(item), null, 2));
+                            break;
+                        default:
+                            item = utils_1.Utils.flattenToString(item);
+                    }
+                }
+            }
+            var key = "jt-body-td-".concat(index);
+            return React.createElement(gridRowCell_1.GridRowCell, { settings: _this.props.settings, onClickCell: _this.props.onClickCell, item: item, row: _this.props.row, column: column, key: key });
+        }));
+    };
+    GridRow.prototype.onClick = function (item, e) {
+        if (this.props.onClickRow) {
+            this.props.onClickRow(e, item);
+        }
+    };
+    return GridRow;
+}(React.Component));
+exports.GridRow = GridRow;
+
+//# sourceMappingURL=gridRow.js.map
+
+
+/***/ }),
+
+/***/ 81:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GridHeaderRowCell = void 0;
+var React = __webpack_require__(45);
+var GridHeaderRowCell = /** @class */ (function (_super) {
+    __extends(GridHeaderRowCell, _super);
+    function GridHeaderRowCell() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GridHeaderRowCell.prototype.render = function () {
+        var headerClass = this.props.settings.headerClass;
+        //let label: string;
+        var rowSpan = null;
+        var colSpan = 1;
+        var skip = false;
+        if (this.props.groupCell) {
+            if (this.props.column.group) {
+                if (this.props.column.groupIndex === 0) {
+                    this.header = this.props.column.group;
+                    colSpan = this.props.column.colSpan;
+                }
+                else {
+                    skip = true;
+                }
+            }
+            else {
+                this.header = this.props.column.label;
+                rowSpan = 2;
+            }
+        }
+        else {
+            if (this.props.grouping) {
+                if (this.props.column.group) {
+                    this.header = this.props.column.label;
+                }
+                else {
+                    skip = true;
+                }
+            }
+            else {
+                this.header = this.props.column.label;
+            }
+        }
+        //this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header.replace(/\W+/g, '') : this.props.column.key;
+        this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header : this.props.column.key;
+        var className = "".concat(this.props.settings.classPrefix, "Column ").concat(this.props.settings.classPrefix, "Column_").concat(this.key.replace(/\W+/g, ''));
+        if (headerClass) {
+            className = headerClass(className, this.key);
+        }
+        var content = this.props.settings.freezeHeader ? React.createElement("div", null,
+            React.createElement("div", null, this.header),
+            React.createElement("div", null, this.header)) : this.header;
+        return skip ? null : this.createTh(className, rowSpan, colSpan, content);
+    };
+    GridHeaderRowCell.prototype.createTh = function (className, rowSpan, colSpan, content) {
+        return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.key), "data-key": this.key, rowSpan: rowSpan, colSpan: colSpan }, content);
+    };
+    GridHeaderRowCell.prototype.onClick = function (key, e) {
+        if (this.props.onClickHeader) {
+            this.props.onClickHeader(e, key);
+        }
+    };
+    return GridHeaderRowCell;
+}(React.Component));
+exports.GridHeaderRowCell = GridHeaderRowCell;
+
+//# sourceMappingURL=gridHeaderRowCell.js.map
+
+
+/***/ }),
+
+/***/ 313:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GridHeaderRow = void 0;
+var React = __webpack_require__(45);
+var gridHeaderRowCell_1 = __webpack_require__(81);
+var GridHeaderRow = /** @class */ (function (_super) {
+    __extends(GridHeaderRow, _super);
+    function GridHeaderRow() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GridHeaderRow.prototype.render = function () {
+        var _this = this;
+        return React.createElement("tr", null, this.props.columns.map(function (column, index) {
+            var key = "jt-header-th-".concat(index);
+            return React.createElement(gridHeaderRowCell_1.GridHeaderRowCell, { settings: _this.props.settings, column: column, key: key, grouping: _this.props.grouping, groupCell: _this.props.groupCell, onClickHeader: _this.props.onClickHeader });
+        }));
+    };
+    return GridHeaderRow;
+}(React.Component));
+exports.GridHeaderRow = GridHeaderRow;
+
+//# sourceMappingURL=gridHeaderRow.js.map
+
+
+/***/ }),
+
+/***/ 336:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GridBody = void 0;
+var React = __webpack_require__(45);
+var gridRow_1 = __webpack_require__(58);
+var GridBody = /** @class */ (function (_super) {
+    __extends(GridBody, _super);
+    function GridBody() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GridBody.prototype.render = function () {
+        var _this = this;
+        var rows = this.props.rows && this.props.rows.length > 0 ?
+            this.props.rows.map(function (row, index) {
+                var key = "jt-body-tr-".concat(index);
+                return React.createElement(gridRow_1.GridRow, { row: row, columns: _this.props.columns, settings: _this.props.settings, onClickCell: _this.props.onClickCell, onClickRow: _this.props.onClickRow, index: index, key: key });
+            }) :
+            React.createElement("tr", null,
+                React.createElement("td", null, this.props.settings.noRowsMessage));
+        return React.createElement("tbody", null, rows);
+    };
+    return GridBody;
+}(React.Component));
+exports.GridBody = GridBody;
+
+//# sourceMappingURL=gridBody.js.map
+
+
+/***/ }),
+
+/***/ 346:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GridRowCell = void 0;
+var React = __webpack_require__(45);
+var GridRowCell = /** @class */ (function (_super) {
+    __extends(GridRowCell, _super);
+    function GridRowCell() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GridRowCell.prototype.render = function () {
+        var cellClass = this.props.settings.cellClass;
+        var className = "".concat(this.props.settings.classPrefix, "Cell ").concat(this.props.settings.classPrefix, "Cell_").concat(this.props.column.key);
+        if (cellClass) {
+            className = cellClass(className, this.props.column.key, this.props.row);
+        }
+        return React.createElement("td", { className: className, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key) }, this.props.item);
+    };
+    GridRowCell.prototype.onClick = function (key, e) {
+        if (this.props.onClickCell) {
+            this.props.onClickCell(e, key, this.props.row);
+        }
+    };
+    return GridRowCell;
+}(React.Component));
+exports.GridRowCell = GridRowCell;
+
+//# sourceMappingURL=gridRowCell.js.map
+
+
+/***/ }),
+
+/***/ 424:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JsonTable = void 0;
-var React = __webpack_require__(0);
-var gridHeader_1 = __webpack_require__(2);
-var gridBody_1 = __webpack_require__(5);
-var gridFooter_1 = __webpack_require__(9);
-var polyfills_1 = __webpack_require__(10);
+var React = __webpack_require__(45);
+var gridHeader_1 = __webpack_require__(669);
+var gridBody_1 = __webpack_require__(336);
+var gridFooter_1 = __webpack_require__(815);
+var polyfills_1 = __webpack_require__(690);
 (0, polyfills_1.polyfills)();
 var JsonTable = /** @class */ (function (_super) {
     __extends(JsonTable, _super);
@@ -287,10 +523,10 @@ module.exports = JsonTable;
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ 669:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
 
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -307,10 +543,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.GridHeader = void 0;
-var React = __webpack_require__(0);
-var gridHeaderRow_1 = __webpack_require__(3);
+var React = __webpack_require__(45);
+var gridHeaderRow_1 = __webpack_require__(313);
 var GridHeader = /** @class */ (function (_super) {
     __extends(GridHeader, _super);
     function GridHeader() {
@@ -330,433 +566,12 @@ exports.GridHeader = GridHeader;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridHeaderRow = void 0;
-var React = __webpack_require__(0);
-var gridHeaderRowCell_1 = __webpack_require__(4);
-var GridHeaderRow = /** @class */ (function (_super) {
-    __extends(GridHeaderRow, _super);
-    function GridHeaderRow() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    GridHeaderRow.prototype.render = function () {
-        var _this = this;
-        return React.createElement("tr", null, this.props.columns.map(function (column, index) {
-            var key = "jt-header-th-".concat(index);
-            return React.createElement(gridHeaderRowCell_1.GridHeaderRowCell, { settings: _this.props.settings, column: column, key: key, grouping: _this.props.grouping, groupCell: _this.props.groupCell, onClickHeader: _this.props.onClickHeader });
-        }));
-    };
-    return GridHeaderRow;
-}(React.Component));
-exports.GridHeaderRow = GridHeaderRow;
-
-//# sourceMappingURL=gridHeaderRow.js.map
+/***/ 690:
+/***/ ((__unused_webpack_module, exports) => {
 
 
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridHeaderRowCell = void 0;
-var React = __webpack_require__(0);
-var GridHeaderRowCell = /** @class */ (function (_super) {
-    __extends(GridHeaderRowCell, _super);
-    function GridHeaderRowCell() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    GridHeaderRowCell.prototype.render = function () {
-        var headerClass = this.props.settings.headerClass;
-        //let label: string;
-        var rowSpan = null;
-        var colSpan = 1;
-        var skip = false;
-        if (this.props.groupCell) {
-            if (this.props.column.group) {
-                if (this.props.column.groupIndex === 0) {
-                    this.header = this.props.column.group;
-                    colSpan = this.props.column.colSpan;
-                }
-                else {
-                    skip = true;
-                }
-            }
-            else {
-                this.header = this.props.column.label;
-                rowSpan = 2;
-            }
-        }
-        else {
-            if (this.props.grouping) {
-                if (this.props.column.group) {
-                    this.header = this.props.column.label;
-                }
-                else {
-                    skip = true;
-                }
-            }
-            else {
-                this.header = this.props.column.label;
-            }
-        }
-        //this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header.replace(/\W+/g, '') : this.props.column.key;
-        this.key = (this.props.column.group && this.header === this.props.column.group) ? this.header : this.props.column.key;
-        var className = "".concat(this.props.settings.classPrefix, "Column ").concat(this.props.settings.classPrefix, "Column_").concat(this.key.replace(/\W+/g, ''));
-        if (headerClass) {
-            className = headerClass(className, this.key);
-        }
-        var content = this.props.settings.freezeHeader ? React.createElement("div", null,
-            React.createElement("div", null, this.header),
-            React.createElement("div", null, this.header)) : this.header;
-        return skip ? null : this.createTh(className, rowSpan, colSpan, content);
-    };
-    GridHeaderRowCell.prototype.createTh = function (className, rowSpan, colSpan, content) {
-        return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.key), "data-key": this.key, rowSpan: rowSpan, colSpan: colSpan }, content);
-    };
-    GridHeaderRowCell.prototype.onClick = function (key, e) {
-        if (this.props.onClickHeader) {
-            this.props.onClickHeader(e, key);
-        }
-    };
-    return GridHeaderRowCell;
-}(React.Component));
-exports.GridHeaderRowCell = GridHeaderRowCell;
-
-//# sourceMappingURL=gridHeaderRowCell.js.map
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridBody = void 0;
-var React = __webpack_require__(0);
-var gridRow_1 = __webpack_require__(6);
-var GridBody = /** @class */ (function (_super) {
-    __extends(GridBody, _super);
-    function GridBody() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    GridBody.prototype.render = function () {
-        var _this = this;
-        var rows = this.props.rows && this.props.rows.length > 0 ?
-            this.props.rows.map(function (row, index) {
-                var key = "jt-body-tr-".concat(index);
-                return React.createElement(gridRow_1.GridRow, { row: row, columns: _this.props.columns, settings: _this.props.settings, onClickCell: _this.props.onClickCell, onClickRow: _this.props.onClickRow, index: index, key: key });
-            }) :
-            React.createElement("tr", null,
-                React.createElement("td", null, this.props.settings.noRowsMessage));
-        return React.createElement("tbody", null, rows);
-    };
-    return GridBody;
-}(React.Component));
-exports.GridBody = GridBody;
-
-//# sourceMappingURL=gridBody.js.map
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridRow = void 0;
-var React = __webpack_require__(0);
-var gridRowCell_1 = __webpack_require__(7);
-var utils_1 = __webpack_require__(8);
-var GridRow = /** @class */ (function (_super) {
-    __extends(GridRow, _super);
-    function GridRow() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    GridRow.prototype.render = function () {
-        var _this = this;
-        var rowClass = this.props.settings.rowClass;
-        var className = "".concat(this.props.settings.classPrefix, "Row ").concat(this.props.settings.classPrefix).concat(this.props.index % 2 ? 'Odd' : 'Even');
-        if (rowClass) {
-            className = rowClass(className, this.props.row);
-        }
-        return React.createElement("tr", { className: className, onClick: this.onClick.bind(this, this.props.row) }, this.props.columns.map(function (column, index) {
-            var item;
-            if (typeof column.cell === 'function') {
-                item = column.cell(_this.props.row, column.key);
-            }
-            else if (column.cell.indexOf('.') !== -1) {
-                item = utils_1.Utils.getObjectByKey(_this.props.row, column.cell);
-            }
-            else {
-                item = _this.props.row[column.cell];
-            }
-            if (typeof item === 'object' && typeof column.cell !== 'function') {
-                var preClassName = "".concat(_this.props.settings.classPrefix, "CellPre ").concat(_this.props.settings.classPrefix, "CellPre_").concat(column.key);
-                if (column.objectDisplayStyle) {
-                    switch (column.objectDisplayStyle) {
-                        case 'string':
-                            item = utils_1.Utils.flattenToString(item);
-                            break;
-                        case 'json':
-                            item = JSON.stringify(item);
-                            break;
-                        case 'jsonSpaced':
-                            item = React.createElement("pre", { className: preClassName }, JSON.stringify(item, null, 2));
-                            break;
-                        case 'flatJson':
-                            item = JSON.stringify(utils_1.Utils.flatten(item));
-                            break;
-                        case 'flatJsonSpaced':
-                            item = React.createElement("pre", { className: preClassName }, JSON.stringify(utils_1.Utils.flatten(item), null, 2));
-                            break;
-                        default:
-                            item = utils_1.Utils.flattenToString(item);
-                    }
-                }
-            }
-            var key = "jt-body-td-".concat(index);
-            return React.createElement(gridRowCell_1.GridRowCell, { settings: _this.props.settings, onClickCell: _this.props.onClickCell, item: item, row: _this.props.row, column: column, key: key });
-        }));
-    };
-    GridRow.prototype.onClick = function (item, e) {
-        if (this.props.onClickRow) {
-            this.props.onClickRow(e, item);
-        }
-    };
-    return GridRow;
-}(React.Component));
-exports.GridRow = GridRow;
-
-//# sourceMappingURL=gridRow.js.map
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridRowCell = void 0;
-var React = __webpack_require__(0);
-var GridRowCell = /** @class */ (function (_super) {
-    __extends(GridRowCell, _super);
-    function GridRowCell() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    GridRowCell.prototype.render = function () {
-        var cellClass = this.props.settings.cellClass;
-        var className = "".concat(this.props.settings.classPrefix, "Cell ").concat(this.props.settings.classPrefix, "Cell_").concat(this.props.column.key);
-        if (cellClass) {
-            className = cellClass(className, this.props.column.key, this.props.row);
-        }
-        return React.createElement("td", { className: className, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key) }, this.props.item);
-    };
-    GridRowCell.prototype.onClick = function (key, e) {
-        if (this.props.onClickCell) {
-            this.props.onClickCell(e, key, this.props.row);
-        }
-    };
-    return GridRowCell;
-}(React.Component));
-exports.GridRowCell = GridRowCell;
-
-//# sourceMappingURL=gridRowCell.js.map
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Utils = void 0;
-// https://gist.github.com/penguinboy/762197
-var Utils = /** @class */ (function () {
-    function Utils() {
-    }
-    Utils.flatten = function (obj) {
-        var toReturn = {};
-        for (var i in obj) {
-            if (!obj.hasOwnProperty(i))
-                continue;
-            if ((typeof obj[i]) == 'object') {
-                var flatObject = Utils.flatten(obj[i]);
-                for (var x in flatObject) {
-                    if (!flatObject.hasOwnProperty(x))
-                        continue;
-                    toReturn[i + '.' + x] = flatObject[x];
-                }
-            }
-            else {
-                toReturn[i] = obj[i];
-            }
-        }
-        return toReturn;
-    };
-    Utils.flattenToString = function (obj) {
-        var flat = Utils.flatten(obj);
-        var values = Object.keys(flat).map(function (key) {
-            return "".concat(key, ": ").concat(flat[key]);
-        });
-        return values.join(', ');
-    };
-    // https://stackoverflow.com/a/45322101
-    Utils.getObjectByKey = function (obj, key) {
-        if (key.indexOf('.') !== 1) {
-            return key.split('.').reduce(function (prev, curr) {
-                return prev ? prev[curr] : null;
-            }, obj);
-        }
-        else {
-            return obj[key];
-        }
-    };
-    Utils.stringRandom = function (chars) {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for (var i = 0; i < chars; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        return text;
-    };
-    return Utils;
-}());
-exports.Utils = Utils;
-
-//# sourceMappingURL=utils.js.map
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GridFooter = void 0;
-var React = __webpack_require__(0);
-var GridFooter = /** @class */ (function (_super) {
-    __extends(GridFooter, _super);
-    function GridFooter() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    GridFooter.prototype.render = function () {
-        return React.createElement("tfoot", null);
-    };
-    return GridFooter;
-}(React.Component));
-exports.GridFooter = GridFooter;
-
-//# sourceMappingURL=gridFooter.js.map
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.polyfills = polyfills;
 function polyfills() {
     // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
@@ -876,7 +691,145 @@ function polyfills() {
 //# sourceMappingURL=polyfills.js.map
 
 
+/***/ }),
+
+/***/ 703:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Utils = void 0;
+// https://gist.github.com/penguinboy/762197
+var Utils = /** @class */ (function () {
+    function Utils() {
+    }
+    Utils.flatten = function (obj) {
+        var toReturn = {};
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i))
+                continue;
+            if ((typeof obj[i]) == 'object') {
+                var flatObject = Utils.flatten(obj[i]);
+                for (var x in flatObject) {
+                    if (!flatObject.hasOwnProperty(x))
+                        continue;
+                    toReturn[i + '.' + x] = flatObject[x];
+                }
+            }
+            else {
+                toReturn[i] = obj[i];
+            }
+        }
+        return toReturn;
+    };
+    Utils.flattenToString = function (obj) {
+        var flat = Utils.flatten(obj);
+        var values = Object.keys(flat).map(function (key) {
+            return "".concat(key, ": ").concat(flat[key]);
+        });
+        return values.join(', ');
+    };
+    // https://stackoverflow.com/a/45322101
+    Utils.getObjectByKey = function (obj, key) {
+        if (key.indexOf('.') !== 1) {
+            return key.split('.').reduce(function (prev, curr) {
+                return prev ? prev[curr] : null;
+            }, obj);
+        }
+        else {
+            return obj[key];
+        }
+    };
+    Utils.stringRandom = function (chars) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < chars; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    };
+    return Utils;
+}());
+exports.Utils = Utils;
+
+//# sourceMappingURL=utils.js.map
+
+
+/***/ }),
+
+/***/ 815:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GridFooter = void 0;
+var React = __webpack_require__(45);
+var GridFooter = /** @class */ (function (_super) {
+    __extends(GridFooter, _super);
+    function GridFooter() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GridFooter.prototype.render = function () {
+        return React.createElement("tfoot", null);
+    };
+    return GridFooter;
+}(React.Component));
+exports.GridFooter = GridFooter;
+
+//# sourceMappingURL=gridFooter.js.map
+
+
 /***/ })
-/******/ ]);
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__(424);
+/******/ 	
+/******/ 	return __webpack_exports__;
+/******/ })()
+;
 });
 //# sourceMappingURL=ts-react-json-table.js.map

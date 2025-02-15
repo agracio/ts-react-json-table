@@ -36,7 +36,7 @@
     "gulp-util": "^1.0.0",
     "gulp4-run-sequence": "^1.0.2",
     "typescript": "^5.7.3",
-    "webpack-stream": "^6.1.2"
+    "webpack-stream": "^7.0.0"
   },
   "dependencies": {
     "react": "^19.0.0"
