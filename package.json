@@ -29,11 +29,11 @@
     "chalk": "^4.1.2",
     "del": "^3.0.0",
     "gulp": "^5.0.0",
-    "gulp-minify": "^3.0.0",
+    "gulp-minify": "^3.1.0",
     "gulp-run": "^1.7.1",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "gulp-util": "^1.0.0",
+    "gulp-util": "^3.0.8",
     "gulp4-run-sequence": "^1.0.2",
     "typescript": "^5.7.3",
     "webpack-stream": "^7.0.0"
