@@ -4,9 +4,7 @@ const { readdirSync, rmSync, copyFileSync } = require('fs');
 const chalk = require('chalk');
 
 const paths = {
-    src: ['src/*ts*', './ts-react-json-table.d.ts'],
     out: './dist',
-    test: './dist/test/**/*.js',
     webpack: './build/',
     webpackEntry: './dist/grid.js',
     webpackName: 'ts-react-json-table.js'
@@ -40,7 +38,7 @@ function webpack(cb){
 }
 
 function copy(cb) {
-    copyFileSync("./src/ts-react-json-table.css", paths.webpack + "ts-react-json-table.css");
+    copyFileSync('./src/ts-react-json-table.css', paths.webpack + 'ts-react-json-table.css');
     cb();
 }
 

@@ -5,5 +5,8 @@
 /*.zip
 /*.json
 !package.json
-!tsconfig.json
 /content
+/.github
+gulpfile.js
+tsconfig.json
+webpack.config.js
