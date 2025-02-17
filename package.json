@@ -17,7 +17,7 @@
     "table",
     "json"
   ],
-  "author": "Antonas Graciovas",
+  "author": "agracio",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/agracio/ts-react-json-table/issues"
@@ -25,18 +25,11 @@
   "homepage": "https://github.com/agracio/ts-react-json-table",
   "devDependencies": {
     "@types/node": "^22.13.4",
-    "@types/react": "^19.0.8",
-    "chalk": "^4.1.2",
-    "del": "^3.0.0",
+    "@types/react": "^19.0.9",
     "gulp": "^5.0.0",
-    "gulp-minify": "^3.1.0",
-    "gulp-run": "^1.7.1",
-    "gulp-sourcemaps": "^3.0.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "gulp-util": "^3.0.8",
-    "gulp4-run-sequence": "^1.0.2",
+    "chalk": "^4.1.2",
     "typescript": "^5.7.3",
-    "webpack-stream": "^7.0.0"
+    "webpack": "^5.98.0"
   },
   "dependencies": {
     "react": "^19.0.0"

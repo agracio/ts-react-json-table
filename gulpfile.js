@@ -1,14 +1,7 @@
-const gulp = require('gulp');
-const del = require('del');
-const webpack = require('webpack-stream');
-const sequence = require('gulp4-run-sequence');
-var ts = require('gulp-typescript');
+const { series } = require('gulp');
+const { spawnSync, exec } = require('child_process');
+const { readdirSync, rmSync, copyFileSync } = require('fs');
 const chalk = require('chalk');
-const minify = require('gulp-minify');
-const run = require('gulp-run');
-const sourcemaps = require('gulp-sourcemaps');
-
-let buildDone = false;
 
 const paths = {
     src: ['src/*ts*', './ts-react-json-table.d.ts'],
@@ -19,86 +12,44 @@ const paths = {
     webpackName: 'ts-react-json-table.js'
 };
 
-let tsProject = ts.createProject('tsconfig.json');
+function run(cmd, onClose){
 
-function logBuildResult(){
-    console.log(buildDone ? chalk.green('Build succeeded.') : chalk.red('Build failed.'));
+    exec(cmd, function (err, stdout, stderr) {
+        if(err){
+            console.log();
+            console.log(chalk.red(stdout));
+            throw err;
+        }
+        console.log(stdout);
+        onClose();
+    });
 }
 
-gulp.task('build', function() {
-    console.log(chalk.blue('Typescript compile.'));
-    buildDone = true;
-    return gulp.src(paths.src)
-    .pipe(tsProject())
-    .pipe(sourcemaps.init())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.out));
-});
+function build(cb) {
+    run('tsc', cb)
+}
 
-gulp.task('clean', function() {
-    console.log(chalk.blue('Cleaning'));
-    return del([paths.out + '/**/*', paths.webpack + '/**/*']);
-});
+function clean(cb) {
+    readdirSync(paths.out).forEach(f => rmSync(`${paths.out}/${f}`, {recursive: true}));
+    readdirSync(paths.webpack).forEach(f => rmSync(`${paths.webpack}/${f}`, {recursive: true}));
+    cb();
+}
 
-gulp.task('clean_webpack', function() {
-    console.log(chalk.blue('Cleaning webpack output in ' + paths.webpack));
-    return del([paths.webpack + '/**/*']);
-});
+function webpack(cb){
+    run('webpack --config ./webpack.config.js', cb);
+}
 
-gulp.task('webpack', gulp.series('clean_webpack', 'build', function() {
-    logBuildResult();
-    if(!buildDone){ return;}
-    console.log(chalk.blue('Creating webpack in', paths.webpack));
-    return gulp.src(paths.webpackEntry)
-      .pipe(webpack({
-          output: {
-              libraryTarget: 'umd',
-              filename: paths.webpackName,
-              library: 'JsonTable',
-              //libraryExport: 'JsonTable',
-          },
-          externals: {
-              react: {
-                  commonjs: null,
-                  commonjs2: null,
-                  //amd: "React",
-                  root: 'React'
-              }
-          },
-          optimization: {
-            minimize: false
-          },
-          devtool: "source-map"
-    }))
-    .pipe(gulp.dest(paths.webpack));
-}));
+function copy(cb) {
+    copyFileSync("./src/ts-react-json-table.css", paths.webpack + "ts-react-json-table.css");
+    cb();
+}
 
-gulp.task('minify', gulp.series('webpack', function() {
-    return gulp.src(paths.webpack + paths.webpackName)
-        .pipe(minify({
-            ext:{
-                min:'.min.js'
-            }
-        }))
-        .pipe(gulp.dest(paths.webpack))
-}));
+function pack(cb){
+    run('npm pack', cb);
+}
 
-gulp.task('copy-css', function() {
-    return gulp.src('./src/**/*.css').pipe(gulp.dest(paths.webpack))
-});
+exports.build = build;
+exports.clean = clean;
+exports.webpack = series(clean, build, webpack);
 
-gulp.task('publish_npm', function () {
-    return run('npm publish').exec();
-});
-
-gulp.task('publish', function (cb) {
-    sequence('clean', 'minify', 'copy-css', 'publish_pack', 'publish_npm', cb);
-});
-
-gulp.task('publish_pack', function () {
-    return run('npm pack').exec();
-});
-
-gulp.task('pack', function (cb) {
-    sequence('clean', 'minify', 'copy-css', 'publish_pack', cb);
-});
+exports.pack = series(clean, build, webpack, copy, pack);

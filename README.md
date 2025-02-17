@@ -48,39 +48,39 @@ ReactDOM.render(<JsonTable rows = {items} />, document.body);
 
 ### props
 
-Prop | Type | Description
----|---|---
-rows | Array\[Object\] (required) | JSON data.
-columns | *Array\[string\|ColumnSettings\]* (optional) | Table columns, if not defined `rows` JSON data is used. See [column settings](#column-settings).
-excludeColumns | *Array\[string\]* (optional) | Exclude columns by key, allows to quickly exclude elements from `rows` JSON data without defining all `columns`. See [exclude columns](#exclude-columns)
-className | *string* (optional)| Class to use for `<table>` element.
-theadClassName | *string* (optional)| Class to use for `<thead>` element.
-caption | *string* (optional)| Table `<caption>` element contents. If not defined `<caption>` element will not be rendered.
-settings | *TableSettings* (optional)| Table settings, see [table settings](#table-settings).
-onClickCell | *Function* (optional)| Callback triggered when a cell is clicked: `fn(event, columnName, rowData)`.
-onClickRow | *Function* (optional)| Callback triggered when a row is clicked: `fn(event, rowData)`.
-onClickHeader | *Function* (optional)| Callback triggered when a column header is clicked: `fn(event, columnName)`.
+| Prop           | Type                                         | Description                                                                                                                                              |
+|----------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| rows           | Array\[Object\] (required)                   | JSON data.                                                                                                                                               |
+| columns        | *Array\[string\|ColumnSettings\]* (optional) | Table columns, if not defined `rows` JSON data is used. See [column settings](#column-settings).                                                         |
+| excludeColumns | *Array\[string\]* (optional)                 | Exclude columns by key, allows to quickly exclude elements from `rows` JSON data without defining all `columns`. See [exclude columns](#exclude-columns) |
+| className      | *string* (optional)                          | Class to use for `<table>` element.                                                                                                                      |
+| theadClassName | *string* (optional)                          | Class to use for `<thead>` element.                                                                                                                      |
+| caption        | *string* (optional)                          | Table `<caption>` element contents. If not defined `<caption>` element will not be rendered.                                                             |
+| settings       | *TableSettings* (optional)                   | Table settings, see [table settings](#table-settings).                                                                                                   |
+| onClickCell    | *Function* (optional)                        | Callback triggered when a cell is clicked: `fn(event, columnName, rowData)`.                                                                             |
+| onClickRow     | *Function* (optional)                        | Callback triggered when a row is clicked: `fn(event, rowData)`.                                                                                          |
+| onClickHeader  | *Function* (optional)                        | Callback triggered when a column header is clicked: `fn(event, columnName)`.                                                                             |
 
 ### Table settings
 
-Setting name | Type | Description
----|---|---
-header | *boolean* (optional) | Determines whether to show table header. Default is `true`.
-classPrefix | *string* (optional) | JsonTable uses `class` attributes for its markup like `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in the case it is conflicting with other classes in your app.
-noRowsMessage | *string*\|*ReactComponent*  (optional) | Message shown when the table has no rows. Default is *"No items"*.
-cellClass | *Function* (optional) | Cell custom class using `fn(currentClass, columnKey, rowData)`.
-headerClass | *Function* (optional) | Header custom class using `fn(currentClass, columnKey)`.
-rowClass | *Function* (optional) | Row custom class using `fn(currentClass, rowData)`.
-cellRenderer | *Function* (optional) | If provided, this function will be used to render all the cells' content. If not provided, the cell contents will be `item[field]`, the value of the item for that field.
+| Setting name  | Type                                   | Description                                                                                                                                                                                                         |
+|---------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| header        | *boolean* (optional)                   | Determines whether to show table header. Default is `true`.                                                                                                                                                         |
+| classPrefix   | *string* (optional)                    | JsonTable uses `class` attributes for its markup like `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in the case it is conflicting with other classes in your app. |
+| noRowsMessage | *string*\|*ReactComponent*  (optional) | Message shown when the table has no rows. Default is *"No items"*.                                                                                                                                                  |
+| cellClass     | *Function* (optional)                  | Cell custom class using `fn(currentClass, columnKey, rowData)`.                                                                                                                                                     |
+| headerClass   | *Function* (optional)                  | Header custom class using `fn(currentClass, columnKey)`.                                                                                                                                                            |
+| rowClass      | *Function* (optional)                  | Row custom class using `fn(currentClass, rowData)`.                                                                                                                                                                 |
+| cellRenderer  | *Function* (optional)                  | If provided, this function will be used to render all the cells' content. If not provided, the cell contents will be `item[field]`, the value of the item for that field.                                           |
 
 ### Column settings
 
-Setting&nbsp;name | Type | Description
----|---|---
-key | string | Object key of `rows` JSON data.
-label | *string* (optional) | Column header, if not defined `key` is used.
-cell | *Function*\|*string* (optional) | Contents of table cell, if not defined `key` is used. Can be `string` or `function(row, columnKey)`
-group | *string* (optional) | Allows to group multiple items under same group header. See [column grouping](#column-grouping)
+| Setting&nbsp;name | Type                            | Description                                                                                         |
+|-------------------|---------------------------------|-----------------------------------------------------------------------------------------------------|
+| key               | string                          | Object key of `rows` JSON data.                                                                     |
+| label             | *string* (optional)             | Column header, if not defined `key` is used.                                                        |
+| cell              | *Function*\|*string* (optional) | Contents of table cell, if not defined `key` is used. Can be `string` or `function(row, columnKey)` |
+| group             | *string* (optional)             | Allows to group multiple items under same group header. See [column grouping](#column-grouping)     |
 
 If `columns` props is not defined columns settings will be automatically generated using `rows` JSON data.
 
