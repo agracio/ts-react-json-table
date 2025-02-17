@@ -3,7 +3,7 @@
 ##### Simple table component to display JSON data.
 
 
-> This is based on excellent `react-json-table` https://github.com/arqex/react-json-table. 
+>This is based on excellent `react-json-table` https://github.com/arqex/react-json-table. 
 The component is written in TypeScript and supports React 19.x. 
 It attempts to be backward compatible with `react-json-table`.
 
@@ -23,7 +23,8 @@ Features are similar to original `react-json-table`
 npm install ts-react-json-table
 ```
 
-Or use the pre-built UMD file [ts-react-json-table.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.js) 
+Or use the pre-built UMD files [ts-react-json-table.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.js)
+and [ts-react-json-table.min.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.min.js)
 
 ## Quickstart
 
@@ -61,26 +62,14 @@ ReactDOM.render(<JsonTable rows = {items} />, document.body);
 | onClickRow     | *Function* (optional)                        | Callback triggered when a row is clicked: `fn(event, rowData)`.                                                                                          |
 | onClickHeader  | *Function* (optional)                        | Callback triggered when a column header is clicked: `fn(event, columnName)`.                                                                             |
 
-### Table settings
-
-| Setting name  | Type                                   | Description                                                                                                                                                                                                         |
-|---------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| header        | *boolean* (optional)                   | Determines whether to show table header. Default is `true`.                                                                                                                                                         |
-| classPrefix   | *string* (optional)                    | JsonTable uses `class` attributes for its markup like `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in the case it is conflicting with other classes in your app. |
-| noRowsMessage | *string*\|*ReactComponent*  (optional) | Message shown when the table has no rows. Default is *"No items"*.                                                                                                                                                  |
-| cellClass     | *Function* (optional)                  | Cell custom class using `fn(currentClass, columnKey, rowData)`.                                                                                                                                                     |
-| headerClass   | *Function* (optional)                  | Header custom class using `fn(currentClass, columnKey)`.                                                                                                                                                            |
-| rowClass      | *Function* (optional)                  | Row custom class using `fn(currentClass, rowData)`.                                                                                                                                                                 |
-| cellRenderer  | *Function* (optional)                  | If provided, this function will be used to render all the cells' content. If not provided, the cell contents will be `item[field]`, the value of the item for that field.                                           |
-
 ### Column settings
 
-| Setting&nbsp;name | Type                            | Description                                                                                         |
-|-------------------|---------------------------------|-----------------------------------------------------------------------------------------------------|
-| key               | string                          | Object key of `rows` JSON data.                                                                     |
-| label             | *string* (optional)             | Column header, if not defined `key` is used.                                                        |
-| cell              | *Function*\|*string* (optional) | Contents of table cell, if not defined `key` is used. Can be `string` or `function(row, columnKey)` |
-| group             | *string* (optional)             | Allows to group multiple items under same group header. See [column grouping](#column-grouping)     |
+| Setting name | Type                            | Description                                                                                         |
+|--------------|---------------------------------|-----------------------------------------------------------------------------------------------------|
+| key          | string                          | Object key of `rows` JSON data.                                                                     |
+| label        | *string* (optional)             | Column header, if not defined `key` is used.                                                        |
+| cell         | *Function*\|*string* (optional) | Contents of table cell, if not defined `key` is used. Can be `string` or `function(row, columnKey)` |
+| group        | *string* (optional)             | Allows to group multiple items under same group header. See [column grouping](#column-grouping)     |
 
 If `columns` props is not defined columns settings will be automatically generated using `rows` JSON data.
 
@@ -91,17 +80,6 @@ var rows = [
   {"id": 77621,"name": "Brandi Long","age": 20,"phone": "+44 (0)203 319 4880","color": "gray"},
 ];
 ```
- Will result in the following column settings generated for the table:
- 
- ```js
-var columns = [
-    {key: 'id', label: 'id', cell: 'id'},
-    {key: 'name', label: 'name', cell: 'name'},
-    {key: 'age', label: 'age', cell: 'age'},
-    {key: 'phone', label: 'phone', cell: 'phone'},
-    {key: 'color', label: 'color', cell: 'color'},
-];
- ```
  
 You can specify column settings and pass them as `columns` prop. 
 This also allows to change the order of columns in the table.
@@ -117,10 +95,12 @@ var columns = [
         return <span style={{color: row.color}}>{row.color}</span>;
     }}
 ];
+
+ReactDOM.render(<JsonTable rows = {rows} columns = {columns}/>, document.body);
  ```
 **JSFiddle demo: https://jsfiddle.net/agracio/2dd7sxxs/**
  
-Complex JSON objects are also supported 
+#### Table supports complex JSON objects
 
 ```js
 var rows = [
@@ -136,9 +116,11 @@ var columns = [
     {key: 'phone', label: 'Phone'},
     {key: 'color', label: 'Color'}
 ];
+
+ReactDOM.render(<JsonTable rows = {rows} columns = {columns}/>, document.body);
 ```
- 
-Only columns defined in `columns` prop will be shown in table.
+
+**Only columns defined in `columns` prop will be shown in table.**
 
 ### Column grouping
 
@@ -162,6 +144,8 @@ var columns = [
     {key: 'email', label: 'Email', group: 'Contact Details'},
     {key: 'registered', label: 'Registered'}
 ];
+
+ReactDOM.render(<JsonTable rows = {rows} columns = {columns}/>, document.body);
 ```
 
 **JSFiddle demo: https://jsfiddle.net/agracio/sstjzy3L/**
@@ -171,10 +155,31 @@ var columns = [
 This allows to exclude columns from table without defining all columns. 
 For `rows` example above, if you want to show all columns except 'id' 
  
-  ```js
- var excludeColumns = [
-     'id'
- ];
-  ```
+```js
+
+var rows = [
+    {"id": 75950,"name":{"first":"Catherine","last":"Welch"},"age": 24,"phone": "+44 (0)203 437 7302","color": "green"},
+    {"id": 80616,"name":{"first":"Goff","last":"Castro"},"age": 36,"phone": "+44 (0)203 279 3708","color": "brown"},
+    {"id": 77621,"name":{"first":"Guthrie","last":"Sullivan"},"age": 20,"phone": "+44 (0)203 319 4880","color": "gray"},
+];
+
+var excludeColumns = [
+    'id'
+];
+ 
+ReactDOM.render(<JsonTable rows = {rows} excludeColumns = {excludeColumns}/>, document.body);
+```
 
 If both `columns` and `excludeColumns` props are passed, columns will be excluded even if they are defined in `columns` prop.
+
+### Table settings
+
+| Setting name  | Type                                   | Description                                                                                                                                                                                                         |
+|---------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| header        | *boolean* (optional)                   | Determines whether to show table header. Default is `true`.                                                                                                                                                         |
+| classPrefix   | *string* (optional)                    | JsonTable uses `class` attributes for its markup like `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in the case it is conflicting with other classes in your app. |
+| noRowsMessage | *string*\|*ReactComponent*  (optional) | Message shown when the table has no rows. Default is *"No items"*.                                                                                                                                                  |
+| cellClass     | *Function* (optional)                  | Cell custom class using `fn(currentClass, columnKey, rowData)`.                                                                                                                                                     |
+| headerClass   | *Function* (optional)                  | Header custom class using `fn(currentClass, columnKey)`.                                                                                                                                                            |
+| rowClass      | *Function* (optional)                  | Row custom class using `fn(currentClass, rowData)`.                                                                                                                                                                 |
+| cellRenderer  | *Function* (optional)                  | If provided, this function will be used to render all the cells' content. If not provided, the cell contents will be `item[field]`, the value of the item for that field.                                           |

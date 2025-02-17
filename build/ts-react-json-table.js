@@ -314,7 +314,7 @@ var GridRowCell = /** @class */ (function (_super) {
         if (cellClass) {
             className = cellClass(className, this.props.column.key, this.props.row);
         }
-        return React.createElement("td", { className: className, "data-key": this.props.column.key, onClick: this.onClick.bind(this, this.props.column.key) }, this.props.item);
+        return React.createElement("td", { className: className, "data-key": this.props.column.key, "data-column": this.props.column.label, onClick: this.onClick.bind(this, this.props.column.key) }, this.props.item);
     };
     GridRowCell.prototype.onClick = function (key, e) {
         if (this.props.onClickCell) {
