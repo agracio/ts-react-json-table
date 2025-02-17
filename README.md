@@ -83,7 +83,7 @@ ReactDOM.render(<JsonTable rows = {items} />, document.body);
 | cell              | *Function*\|*string* (optional) | Contents of table cell, if not defined `key` is used. Can be `string` or `function(row, columnKey)` |
 | group             | *string* (optional)             | Allows to group multiple items under same group header. See [column grouping](#column-grouping)     |
 
-**Only columns defined in `columns` prop will be shown in table.**
+**If passed only columns defined in `columns` prop will be shown in table.**
 
  ```js
 var rows = [
