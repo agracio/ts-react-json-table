@@ -8,7 +8,6 @@ interface TableSettings{
     rowClass?: Function,
     cellRenderer?: Function
     freezeHeader?: boolean
-    fixedHeader?: boolean
 }
 
 interface TableProps{
