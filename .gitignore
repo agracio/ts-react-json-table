@@ -6,6 +6,8 @@ publish/
 !src/lib
 /dist
 .idea/workspace.xml
+.idea/material_theme_project_new.xml
+.idea/*theme*.xml
 /*.zip
 /*.tgz
 /*.json

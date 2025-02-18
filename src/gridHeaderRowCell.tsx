@@ -53,7 +53,7 @@ export class GridHeaderRowCell extends React.Component<HeaderRowCellProps, {}> {
         return skip ? null : this.createTh(className, rowSpan, colSpan, content);
     }
 
-    private createTh(className, rowSpan, colSpan, content){
+    private createTh(className: string, rowSpan: number, colSpan: number, content: string | React.JSX.Element){
         return <th
             className={className}
             onClick={this.onClick.bind(this, this.key)}

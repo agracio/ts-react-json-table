@@ -18,7 +18,10 @@
     "include": [
         "./src/*.ts",
         "./src/*.tsx",
-        "./ts-react-json-table.d.ts"
+        "./ts-react-json-table.d.ts",
+    ],
+    "exclude": [
+        "./src/table.tsx"
     ],
     "compileOnSave": false,
     "buildOnSave": false

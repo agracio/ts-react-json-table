@@ -314,7 +314,7 @@ var GridRowCell = /** @class */ (function (_super) {
         if (cellClass) {
             className = cellClass(className, this.props.column.key, this.props.row);
         }
-        return React.createElement("td", { className: className, "data-key": this.props.column.key, "data-column": this.props.column.label, onClick: this.onClick.bind(this, this.props.column.key) }, this.props.item);
+        return React.createElement("td", { className: className, "data-key": this.props.column.key, "data-th": this.props.column.label, onClick: this.onClick.bind(this, this.props.column.key) }, this.props.item);
     };
     GridRowCell.prototype.onClick = function (key, e) {
         if (this.props.onClickCell) {
@@ -431,7 +431,7 @@ var JsonTable = /** @class */ (function (_super) {
                         key: key,
                         label: column.label || key,
                         cell: _this.settings.cellRenderer || column.cell || key,
-                        objectDisplayStyle: column.objectDisplayStyle,
+                        objectDisplayStyle: column.objectDisplayStyle || 'json',
                         group: column.group
                     };
                 }

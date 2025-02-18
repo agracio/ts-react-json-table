@@ -92,7 +92,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
                         key: key,
                         label: column.label || key,
                         cell: this.settings.cellRenderer || column.cell || key,
-                        objectDisplayStyle: column.objectDisplayStyle,
+                        objectDisplayStyle: column.objectDisplayStyle || 'json',
                         group: column.group
                     };
                 }

@@ -13,7 +13,7 @@ export class GridRowCell extends React.Component<RowCellProps, {}> {
         return <td
             className={className}
             data-key={this.props.column.key}
-            data-column={this.props.column.label}
+            data-th={this.props.column.label}
             onClick={this.onClick.bind(this, this.props.column.key)}>
             {this.props.item}
         </td>;
