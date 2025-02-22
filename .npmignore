@@ -10,3 +10,6 @@
 gulpfile.js
 tsconfig.json
 webpack.config.js
+coverage/
+dist/src
+dist/test

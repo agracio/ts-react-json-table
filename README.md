@@ -20,16 +20,16 @@ It attempts to be backward compatible with `react-json-table`.
 
 ### Additional features
 
-- **[Props](#props)**
+- [Props](#props)
   - `excludeColumns`
   - `theadClassName`
   - `caption`  
+<br/>
+- [Column grouping](#column-grouping)
 
-- #### [Column grouping](#column-grouping)
+- [Support for complex JSON objects](#table-supports-complex-json-objects)
 
-- #### [Support for complex JSON objects](#table-supports-complex-json-objects)
-
-- #### Support for duplicate `id` fields
+- Support for duplicate `id` fields in JSON input - correctly renders `data-key` element.
 
 ## Installation
 ```bash
@@ -55,7 +55,7 @@ var items = [
 
 ReactDOM.render(<JsonTable rows = {items} />, document.body);
 ```
-**JSFiddle demo: https://jsfiddle.net/agracio/vx1yfna0/**
+**https://codepen.io/agracio/pen/YPzyaxW**
 
 ## Usage
 
@@ -103,7 +103,7 @@ var columns = [
 
 ReactDOM.render(<JsonTable rows = {rows} columns = {columns}/>, document.body);
  ```
-**JSFiddle demo: https://jsfiddle.net/agracio/2dd7sxxs/**
+**https://codepen.io/agracio/pen/azbNrWW**
  
 #### Table supports complex JSON objects
 
@@ -124,6 +124,8 @@ var columns = [
 
 ReactDOM.render(<JsonTable rows = {rows} columns = {columns}/>, document.body);
 ```
+
+**https://codepen.io/agracio/pen/bNGpyqJ**
 
 ### Column grouping
 
@@ -151,7 +153,7 @@ var columns = [
 ReactDOM.render(<JsonTable rows = {rows} columns = {columns}/>, document.body);
 ```
 
-**JSFiddle demo: https://jsfiddle.net/agracio/sstjzy3L/**
+**https://codepen.io/agracio/pen/MYWydoK**
 
 ### Exclude columns
 

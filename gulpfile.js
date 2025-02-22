@@ -1,5 +1,5 @@
 const { series } = require('gulp');
-const { spawnSync, exec } = require('child_process');
+const { exec } = require('child_process');
 const { readdirSync, rmSync, copyFileSync } = require('fs');
 const chalk = require('chalk');
 

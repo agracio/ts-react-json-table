@@ -14,3 +14,4 @@ publish/
 !package.json
 !package-lock.json
 !tsconfig.json
+coverage/

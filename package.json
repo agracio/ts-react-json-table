@@ -1,11 +1,11 @@
 {
   "name": "ts-react-json-table",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "dist/grid.js",
   "types": "ts-react-json-table.d.ts",
   "scripts": {
-    "build": "gulp build"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
