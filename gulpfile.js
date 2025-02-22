@@ -1,7 +1,10 @@
 const { series } = require('gulp');
-const { exec } = require('child_process');
+const { exec, spawn, spawnSync } = require('child_process');
 const { readdirSync, rmSync, copyFileSync } = require('fs');
+const path = require('path');
 const chalk = require('chalk');
+const tsc = mocha = path.resolve(__dirname, './node_modules/typescript/bin/tsc');
+const wp = mocha = path.resolve(__dirname, './node_modules/webpack/bin/webpack');
 
 const paths = {
     out: './dist',
@@ -10,7 +13,25 @@ const paths = {
     webpackName: 'ts-react-json-table.js'
 };
 
-function run(cmd, onClose){
+function run(cmd, args, cb){
+    console.log();
+
+    const status =  spawnSync(cmd, args, {
+        cwd: process.cwd(),
+        env: process.env,
+        stdio: [process.stdin, process.stdout, process.stderr],
+        encoding: 'utf-8'
+    }).status;
+
+    if(status !== 0){
+        throw Error(`Failed to execute command '${args.join()}'`);
+    }
+    else{
+        cb();
+    }
+}
+
+function execute(cmd, cb){
 
     exec(cmd, function (err, stdout, stderr) {
         if(err){
@@ -19,12 +40,12 @@ function run(cmd, onClose){
             throw err;
         }
         console.log(stdout);
-        onClose();
+        cb();
     });
 }
 
 function build(cb) {
-    run('tsc', cb)
+    run('node', [tsc], cb);
 }
 
 function clean(cb) {
@@ -34,7 +55,7 @@ function clean(cb) {
 }
 
 function webpack(cb){
-    run('webpack --config ./webpack.config.js', cb);
+    run('node',  [wp, '--config', './webpack.config.js'], cb);
 }
 
 function copy(cb) {
@@ -43,7 +64,7 @@ function copy(cb) {
 }
 
 function pack(cb){
-    run('npm pack', cb);
+    execute('npm pack', cb);
 }
 
 exports.build = build;
