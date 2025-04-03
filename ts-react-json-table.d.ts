@@ -7,7 +7,12 @@ interface TableSettings{
     keyField?: string,
     rowClass?: Function,
     cellRenderer?: Function
-    freezeHeader?: boolean
+    freezeHeader?: boolean,
+    theme?: ThemeSettings,
+}
+
+interface ThemeSettings{
+    applyTheme?: boolean,
 }
 
 interface TableProps{

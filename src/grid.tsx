@@ -23,27 +23,43 @@ export class JsonTable extends React.Component<TableProps, {}> {
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || `${this.settings.classPrefix}Table`;
+        if(this.settings.theme?.applyTheme && this.className !== 'jsonTable'){
+            this.className = `jsonTable ${this.className}`;
+        }
 
         let header = this.settings.header ? <GridHeader theadClassName={this.props.theadClassName} key={'jt-header'} settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader} grouping={this.headerGrouping}/> : null;
         let caption = this.props.caption ? <caption>{this.props.caption}</caption> : null;
 
-        let table = <div>
-            <div style={{position: "relative", overflow: "hidden" }}>
+        // let table = <div>
+        //     <div className={'jsonTableContainer'} style={{position: "relative", overflow: "hidden" }}>
+        //         <table className={this.className} key={'jt-table'}>
+        //             {caption}
+        //             {header}
+        //             <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
+        //             <GridFooter key={'jt-footer'}/>
+        //         </table>
+        //     </div>
+        // </div>;
+        let table =
                 <table className={this.className} key={'jt-table'}>
                     {caption}
                     {header}
                     <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
                     <GridFooter key={'jt-footer'}/>
-                </table>
-            </div>
-        </div>;
+                </table>;
 
         return this.settings.freezeHeader ?
             <div className="scrollingtable">
                 <div>
                     <div>{table}</div>
                 </div>
-            </div> : table;
+            </div>
+            :
+            <div>
+                <div className={'jsonTableContainer'} style={{position: "relative", overflow: "hidden" }}>
+                    {table}
+                </div>
+            </div>;
     }
 
     private createSettings(){

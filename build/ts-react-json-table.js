@@ -368,22 +368,37 @@ var JsonTable = /** @class */ (function (_super) {
         return _this;
     }
     JsonTable.prototype.render = function () {
+        var _a;
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || "".concat(this.settings.classPrefix, "Table");
+        if (((_a = this.settings.theme) === null || _a === void 0 ? void 0 : _a.applyTheme) && this.className !== 'jsonTable') {
+            this.className = "jsonTable ".concat(this.className);
+        }
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var caption = this.props.caption ? React.createElement("caption", null, this.props.caption) : null;
-        var table = React.createElement("div", null,
-            React.createElement("div", { style: { position: "relative", overflow: "hidden" } },
-                React.createElement("table", { className: this.className, key: 'jt-table' },
-                    caption,
-                    header,
-                    React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
-                    React.createElement(gridFooter_1.GridFooter, { key: 'jt-footer' }))));
+        // let table = <div>
+        //     <div className={'jsonTableContainer'} style={{position: "relative", overflow: "hidden" }}>
+        //         <table className={this.className} key={'jt-table'}>
+        //             {caption}
+        //             {header}
+        //             <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
+        //             <GridFooter key={'jt-footer'}/>
+        //         </table>
+        //     </div>
+        // </div>;
+        var table = React.createElement("table", { className: this.className, key: 'jt-table' },
+            caption,
+            header,
+            React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
+            React.createElement(gridFooter_1.GridFooter, { key: 'jt-footer' }));
         return this.settings.freezeHeader ?
             React.createElement("div", { className: "scrollingtable" },
                 React.createElement("div", null,
-                    React.createElement("div", null, table))) : table;
+                    React.createElement("div", null, table)))
+            :
+                React.createElement("div", null,
+                    React.createElement("div", { className: 'jsonTableContainer', style: { position: "relative", overflow: "hidden" } }, table));
     };
     JsonTable.prototype.createSettings = function () {
         if (this.props.settings) {
@@ -541,8 +556,9 @@ var GridHeader = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     GridHeader.prototype.render = function () {
+        var _a;
         var groupHeader = this.props.grouping ? React.createElement(gridHeaderRow_1.GridHeaderRow, { columns: this.props.columns, onClickHeader: this.props.onClickHeader, settings: this.props.settings, groupCell: true }) : null;
-        return React.createElement("thead", { className: this.props.theadClassName },
+        return React.createElement("thead", { className: (_a = this.props.theadClassName) !== null && _a !== void 0 ? _a : 'jsonTableHeader' },
             groupHeader,
             React.createElement(gridHeaderRow_1.GridHeaderRow, { columns: this.props.columns, onClickHeader: this.props.onClickHeader, settings: this.props.settings, groupCell: false, grouping: this.props.grouping }));
     };
