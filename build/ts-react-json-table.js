@@ -368,13 +368,12 @@ var JsonTable = /** @class */ (function (_super) {
         return _this;
     }
     JsonTable.prototype.render = function () {
-        var _a;
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || "".concat(this.settings.classPrefix, "Table");
-        if (((_a = this.settings.theme) === null || _a === void 0 ? void 0 : _a.applyTheme) && this.className !== 'jsonTable') {
-            this.className = "jsonTable ".concat(this.className);
-        }
+        // if(this.settings.theme?.applyTheme && this.className !== 'jsonTable'){
+        //     this.className = `jsonTable ${this.className}`;
+        // }
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var caption = this.props.caption ? React.createElement("caption", null, this.props.caption) : null;
         var table = React.createElement("table", { className: this.className, key: 'jt-table' },
