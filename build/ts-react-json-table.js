@@ -377,28 +377,20 @@ var JsonTable = /** @class */ (function (_super) {
         }
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var caption = this.props.caption ? React.createElement("caption", null, this.props.caption) : null;
-        // let table = <div>
-        //     <div className={'jsonTableContainer'} style={{position: "relative", overflow: "hidden" }}>
-        //         <table className={this.className} key={'jt-table'}>
-        //             {caption}
-        //             {header}
-        //             <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
-        //             <GridFooter key={'jt-footer'}/>
-        //         </table>
-        //     </div>
-        // </div>;
         var table = React.createElement("table", { className: this.className, key: 'jt-table' },
             caption,
             header,
             React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
             React.createElement(gridFooter_1.GridFooter, { key: 'jt-footer' }));
+        var regularTable = React.createElement("div", null,
+            React.createElement("div", { className: 'jsonTableContainer', style: { position: "relative", overflow: "hidden" } }, table));
+        var freezeHeaderTable = React.createElement("div", { className: "scrollingtable" },
+            React.createElement("div", null,
+                React.createElement("div", null, table)));
         return this.settings.freezeHeader ?
-            React.createElement("div", { className: "scrollingtable" },
-                React.createElement("div", null,
-                    React.createElement("div", null, table)))
+            freezeHeaderTable
             :
-                React.createElement("div", null,
-                    React.createElement("div", { className: 'jsonTableContainer', style: { position: "relative", overflow: "hidden" } }, table));
+                regularTable;
     };
     JsonTable.prototype.createSettings = function () {
         if (this.props.settings) {
