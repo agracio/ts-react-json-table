@@ -790,7 +790,8 @@ var GridFooter = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     GridFooter.prototype.render = function () {
-        return React.createElement("tfoot", { className: "".concat(this.props.settings.classPrefix, "Footer") });
+        var className = "".concat(this.props.settings.classPrefix, "Footer");
+        return React.createElement("tfoot", { className: className });
     };
     return GridFooter;
 }(React.Component));
