@@ -373,6 +373,7 @@ var JsonTable = /** @class */ (function (_super) {
         this.className = this.props.className || "".concat(this.settings.classPrefix, "Table");
         var style = null;
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
+        var footer = React.createElement(gridFooter_1.GridFooter, { className: "".concat(this.settings.classPrefix, "Footer"), key: 'jt-footer' });
         var caption = this.props.caption ? React.createElement("caption", null, this.props.caption) : null;
         if (this.settings.style) {
             var borderRadius = void 0;
@@ -398,7 +399,7 @@ var JsonTable = /** @class */ (function (_super) {
             caption,
             header,
             React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
-            React.createElement(gridFooter_1.GridFooter, { settings: this.settings, key: 'jt-footer' }));
+            footer);
         var regularTable = React.createElement("div", null,
             style,
             React.createElement("div", { className: 'jsonTableContainer' }, table));
@@ -790,8 +791,7 @@ var GridFooter = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     GridFooter.prototype.render = function () {
-        var className = "".concat(this.props.settings.classPrefix, "Footer");
-        return React.createElement("tfoot", { className: 'className' });
+        return React.createElement("tfoot", { className: this.props.className });
     };
     return GridFooter;
 }(React.Component));

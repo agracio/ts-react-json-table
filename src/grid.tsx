@@ -26,6 +26,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
         let style: React.JSX.Element = null;
 
         let header = this.settings.header ? <GridHeader theadClassName={this.props.theadClassName} key={'jt-header'} settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader} grouping={this.headerGrouping}/> : null;
+        let footer = <GridFooter className={`${this.settings.classPrefix}Footer`} key={'jt-footer'}/>;
         let caption = this.props.caption ? <caption>{this.props.caption}</caption> : null;
 
         if(this.settings.style){
@@ -54,7 +55,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
             {caption}
             {header}
             <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
-            <GridFooter settings={this.settings} key={'jt-footer'}/>
+            {footer}
         </table>;
 
         let regularTable =

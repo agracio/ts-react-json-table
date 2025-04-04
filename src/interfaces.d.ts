@@ -53,7 +53,7 @@ interface RowCellProps{
 }
 
 interface FooterProps{
-    settings: TableSettings,
+    className: string,
 }
 
 
