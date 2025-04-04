@@ -398,7 +398,7 @@ var JsonTable = /** @class */ (function (_super) {
             caption,
             header,
             React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
-            React.createElement(gridFooter_1.GridFooter, { key: 'jt-footer' }));
+            React.createElement(gridFooter_1.GridFooter, { settings: this.settings, key: 'jt-footer' }));
         var regularTable = React.createElement("div", null,
             style,
             React.createElement("div", { className: 'jsonTableContainer' }, table));
@@ -791,7 +791,7 @@ var GridFooter = /** @class */ (function (_super) {
     }
     GridFooter.prototype.render = function () {
         var className = "".concat(this.props.settings.classPrefix, "Footer");
-        return React.createElement("tfoot", { className: className });
+        return React.createElement("tfoot", { className: 'className' });
     };
     return GridFooter;
 }(React.Component));

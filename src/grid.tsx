@@ -54,7 +54,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
             {caption}
             {header}
             <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
-            <GridFooter key={'jt-footer'}/>
+            <GridFooter settings={this.settings} key={'jt-footer'}/>
         </table>;
 
         let regularTable =
