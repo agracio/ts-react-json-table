@@ -7,7 +7,7 @@ div.jsonTableContainer{
     width: 100%;
     display: block;
     overflow: hidden;
-    position: relative
+    position: relative;
 }
 
 table.jsonTable{
@@ -55,11 +55,10 @@ table.jsonTable tr {
     line-height: 1.2;
 }
 
-table.jsonTable tbody tr:hover {
-    color: var(--hover-color);
-    background-color: var(--hover-bg-color);
-}
-
+/*table.jsonTable tbody tr:hover {*/
+/*    color: var(--hover-color);*/
+/*    background-color: var(--hover-bg-color);*/
+/*}*/
 
 
 /*
@@ -68,28 +67,34 @@ Based on https://stackoverflow.com/a/25819112
 */
 
 .scrollingtable {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #f9fafb;
     box-sizing: border-box;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     overflow: hidden;
-    width: auto; /*if you want a fixed width, set it here, else set to auto*/
+    border-color: #e5e7eb;
+    border-radius: 8px;
+    border-top-width: 1px;
+    width: 100%; /*if you want a fixed width, set it here, else set to auto*/
     min-width: 0/*100%*/; /*if you want a % width, set it here, else set to 0*/
     height: 100%; /*set table height here; can be fixed value or %*/
     min-height: 0/*104px*/; /*if using % height, make this large enough to fit scrollbar arrows + caption + thead*/
-    font-family: Verdana, Tahoma, sans-serif;
-    font-size: 15px;
-    line-height: 20px;
-    padding: 20px 0 20px 0; /*need enough padding to make room for caption*/
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    padding: 0 0 0 0; /*need enough padding to make room for caption*/
     text-align: left;
 }
 .scrollingtable * {box-sizing: border-box;}
 .scrollingtable > div {
     position: relative;
     height: 100%;
-    padding-top: 20px; /*this determines column header height*/
+    padding-top: 50px; /*this determines column header height*/
+
 }
 .scrollingtable > div:before {
     top: 0;
+
 }
 .scrollingtable > div:before,
 .scrollingtable > div > div:after {
@@ -105,12 +110,15 @@ Based on https://stackoverflow.com/a/25819112
     max-height: 100%;
     overflow: auto/*auto*/; /*set to auto if using fixed or % width; else scroll*/
     overflow-x: hidden;
+
 }
 .scrollingtable > div > div > table {
     width: 100%;
     /*border-spacing: 0;*/
-    margin-top: -20px; /*inverse of column header height*/
+    margin-top: -21px; /*inverse of column header height*/
     /*margin-right: 17px;*/ /*uncomment if using % width*/
+
+
 }
 .scrollingtable > div > div > table > caption {
     position: absolute;
@@ -120,28 +128,35 @@ Based on https://stackoverflow.com/a/25819112
     font-weight: bold;
     text-align: center;
 }
-.scrollingtable > div > div > table > * > tr > * {padding: 0;}
+.scrollingtable > div > div > table > thead > tr > * {
+    padding: 0 ;
+
+}
+
+
 .scrollingtable > div > div > table > thead {
     vertical-align: bottom;
     white-space: nowrap;
     text-align: center;
+
 }
 .scrollingtable > div > div > table > thead > tr > * > div {
     display: inline-block;
-    padding: 0 6px 0 6px; /*header cell padding*/
+    padding: 0 0 0 24px ; /*header cell padding*/
 }
 .scrollingtable > div > div > table > thead > tr > :first-child:before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    height: 20px; /*match column header height*/
+    height: 50px; /*match column header height*/
+
 }
 .scrollingtable > div > div > table > thead > tr > * > div[itemprop]:before,
 .scrollingtable > div > div > table > thead > tr > * > div > div:first-child,
 .scrollingtable > div > div > table > thead > tr > * + :before {
     position: absolute;
-    top: 0;
+    top: 14px;
     white-space: pre-wrap;
 }
 .scrollingtable > div > div > table > thead > tr > * > div[itemprop]:before,
@@ -149,10 +164,14 @@ Based on https://stackoverflow.com/a/25819112
 .scrollingtable > div > div > table > thead > tr > * + :before {
     content: "";
     display: block;
-    min-height: 20px; /*match column header height*/
-    padding-top: 1px;
+    min-height: 50px; /*match column header height*/
+    top: 0;
+    margin-left: -1px;
+    border-left: 1px solid #e5e7eb;
 }
-.scrollingtable .scrollbarhead {float: right;}
+.scrollingtable .scrollbarhead {
+    float: right;
+}
 .scrollingtable .scrollbarhead:before {
     position: absolute;
     width: 100px;
@@ -165,8 +184,17 @@ Based on https://stackoverflow.com/a/25819112
     padding: 0;
     top: -1px; /*inverse of border width*/
 }
-.scrollingtable > div > div > table > tbody {vertical-align: top;}
+
+.scrollingtable > div > div > table > tbody {
+    vertical-align: top;
+}
+
 .scrollingtable > div > div > table > tbody > tr > * {
-    padding: 0 6px 0 6px;
-    height: 20px; /*match column header height*/
+    /*padding: 0 6px 0 6px;*/
+    /*height: 30px;*/ /*match column header height*/
+}
+
+.scrollingtable > div > div > table > tbody > th > * {
+    /*padding: 14px 24px;*/
+    /*height: 10px;*/ /*match column header height*/
 }

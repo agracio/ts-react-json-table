@@ -8,11 +8,15 @@ interface TableSettings{
     rowClass?: Function,
     cellRenderer?: Function
     freezeHeader?: boolean,
-    theme?: ThemeSettings,
+    style?: StyleSettings,
 }
 
-interface ThemeSettings{
-    applyTheme?: boolean,
+interface StyleSettings{
+    borderRadius?: number,
+    hoverColor?: string,
+    hoverBgColor?: string,
+    oddBgColor?: string,
+    evenBgColor?: string,
 }
 
 interface TableProps{

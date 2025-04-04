@@ -371,25 +371,42 @@ var JsonTable = /** @class */ (function (_super) {
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || "".concat(this.settings.classPrefix, "Table");
-        // if(this.settings.theme?.applyTheme && this.className !== 'jsonTable'){
-        //     this.className = `jsonTable ${this.className}`;
-        // }
+        var style = null;
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var caption = this.props.caption ? React.createElement("caption", null, this.props.caption) : null;
+        if (this.settings.style) {
+            var borderRadius = void 0;
+            if (this.settings.freezeHeader) {
+                borderRadius = this.settings.style.borderRadius ? ".scrollingtable{border-radius: ".concat(this.settings.style.borderRadius, "px;}") : null;
+            }
+            else {
+                borderRadius = this.settings.style.borderRadius ? "div.jsonTableContainer{border-radius: ".concat(this.settings.style.borderRadius, "px;}") : null;
+            }
+            var hoverColor = this.settings.style.hoverColor ? "table.".concat(this.className, " tbody tr:hover{color: ").concat(this.settings.style.hoverColor, ";}") : null;
+            var hoverBgColor = this.settings.style.hoverBgColor ? "table.".concat(this.className, " tbody tr:hover{background-color: ").concat(this.settings.style.hoverBgColor, ";}") : null;
+            var oddBgColor = this.settings.style.oddBgColor ? "".concat(this.settings.classPrefix, "Odd{background-color: ").concat(this.settings.style.oddBgColor, ";}") : null;
+            var evenBgColor = this.settings.style.evenBgColor ? "".concat(this.settings.classPrefix, "Even{background-color: ").concat(this.settings.style.evenBgColor, ";}") : null;
+            style =
+                React.createElement("style", null,
+                    borderRadius,
+                    hoverColor,
+                    hoverBgColor,
+                    oddBgColor,
+                    evenBgColor);
+        }
         var table = React.createElement("table", { className: this.className, key: 'jt-table' },
             caption,
             header,
             React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
             React.createElement(gridFooter_1.GridFooter, { key: 'jt-footer' }));
         var regularTable = React.createElement("div", null,
-            React.createElement("div", { className: 'jsonTableContainer', style: { position: "relative", overflow: "hidden" } }, table));
+            style,
+            React.createElement("div", { className: 'jsonTableContainer' }, table));
         var freezeHeaderTable = React.createElement("div", { className: "scrollingtable" },
+            style,
             React.createElement("div", null,
                 React.createElement("div", null, table)));
-        return this.settings.freezeHeader ?
-            freezeHeaderTable
-            :
-                regularTable;
+        return this.settings.freezeHeader ? freezeHeaderTable : regularTable;
     };
     JsonTable.prototype.createSettings = function () {
         if (this.props.settings) {
@@ -549,7 +566,7 @@ var GridHeader = /** @class */ (function (_super) {
     GridHeader.prototype.render = function () {
         var _a;
         var groupHeader = this.props.grouping ? React.createElement(gridHeaderRow_1.GridHeaderRow, { columns: this.props.columns, onClickHeader: this.props.onClickHeader, settings: this.props.settings, groupCell: true }) : null;
-        return React.createElement("thead", { className: (_a = this.props.theadClassName) !== null && _a !== void 0 ? _a : 'jsonTableHeader' },
+        return React.createElement("thead", { className: (_a = this.props.theadClassName) !== null && _a !== void 0 ? _a : "".concat(this.props.settings.classPrefix, "Header") },
             groupHeader,
             React.createElement(gridHeaderRow_1.GridHeaderRow, { columns: this.props.columns, onClickHeader: this.props.onClickHeader, settings: this.props.settings, groupCell: false, grouping: this.props.grouping }));
     };
@@ -773,7 +790,7 @@ var GridFooter = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     GridFooter.prototype.render = function () {
-        return React.createElement("tfoot", null);
+        return React.createElement("tfoot", { className: "".concat(this.props.settings.classPrefix, "Footer") });
     };
     return GridFooter;
 }(React.Component));

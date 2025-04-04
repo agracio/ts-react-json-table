@@ -1,4 +1,7 @@
-
+div.jsonTableContainer{
+    overflow: hidden;
+    position: relative;
+}
 
 /*
 Fixed header table with scrollable body

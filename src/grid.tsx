@@ -23,12 +23,32 @@ export class JsonTable extends React.Component<TableProps, {}> {
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || `${this.settings.classPrefix}Table`;
-        if(this.settings.theme?.applyTheme && this.className !== 'jsonTable'){
-            this.className = `jsonTable ${this.className}`;
-        }
+        let style: React.JSX.Element = null;
 
         let header = this.settings.header ? <GridHeader theadClassName={this.props.theadClassName} key={'jt-header'} settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader} grouping={this.headerGrouping}/> : null;
         let caption = this.props.caption ? <caption>{this.props.caption}</caption> : null;
+
+        if(this.settings.style){
+            let borderRadius: string;
+            if(this.settings.freezeHeader){
+                borderRadius = this.settings.style.borderRadius ? `.scrollingtable{border-radius: ${this.settings.style.borderRadius}px;}` : null;
+            }
+            else{
+                borderRadius = this.settings.style.borderRadius ? `div.jsonTableContainer{border-radius: ${this.settings.style.borderRadius}px;}` : null;
+            }
+            let hoverColor = this.settings.style.hoverColor ? `table.${this.className} tbody tr:hover{color: ${this.settings.style.hoverColor};}` : null;
+            let hoverBgColor = this.settings.style.hoverBgColor ? `table.${this.className} tbody tr:hover{background-color: ${this.settings.style.hoverBgColor};}` : null;
+            let oddBgColor = this.settings.style.oddBgColor ? `${this.settings.classPrefix}Odd{background-color: ${this.settings.style.oddBgColor};}` : null;
+            let evenBgColor = this.settings.style.evenBgColor ? `${this.settings.classPrefix}Even{background-color: ${this.settings.style.evenBgColor};}` : null;
+            style =
+                <style>
+                    {borderRadius}
+                    {hoverColor}
+                    {hoverBgColor}
+                    {oddBgColor}
+                    {evenBgColor}
+                </style>;
+        }
 
         let table = <table className={this.className} key={'jt-table'}>
             {caption}
@@ -39,22 +59,21 @@ export class JsonTable extends React.Component<TableProps, {}> {
 
         let regularTable =
             <div>
-                <div className={'jsonTableContainer'} style={{position: "relative", overflow: "hidden" }}>
+                {style}
+                <div className={'jsonTableContainer'}>
                     {table}
                 </div>
             </div>;
 
         let freezeHeaderTable =
             <div className="scrollingtable">
+                {style}
                 <div>
                     <div>{table}</div>
                 </div>
             </div>;
 
-        return this.settings.freezeHeader ?
-            freezeHeaderTable
-            :
-            regularTable;
+        return this.settings.freezeHeader? freezeHeaderTable: regularTable;
     }
 
     private createSettings(){
