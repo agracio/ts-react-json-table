@@ -12,8 +12,8 @@ div.jsonTableContainer{
 
 
 table.jsonTable{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    background: white;
+    font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";;
+    background: #18181B;
     border-collapse: collapse;
     display: table;
     margin: 0;
@@ -82,7 +82,7 @@ Based on https://stackoverflow.com/a/25819112
     min-width: 0/*100%*/; /*if you want a % width, set it here, else set to 0*/
     height: 100%; /*set table height here; can be fixed value or %*/
     min-height: 0/*104px*/; /*if using % height, make this large enough to fit scrollbar arrows + caption + thead*/
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
     padding: 0 0 0 0; /*need enough padding to make room for caption*/
     text-align: left;
 }
