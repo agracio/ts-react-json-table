@@ -173,10 +173,7 @@ var GridHeaderRowCell = /** @class */ (function (_super) {
         if (headerClass) {
             className = headerClass(className, this.key);
         }
-        var content = this.props.settings.freezeHeader ? React.createElement("div", null,
-            React.createElement("div", null, this.header),
-            React.createElement("div", null, this.header)) : this.header;
-        return skip ? null : this.createTh(className, rowSpan, colSpan, content);
+        return skip ? null : this.createTh(className, rowSpan, colSpan, this.header);
     };
     GridHeaderRowCell.prototype.createTh = function (className, rowSpan, colSpan, content) {
         return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.key), "data-key": this.key, rowSpan: rowSpan, colSpan: colSpan }, content);
