@@ -1,5 +1,14 @@
-div.jsonTableContainer{
+div.jsonTableOuter{
+    border-color: #e5e7eb;
+    border-radius: 8px;
+    border-top-width: 1px;
+    width: 100%;
     overflow: hidden;
+}
+
+div.jsonTableInner{
+    height: 100%;
+    overflow-y: auto;
     position: relative;
 }
 

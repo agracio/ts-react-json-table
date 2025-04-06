@@ -12,14 +12,10 @@ interface TableSettings{
 }
 
 interface StyleSettings{
-    borderRadius?: number,
     hoverColor?: string,
     hoverBgColor?: string,
     nthOddBgColor?: string,
     nthEvenBgColor?: string,
-    width: string,
-    height: string,
-    margin: string,
 }
 
 interface TableProps{

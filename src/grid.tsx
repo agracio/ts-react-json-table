@@ -33,24 +33,20 @@ export class JsonTable extends React.Component<TableProps, {}> {
         // styles
         let freezeHeader = this.settings.freezeHeader ? `table.${this.className} thead th{position: sticky;}` : null;
 
-        let borderRadius = this.settings.style?.borderRadius ? `div.${this.settings.classPrefix}TableOuter{border-radius: ${this.settings.style?.borderRadius}px;` : null;
-        let width = this.settings.style?.width ? `div.${this.settings.classPrefix}TableOuter{width: ${this.settings.style?.width};` : null;
-        let margin = this.settings.style?.margin ? `div.${this.settings.classPrefix}TableOuter{margin: ${this.settings.style?.margin};` : null;
-
-        let height = this.settings.style?.height ? `div.${this.settings.classPrefix}TableInner{height: ${this.settings.style?.height};` : null;
+        // let borderRadius = this.settings.style?.borderRadius ? `div.${this.settings.classPrefix}TableOuter{border-radius: ${this.settings.style?.borderRadius}px;` : null;
+        // let width = this.settings.style?.width ? `div.${this.settings.classPrefix}TableOuter{width: ${this.settings.style?.width};` : null;
+        // let margin = this.settings.style?.margin ? `div.${this.settings.classPrefix}TableOuter{margin: ${this.settings.style?.margin};` : null;
+        //
+        // let height = this.settings.style?.height ? `div.${this.settings.classPrefix}TableInner{height: ${this.settings.style?.height};` : null;
 
         let hoverColor = this.settings.style?.hoverColor ? `table.${this.className} tbody tr:hover{color: ${this.settings.style?.hoverColor};}` : null;
         let hoverBgColor = this.settings.style?.hoverBgColor ? `table.${this.className} tbody tr:hover{background-color: ${this.settings.style?.hoverBgColor};}` : null;
-        let oddBgColor = this.settings.style?.nthOddBgColor ? `${this.settings.classPrefix}Odd{background-color: ${this.settings.style?.nthOddBgColor};}` : null;
-        let evenBgColor = this.settings.style?.nthEvenBgColor ? `${this.settings.classPrefix}Even{background-color: ${this.settings.style?.nthEvenBgColor};}` : null;
+        let oddBgColor = this.settings.style?.nthOddBgColor ? `.${this.settings.classPrefix}Odd{background-color: ${this.settings.style?.nthOddBgColor};}` : null;
+        let evenBgColor = this.settings.style?.nthEvenBgColor ? `.${this.settings.classPrefix}Even{background-color: ${this.settings.style?.nthEvenBgColor};}` : null;
 
         style =
             <style>
-                {width}
-                {height}
-                {margin}
                 {freezeHeader}
-                {borderRadius}
                 {hoverColor}
                 {hoverBgColor}
                 {oddBgColor}

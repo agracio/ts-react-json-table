@@ -366,7 +366,7 @@ var JsonTable = /** @class */ (function (_super) {
         return _this;
     }
     JsonTable.prototype.render = function () {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r;
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || "".concat(this.settings.classPrefix, "Table");
@@ -376,21 +376,18 @@ var JsonTable = /** @class */ (function (_super) {
         var footer = React.createElement(gridFooter_1.GridFooter, { className: "".concat(this.settings.classPrefix, "Footer"), key: 'jt-footer' });
         // styles
         var freezeHeader = this.settings.freezeHeader ? "table.".concat(this.className, " thead th{position: sticky;}") : null;
-        var borderRadius = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.borderRadius) ? "div.".concat(this.settings.classPrefix, "TableOuter{border-radius: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.borderRadius, "px;") : null;
-        var width = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.width) ? "div.".concat(this.settings.classPrefix, "TableOuter{width: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.width, ";") : null;
-        var margin = ((_e = this.settings.style) === null || _e === void 0 ? void 0 : _e.margin) ? "div.".concat(this.settings.classPrefix, "TableOuter{margin: ").concat((_f = this.settings.style) === null || _f === void 0 ? void 0 : _f.margin, ";") : null;
-        var height = ((_g = this.settings.style) === null || _g === void 0 ? void 0 : _g.height) ? "div.".concat(this.settings.classPrefix, "TableInner{height: ").concat((_h = this.settings.style) === null || _h === void 0 ? void 0 : _h.height, ";") : null;
-        var hoverColor = ((_j = this.settings.style) === null || _j === void 0 ? void 0 : _j.hoverColor) ? "table.".concat(this.className, " tbody tr:hover{color: ").concat((_k = this.settings.style) === null || _k === void 0 ? void 0 : _k.hoverColor, ";}") : null;
-        var hoverBgColor = ((_l = this.settings.style) === null || _l === void 0 ? void 0 : _l.hoverBgColor) ? "table.".concat(this.className, " tbody tr:hover{background-color: ").concat((_m = this.settings.style) === null || _m === void 0 ? void 0 : _m.hoverBgColor, ";}") : null;
-        var oddBgColor = ((_o = this.settings.style) === null || _o === void 0 ? void 0 : _o.nthOddBgColor) ? "".concat(this.settings.classPrefix, "Odd{background-color: ").concat((_p = this.settings.style) === null || _p === void 0 ? void 0 : _p.nthOddBgColor, ";}") : null;
-        var evenBgColor = ((_q = this.settings.style) === null || _q === void 0 ? void 0 : _q.nthEvenBgColor) ? "".concat(this.settings.classPrefix, "Even{background-color: ").concat((_r = this.settings.style) === null || _r === void 0 ? void 0 : _r.nthEvenBgColor, ";}") : null;
+        // let borderRadius = this.settings.style?.borderRadius ? `div.${this.settings.classPrefix}TableOuter{border-radius: ${this.settings.style?.borderRadius}px;` : null;
+        // let width = this.settings.style?.width ? `div.${this.settings.classPrefix}TableOuter{width: ${this.settings.style?.width};` : null;
+        // let margin = this.settings.style?.margin ? `div.${this.settings.classPrefix}TableOuter{margin: ${this.settings.style?.margin};` : null;
+        //
+        // let height = this.settings.style?.height ? `div.${this.settings.classPrefix}TableInner{height: ${this.settings.style?.height};` : null;
+        var hoverColor = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.hoverColor) ? "table.".concat(this.className, " tbody tr:hover{color: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.hoverColor, ";}") : null;
+        var hoverBgColor = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.hoverBgColor) ? "table.".concat(this.className, " tbody tr:hover{background-color: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.hoverBgColor, ";}") : null;
+        var oddBgColor = ((_e = this.settings.style) === null || _e === void 0 ? void 0 : _e.nthOddBgColor) ? ".".concat(this.settings.classPrefix, "Odd{background-color: ").concat((_f = this.settings.style) === null || _f === void 0 ? void 0 : _f.nthOddBgColor, ";}") : null;
+        var evenBgColor = ((_g = this.settings.style) === null || _g === void 0 ? void 0 : _g.nthEvenBgColor) ? ".".concat(this.settings.classPrefix, "Even{background-color: ").concat((_h = this.settings.style) === null || _h === void 0 ? void 0 : _h.nthEvenBgColor, ";}") : null;
         style =
             React.createElement("style", null,
-                width,
-                height,
-                margin,
                 freezeHeader,
-                borderRadius,
                 hoverColor,
                 hoverBgColor,
                 oddBgColor,

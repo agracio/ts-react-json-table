@@ -1,17 +1,3 @@
-div.jsonTableOuter{
-    border-color: #e5e7eb;
-    border-radius: 8px;
-    border-top-width: 1px;
-    width: 100%;
-    overflow: hidden;
-}
-
-div.jsonTableInner{
-    height: 100%;
-    overflow-y: auto;
-    position: relative;
-}
-
 table.jsonTable{
     font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     background: white;
@@ -23,9 +9,18 @@ table.jsonTable{
     width: 100%;
 }
 
+table.jsonTable td:last-child {
+    border-right: none;
+}
+
+table.jsonTable thead th:last-child {
+    border-right: none;
+}
+
 table.jsonTable thead th, table caption {
     border: 1px solid #e5e7eb;
     border-top: none;
+    border-left: none;
     color: #6b7280;
     outline: 0;
     padding: 14px 24px;
