@@ -377,7 +377,7 @@ var JsonTable = /** @class */ (function (_super) {
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var footer = React.createElement(gridFooter_1.GridFooter, { className: "".concat(this.settings.classPrefix, "Footer"), key: 'jt-footer' });
         // styles
-        var freezeHeader = this.settings.freezeHeader ? "table.".concat(this.className, " thead th{color: position: sticky;}") : null;
+        var freezeHeader = this.settings.freezeHeader ? "table.".concat(this.className, " thead th{position: sticky;}") : null;
         var borderRadius = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.borderRadius) ? "div.".concat(this.settings.classPrefix, "TableOuter{border-radius: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.borderRadius, "px;") : null;
         var width = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.width) ? "div.".concat(this.settings.classPrefix, "TableOuter{width: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.width, ";") : null;
         var margin = ((_e = this.settings.style) === null || _e === void 0 ? void 0 : _e.margin) ? "div.".concat(this.settings.classPrefix, "TableOuter{margin: ").concat((_f = this.settings.style) === null || _f === void 0 ? void 0 : _f.margin, ";") : null;
@@ -397,18 +397,15 @@ var JsonTable = /** @class */ (function (_super) {
                 hoverBgColor,
                 oddBgColor,
                 evenBgColor);
-        var table = 
-        // <div>
-        //     {style}
-        React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableOuter") },
-            React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableInner") },
-                React.createElement("table", { className: this.className, key: 'jt-table' },
-                    caption,
-                    header,
-                    React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
-                    footer),
-                ";"));
-        // </div>;
+        var table = React.createElement("div", null,
+            style,
+            React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableOuter") },
+                React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableInner") },
+                    React.createElement("table", { className: this.className, key: 'jt-table' },
+                        caption,
+                        header,
+                        React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
+                        footer))));
         return table;
     };
     JsonTable.prototype.createSettings = function () {

@@ -30,7 +30,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
         let footer = <GridFooter className={`${this.settings.classPrefix}Footer`} key={'jt-footer'}/>;
 
         // styles
-        let freezeHeader = this.settings.freezeHeader ? `table.${this.className} thead th{color: position: sticky;}` : null;
+        let freezeHeader = this.settings.freezeHeader ? `table.${this.className} thead th{position: sticky;}` : null;
 
         let borderRadius = this.settings.style?.borderRadius ? `div.${this.settings.classPrefix}TableOuter{border-radius: ${this.settings.style?.borderRadius}px;` : null;
         let width = this.settings.style?.width ? `div.${this.settings.classPrefix}TableOuter{width: ${this.settings.style?.width};` : null;
@@ -57,8 +57,8 @@ export class JsonTable extends React.Component<TableProps, {}> {
             </style>;
 
         let table =
-            // <div>
-            //     {style}
+            <div>
+                {style}
                 <div className={`${this.settings.classPrefix}TableOuter`}>
                     <div className={`${this.settings.classPrefix}TableInner`}>
                         <table className={this.className} key={'jt-table'}>
@@ -66,10 +66,10 @@ export class JsonTable extends React.Component<TableProps, {}> {
                             {header}
                             <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
                             {footer}
-                        </table>;
+                        </table>
                     </div>
                 </div>
-            // </div>;
+            </div>;
 
         return table;
     }
