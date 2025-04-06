@@ -1,6 +1,6 @@
 div.jsonTableOuter{
     border-color: #e5e7eb;
-    border-radius: 8px;
+    border-radius: 4px;
     border-top-width: 1px;
     width: 100%;
     overflow: hidden;
@@ -28,7 +28,7 @@ table.jsonTable thead th, table caption {
     border-top: none;
     color: #6b7280;
     outline: 0;
-    padding: 14px 24px;
+    padding: 8px 12px;
     background: #f9fafb;
     font-weight: bold;
 }
@@ -42,19 +42,19 @@ table.jsonTable th {
     border-top: none;
     color: #6b7280;
     outline: 0;
-    font-size: 18px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1.0;
 }
 
 table.jsonTable td {
     border: 1px solid #e5e7eb;
     border-left: none;
     border-bottom: none;
-    padding: 12px 24px;
+    padding: 6px 12px;
 }
 
 table.jsonTable tr {
-    font-size: 15px;
+    font-size: 12px;
     color: #212529;
-    line-height: 1.2;
+    line-height: 1.0;
 }

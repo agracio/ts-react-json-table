@@ -15,8 +15,11 @@ interface StyleSettings{
     borderRadius?: number,
     hoverColor?: string,
     hoverBgColor?: string,
-    oddBgColor?: string,
-    evenBgColor?: string,
+    nthOddBgColor?: string,
+    nthEvenBgColor?: string,
+    width: string,
+    height: string,
+    margin: string,
 }
 
 interface TableProps{
