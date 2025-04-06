@@ -3,6 +3,7 @@ import {GridHeader} from "./gridHeader";
 import {GridBody} from "./gridBody";
 import {GridFooter} from "./gridFooter";
 import {polyfills} from "./polyfills";
+import {Fragment} from "react";
 
 polyfills();
 
@@ -56,9 +57,9 @@ export class JsonTable extends React.Component<TableProps, {}> {
                 {evenBgColor}
             </style>;
 
-        let table =
-            <div>
-                {style}
+        let table1 =
+            // <div>
+            //     {style}
                 <div className={`${this.settings.classPrefix}TableOuter`}>
                     <div className={`${this.settings.classPrefix}TableInner`}>
                         <table className={this.className} key={'jt-table'}>
@@ -69,8 +70,19 @@ export class JsonTable extends React.Component<TableProps, {}> {
                         </table>
                     </div>
                 </div>
-            </div>;
+            //</div>;
+        let table =
 
+            <Fragment>
+                {style}
+                <table className={this.className} key={'jt-table'}>
+                    {caption}
+                    {header}
+                    <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
+                    {footer}
+                </table>
+
+            </Fragment>
         return table;
     }
 
