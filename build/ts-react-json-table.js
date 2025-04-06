@@ -397,16 +397,18 @@ var JsonTable = /** @class */ (function (_super) {
                 hoverBgColor,
                 oddBgColor,
                 evenBgColor);
-        var table = React.createElement("div", null,
-            style,
-            React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableOuter") },
-                React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableInner") },
-                    React.createElement("table", { className: this.className, key: 'jt-table' },
-                        caption,
-                        header,
-                        React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
-                        footer),
-                    ";")));
+        var table = 
+        // <div>
+        //     {style}
+        React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableOuter") },
+            React.createElement("div", { className: "".concat(this.settings.classPrefix, "TableInner") },
+                React.createElement("table", { className: this.className, key: 'jt-table' },
+                    caption,
+                    header,
+                    React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
+                    footer),
+                ";"));
+        // </div>;
         return table;
     };
     JsonTable.prototype.createSettings = function () {

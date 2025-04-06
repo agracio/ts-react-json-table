@@ -57,8 +57,8 @@ export class JsonTable extends React.Component<TableProps, {}> {
             </style>;
 
         let table =
-            <div>
-                {style}
+            // <div>
+            //     {style}
                 <div className={`${this.settings.classPrefix}TableOuter`}>
                     <div className={`${this.settings.classPrefix}TableInner`}>
                         <table className={this.className} key={'jt-table'}>
@@ -69,7 +69,7 @@ export class JsonTable extends React.Component<TableProps, {}> {
                         </table>;
                     </div>
                 </div>
-            </div>;
+            // </div>;
 
         return table;
     }
