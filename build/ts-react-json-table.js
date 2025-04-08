@@ -375,8 +375,8 @@ var JsonTable = /** @class */ (function (_super) {
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var footer = React.createElement(gridFooter_1.GridFooter, { className: "".concat(this.settings.classPrefix, "Footer"), key: 'jt-footer' });
         // styles
-        var fixedHeader = this.settings.fixedHeader ? "table.".concat(this.className, " thead th{position: sticky;}\ntable.").concat(this.className, " thead {position: sticky;}\ntable.").concat(this.className, " caption {position: sticky;}") : null;
-        var captionStyle = this.settings.fixedHeader ? null : "table.".concat(this.className, " caption{border-bottom: none;}");
+        var fixedHeader = this.settings.fixedHeader ? "table.".concat(this.className, " thead th{position: sticky;}\ntable.").concat(this.className, " thead {position: sticky;}\ntable.").concat(this.className, " caption {position: sticky;}") : "table.".concat(this.className, " thead{ top:0;}");
+        var fixedCaption = this.settings.fixedHeader ? null : "table.".concat(this.className, " caption{border-bottom: none;}");
         var hoverColor = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.hoverColor) ? "table.".concat(this.className, " tbody tr:hover{color: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.hoverColor, ";}") : null;
         var hoverBgColor = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.hoverBgColor) ? "table.".concat(this.className, " tbody tr:hover{background-color: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.hoverBgColor, ";}") : null;
         var oddBgColor = ((_e = this.settings.style) === null || _e === void 0 ? void 0 : _e.nthOddBgColor) ? ".".concat(this.settings.classPrefix, "Odd{background-color: ").concat((_f = this.settings.style) === null || _f === void 0 ? void 0 : _f.nthOddBgColor, ";}") : null;
@@ -384,7 +384,7 @@ var JsonTable = /** @class */ (function (_super) {
         style =
             React.createElement("style", null,
                 fixedHeader,
-                captionStyle,
+                fixedCaption,
                 hoverColor,
                 hoverBgColor,
                 oddBgColor,
