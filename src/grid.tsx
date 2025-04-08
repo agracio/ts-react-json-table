@@ -32,6 +32,9 @@ export class JsonTable extends React.Component<TableProps, {}> {
 
         // styles
         let fixedHeader = this.settings.fixedHeader ? `table.${this.className} thead th{position: sticky;}\ntable.${this.className} thead {position: sticky;}\ntable.${this.className} caption {position: sticky;}` : `table.${this.className} thead{ top:0;}`;
+        if(this.settings.fixedHeader && !caption){
+            fixedHeader += `\ntable.${this.className} thead{ top:0;}`;
+        }
         let fixedCaption = this.settings.fixedHeader ? null : `table.${this.className} caption{border-bottom: none;}`;
 
         let hoverColor = this.settings.style?.hoverColor ? `table.${this.className} tbody tr:hover{color: ${this.settings.style?.hoverColor};}` : null;
