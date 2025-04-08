@@ -2,10 +2,10 @@ import * as React from "react";
 import {GridHeader} from "./gridHeader";
 import {GridBody} from "./gridBody";
 import {GridFooter} from "./gridFooter";
-import {polyfills} from "./polyfills";
+// import {polyfills} from "./polyfills";
 import {Fragment} from "react";
 
-polyfills();
+// polyfills();
 
 export class JsonTable extends React.Component<TableProps, {}> {
 
