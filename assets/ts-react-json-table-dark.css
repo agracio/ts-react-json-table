@@ -7,6 +7,7 @@ table.jsonTable{
     padding: 0;
     max-width: 100%;
     width: 100%;
+    text-align: left;
 }
 
 table.jsonTable td:last-child {
@@ -23,20 +24,10 @@ table.jsonTable thead th, table caption {
     border-left: none;
     color: #9f9fa9;
     outline: 0;
-    padding: 14px 24px;
     background: #1E1E21;
     font-weight: bold;
-}
-
-table.jsonTable td, table th {
-    text-align: left;
-}
-
-table.jsonTable th {
-    padding-left: 8px;
-    border-top: none;
-    color: #fafafa;
-    outline: 0;
+    top: 0;
+    padding: 14px 24px;
     font-size: 18px;
     line-height: 1.2;
 }
@@ -50,6 +41,6 @@ table.jsonTable td {
 
 table.jsonTable tr {
     font-size: 15px;
-    color: #fafafa;
+    color: #bababa;
     line-height: 1.2;
 }

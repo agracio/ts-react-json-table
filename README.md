@@ -23,20 +23,23 @@ It attempts to be backward compatible with `react-json-table`.
 - [Props](#props)
   - `excludeColumns`
   - `theadClassName`
-  - `caption`  
-<br/>
+  - `caption`
+   
+
 - [Column grouping](#column-grouping)
 
 - [Support for complex JSON objects](#table-supports-complex-json-objects)
 
-- Support for duplicate `id` fields in JSON input - correctly renders `data-key` element.
+- Support for duplicate `id` fields in JSON input.
 
 ## Installation
 ```bash
 npm install ts-react-json-table
 ```
 
-#### Pre-built UMD files [ts-react-json-table.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.js) and [ts-react-json-table.min.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.min.js)
+#### Pre-built UMD files 
+[ts-react-json-table.js](https://rawgit.com/agracio/ts-react-json-table/master/build/ts-react-json-table.js)  
+[ts-react-json-table.min.js](https://rawgit.com/agracio/ts-react-json-table/master/build/ts-react-json-table.min.js)
 
 ## Quickstart
 

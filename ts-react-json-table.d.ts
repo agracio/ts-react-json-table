@@ -7,7 +7,7 @@ interface TableSettings{
     keyField?: string,
     rowClass?: Function,
     cellRenderer?: Function
-    freezeHeader?: boolean,
+    fixedHeader?: boolean,
     style?: StyleSettings,
 }
 

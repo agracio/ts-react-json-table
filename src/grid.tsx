@@ -31,13 +31,8 @@ export class JsonTable extends React.Component<TableProps, {}> {
         let footer = <GridFooter className={`${this.settings.classPrefix}Footer`} key={'jt-footer'}/>;
 
         // styles
-        let freezeHeader = this.settings.freezeHeader ? `table.${this.className} thead th{position: sticky;}` : null;
-
-        // let borderRadius = this.settings.style?.borderRadius ? `div.${this.settings.classPrefix}TableOuter{border-radius: ${this.settings.style?.borderRadius}px;` : null;
-        // let width = this.settings.style?.width ? `div.${this.settings.classPrefix}TableOuter{width: ${this.settings.style?.width};` : null;
-        // let margin = this.settings.style?.margin ? `div.${this.settings.classPrefix}TableOuter{margin: ${this.settings.style?.margin};` : null;
-        //
-        // let height = this.settings.style?.height ? `div.${this.settings.classPrefix}TableInner{height: ${this.settings.style?.height};` : null;
+        let fixedHeader = this.settings.fixedHeader ? `table.${this.className} thead th{position: sticky;}\ntable.${this.className} thead {position: sticky;}\ntable.${this.className} caption {position: sticky;}` : null;
+        let captionStyle = this.settings.fixedHeader ? null : `table.${this.className} caption{border-bottom: none;}`;
 
         let hoverColor = this.settings.style?.hoverColor ? `table.${this.className} tbody tr:hover{color: ${this.settings.style?.hoverColor};}` : null;
         let hoverBgColor = this.settings.style?.hoverBgColor ? `table.${this.className} tbody tr:hover{background-color: ${this.settings.style?.hoverBgColor};}` : null;
@@ -46,29 +41,15 @@ export class JsonTable extends React.Component<TableProps, {}> {
 
         style =
             <style>
-                {freezeHeader}
+                {fixedHeader}
+                {captionStyle}
                 {hoverColor}
                 {hoverBgColor}
                 {oddBgColor}
                 {evenBgColor}
             </style>;
 
-        let table1 =
-            // <div>
-            //     {style}
-                <div className={`${this.settings.classPrefix}TableOuter`}>
-                    <div className={`${this.settings.classPrefix}TableInner`}>
-                        <table className={this.className} key={'jt-table'}>
-                            {caption}
-                            {header}
-                            <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
-                            {footer}
-                        </table>
-                    </div>
-                </div>
-            //</div>;
         let table =
-
             <Fragment>
                 {style}
                 <table className={this.className} key={'jt-table'}>
@@ -77,8 +58,8 @@ export class JsonTable extends React.Component<TableProps, {}> {
                     <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
                     {footer}
                 </table>
-
             </Fragment>
+
         return table;
     }
 

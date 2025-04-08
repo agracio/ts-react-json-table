@@ -7,6 +7,7 @@ table.jsonTable{
     padding: 0;
     max-width: 100%;
     width: 100%;
+    text-align: left;
 }
 
 table.jsonTable td:last-child {
@@ -18,30 +19,21 @@ table.jsonTable thead th:last-child {
 }
 
 table.jsonTable thead th, table caption {
-    border: 1px solid #e5e7eb;
+    border: 1px solid #efefef;
     border-top: none;
     border-left: none;
-    color: #6b7280;
+    color: #646566;
     outline: 0;
-    padding: 10px 18px;
     background: #f9fafb;
     font-weight: bold;
-}
-table.jsonTable td, table th {
-    text-align: left;
-}
-
-table.jsonTable th {
-    padding-left: 8px;
-    border-top: none;
-    color: #6b7280;
-    outline: 0;
+    top: 0;
+    padding: 10px 18px;
     font-size: 16px;
     line-height: 1.1;
 }
 
 table.jsonTable td {
-    border: 1px solid #e5e7eb;
+    border: 1px solid #efefef;
     border-left: none;
     border-bottom: none;
     padding: 8px 18px;
