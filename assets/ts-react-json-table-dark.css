@@ -1,0 +1,38 @@
+table.jsonTable{
+    font-family: ui-sans-serif, system-ui, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background: #18181B;
+    border-collapse: collapse;
+    display: table;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+    text-align: left;
+}
+
+table.jsonTable thead {
+    top:50px;
+}
+
+table.jsonTable thead th, table caption {
+    border-bottom: 1px solid #2B2B30;
+    color: #9f9fa9;
+    outline: 0;
+    background: #1E1E21;
+    font-weight: bold;
+    top: 0;
+    padding: 14px 24px;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+table.jsonTable td {
+    border-bottom: 1px solid #2B2B30;
+    padding: 12px 24px;
+}
+
+table.jsonTable tr {
+    font-size: 15px;
+    color: #bababa;
+    line-height: 1.2;
+}

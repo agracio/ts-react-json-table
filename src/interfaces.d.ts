@@ -52,4 +52,8 @@ interface RowCellProps{
     row: any,
 }
 
+interface FooterProps{
+    className: string,
+}
+
 

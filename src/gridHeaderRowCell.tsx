@@ -49,8 +49,7 @@ export class GridHeaderRowCell extends React.Component<HeaderRowCellProps, {}> {
             className = headerClass(className, this.key);
         }
 
-        let content = this.props.settings.freezeHeader ? <div><div>{this.header}</div><div>{this.header}</div></div> : this.header;
-        return skip ? null : this.createTh(className, rowSpan, colSpan, content);
+        return skip ? null : this.createTh(className, rowSpan, colSpan, this.header);
     }
 
     private createTh(className: string, rowSpan: number, colSpan: number, content: string | React.JSX.Element){

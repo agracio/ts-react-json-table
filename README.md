@@ -23,20 +23,30 @@ It attempts to be backward compatible with `react-json-table`.
 - [Props](#props)
   - `excludeColumns`
   - `theadClassName`
-  - `caption`  
-<br/>
+  - `caption`
+   
+
 - [Column grouping](#column-grouping)
-
 - [Support for complex JSON objects](#table-supports-complex-json-objects)
-
-- Support for duplicate `id` fields in JSON input - correctly renders `data-key` element.
+- Support for fixed header.
+- Support for duplicate `id` fields in JSON input.
 
 ## Installation
 ```bash
 npm install ts-react-json-table
 ```
 
-#### Pre-built UMD files [ts-react-json-table.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.js) and [ts-react-json-table.min.js](https://github.com/agracio/ts-react-json-table/blob/master/build/ts-react-json-table.min.js)
+#### Pre-built UMD files 
+[ts-react-json-table.js](https://rawgit.com/agracio/ts-react-json-table/master/build/ts-react-json-table.js)  
+[ts-react-json-table.min.js](https://rawgit.com/agracio/ts-react-json-table/master/build/ts-react-json-table.min.js)
+
+#### CSS Themes
+
+| Themes | regular                                                                                                                     | small                                                                                                                             | extra-small                                                                                                                       |
+|--------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Light  | [ts-react-json-table-light.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-light.css) | [ts-react-json-table-light-sm.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-light-sm.css) | [ts-react-json-table-light-xs.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-light-xs.css) |
+| Dark   | [ts-react-json-table-dark.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-dark.css)   | [ts-react-json-table-dark-sm.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-dark-sm.css)   | [ts-react-json-table-dark-xs.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-dark-xs.css)   |
+
 
 ## Quickstart
 
@@ -69,6 +79,7 @@ ReactDOM.render(<JsonTable rows = {items} />, document.body);
 | className      | *string* (optional)                          | Class to use for `<table>` element.                                                                                                                      |
 | theadClassName | *string* (optional)                          | Class to use for `<thead>` element.                                                                                                                      |
 | caption        | *string* (optional)                          | Table `<caption>` element contents. If not defined `<caption>` element will not be rendered.                                                             |
+| fixedHeader    | *boolean* (optional)                         | Applies CSS styles to fix header in place when scrolling table contents.                                                                                 |
 | settings       | *TableSettings* (optional)                   | Table settings, see [table settings](#table-settings).                                                                                                   |
 | onClickCell    | *Function* (optional)                        | Callback triggered when a cell is clicked: `fn(event, columnName, rowData)`.                                                                             |
 | onClickRow     | *Function* (optional)                        | Callback triggered when a row is clicked: `fn(event, rowData)`.                                                                                          |

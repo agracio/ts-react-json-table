@@ -2,9 +2,10 @@ import * as React from "react";
 import {GridHeader} from "./gridHeader";
 import {GridBody} from "./gridBody";
 import {GridFooter} from "./gridFooter";
-import {polyfills} from "./polyfills";
+// import {polyfills} from "./polyfills";
+import {Fragment} from "react";
 
-polyfills();
+// polyfills();
 
 export class JsonTable extends React.Component<TableProps, {}> {
 
@@ -23,27 +24,47 @@ export class JsonTable extends React.Component<TableProps, {}> {
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || `${this.settings.classPrefix}Table`;
+        let style: React.JSX.Element;
+        let tableClassName = this.className.split(' ')[0].trim();
 
-        let header = this.settings.header ? <GridHeader theadClassName={this.props.theadClassName} key={'jt-header'} settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader} grouping={this.headerGrouping}/> : null;
         let caption = this.props.caption ? <caption>{this.props.caption}</caption> : null;
+        let header = this.settings.header ? <GridHeader theadClassName={this.props.theadClassName} key={'jt-header'} settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader} grouping={this.headerGrouping}/> : null;
+        let footer = <GridFooter className={`${this.settings.classPrefix}Footer`} key={'jt-footer'}/>;
 
-        let table = <div>
-            <div style={{position: "relative", overflow: "hidden" }}>
+        // styles
+        let fixedHeader = this.props.fixedHeader ? `table.${tableClassName} thead th{position: sticky;}\ntable.${tableClassName} thead {position: sticky;}\ntable.${tableClassName} caption {position: sticky;}` : `table.${tableClassName} thead{ top:0;}`;
+        if(this.props.fixedHeader && !caption){
+            fixedHeader += `\ntable.${tableClassName} thead{ top:0;}`;
+        }
+        let fixedCaption = this.props.fixedHeader ? null : `table.${tableClassName} caption{border-bottom: none;}`;
+
+        let hoverColor = this.settings.style?.hoverColor ? `table.${tableClassName} tbody tr:hover{color: ${this.settings.style?.hoverColor};}` : null;
+        let hoverBgColor = this.settings.style?.hoverBgColor ? `table.${tableClassName} tbody tr:hover{background-color: ${this.settings.style?.hoverBgColor};}` : null;
+        let oddBgColor = this.settings.style?.nthOddBgColor ? `.${this.settings.classPrefix}Odd{background-color: ${this.settings.style?.nthOddBgColor};}` : null;
+        let evenBgColor = this.settings.style?.nthEvenBgColor ? `.${this.settings.classPrefix}Even{background-color: ${this.settings.style?.nthEvenBgColor};}` : null;
+
+        style =
+            <style>
+                {fixedHeader}
+                {fixedCaption}
+                {hoverColor}
+                {hoverBgColor}
+                {oddBgColor}
+                {evenBgColor}
+            </style>;
+
+        let table =
+            <Fragment>
+                {style}
                 <table className={this.className} key={'jt-table'}>
                     {caption}
                     {header}
                     <GridBody key={'jt-body'} settings={this.settings} columns={this.columns} rows={this.props.rows} onClickRow={this.props.onClickRow} onClickCell={this.props.onClickCell}/>
-                    <GridFooter key={'jt-footer'}/>
+                    {footer}
                 </table>
-            </div>
-        </div>;
+            </Fragment>
 
-        return this.settings.freezeHeader ?
-            <div className="scrollingtable">
-                <div>
-                    <div>{table}</div>
-                </div>
-            </div> : table;
+        return table;
     }
 
     private createSettings(){
@@ -96,7 +117,6 @@ export class JsonTable extends React.Component<TableProps, {}> {
                         group: column.group
                     };
                 }
-
             });
         }
 

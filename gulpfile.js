@@ -1,6 +1,6 @@
 const { series } = require('gulp');
 const { exec, spawn, spawnSync } = require('child_process');
-const { readdirSync, rmSync, copyFileSync } = require('fs');
+const { readdirSync, rmSync, copyFileSync, existsSync, mkdirSync } = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const tsc = mocha = path.resolve(__dirname, './node_modules/typescript/bin/tsc');
@@ -8,6 +8,7 @@ const wp = mocha = path.resolve(__dirname, './node_modules/webpack/bin/webpack')
 
 const paths = {
     out: './dist',
+    assets: './assets',
     webpack: './build/',
     webpackEntry: './dist/grid.js',
     webpackName: 'ts-react-json-table.js'
@@ -49,6 +50,10 @@ function build(cb) {
 }
 
 function clean(cb) {
+    if(!existsSync(paths.out)){
+        mkdirSync(paths.out);
+    }
+
     readdirSync(paths.out).forEach(f => rmSync(`${paths.out}/${f}`, {recursive: true}));
     readdirSync(paths.webpack).forEach(f => rmSync(`${paths.webpack}/${f}`, {recursive: true}));
     cb();
@@ -59,7 +64,7 @@ function webpack(cb){
 }
 
 function copy(cb) {
-    copyFileSync('./src/ts-react-json-table.css', paths.webpack + 'ts-react-json-table.css');
+    copyFileSync('./assets/ts-react-json-table.css', paths.webpack + 'ts-react-json-table.css');
     cb();
 }
 

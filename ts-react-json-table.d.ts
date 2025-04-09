@@ -7,7 +7,14 @@ interface TableSettings{
     keyField?: string,
     rowClass?: Function,
     cellRenderer?: Function
-    freezeHeader?: boolean
+    style?: StyleSettings,
+}
+
+interface StyleSettings{
+    hoverColor?: string,
+    hoverBgColor?: string,
+    nthOddBgColor?: string,
+    nthEvenBgColor?: string,
 }
 
 interface TableProps{
@@ -17,6 +24,7 @@ interface TableProps{
     excludeColumns?: string[],
     className?: string,
     theadClassName?: string,
+    fixedHeader?: boolean,
     caption?: string,
     settings?: TableSettings,
     onClickCell?: Function,

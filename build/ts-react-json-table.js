@@ -173,10 +173,7 @@ var GridHeaderRowCell = /** @class */ (function (_super) {
         if (headerClass) {
             className = headerClass(className, this.key);
         }
-        var content = this.props.settings.freezeHeader ? React.createElement("div", null,
-            React.createElement("div", null, this.header),
-            React.createElement("div", null, this.header)) : this.header;
-        return skip ? null : this.createTh(className, rowSpan, colSpan, content);
+        return skip ? null : this.createTh(className, rowSpan, colSpan, this.header);
     };
     GridHeaderRowCell.prototype.createTh = function (className, rowSpan, colSpan, content) {
         return React.createElement("th", { className: className, onClick: this.onClick.bind(this, this.key), "data-key": this.key, rowSpan: rowSpan, colSpan: colSpan }, content);
@@ -353,8 +350,9 @@ var React = __webpack_require__(45);
 var gridHeader_1 = __webpack_require__(669);
 var gridBody_1 = __webpack_require__(336);
 var gridFooter_1 = __webpack_require__(815);
-var polyfills_1 = __webpack_require__(690);
-(0, polyfills_1.polyfills)();
+// import {polyfills} from "./polyfills";
+var react_1 = __webpack_require__(45);
+// polyfills();
 var JsonTable = /** @class */ (function (_super) {
     __extends(JsonTable, _super);
     function JsonTable() {
@@ -368,22 +366,41 @@ var JsonTable = /** @class */ (function (_super) {
         return _this;
     }
     JsonTable.prototype.render = function () {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         this.createSettings();
         this.columns = this.createColumns();
         this.className = this.props.className || "".concat(this.settings.classPrefix, "Table");
-        var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
+        var style;
+        var tableClassName = this.className.split(' ')[0].trim();
         var caption = this.props.caption ? React.createElement("caption", null, this.props.caption) : null;
-        var table = React.createElement("div", null,
-            React.createElement("div", { style: { position: "relative", overflow: "hidden" } },
-                React.createElement("table", { className: this.className, key: 'jt-table' },
-                    caption,
-                    header,
-                    React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
-                    React.createElement(gridFooter_1.GridFooter, { key: 'jt-footer' }))));
-        return this.settings.freezeHeader ?
-            React.createElement("div", { className: "scrollingtable" },
-                React.createElement("div", null,
-                    React.createElement("div", null, table))) : table;
+        var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
+        var footer = React.createElement(gridFooter_1.GridFooter, { className: "".concat(this.settings.classPrefix, "Footer"), key: 'jt-footer' });
+        // styles
+        var fixedHeader = this.props.fixedHeader ? "table.".concat(tableClassName, " thead th{position: sticky;}\ntable.").concat(tableClassName, " thead {position: sticky;}\ntable.").concat(tableClassName, " caption {position: sticky;}") : "table.".concat(tableClassName, " thead{ top:0;}");
+        if (this.props.fixedHeader && !caption) {
+            fixedHeader += "\ntable.".concat(tableClassName, " thead{ top:0;}");
+        }
+        var fixedCaption = this.props.fixedHeader ? null : "table.".concat(tableClassName, " caption{border-bottom: none;}");
+        var hoverColor = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.hoverColor) ? "table.".concat(tableClassName, " tbody tr:hover{color: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.hoverColor, ";}") : null;
+        var hoverBgColor = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.hoverBgColor) ? "table.".concat(tableClassName, " tbody tr:hover{background-color: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.hoverBgColor, ";}") : null;
+        var oddBgColor = ((_e = this.settings.style) === null || _e === void 0 ? void 0 : _e.nthOddBgColor) ? ".".concat(this.settings.classPrefix, "Odd{background-color: ").concat((_f = this.settings.style) === null || _f === void 0 ? void 0 : _f.nthOddBgColor, ";}") : null;
+        var evenBgColor = ((_g = this.settings.style) === null || _g === void 0 ? void 0 : _g.nthEvenBgColor) ? ".".concat(this.settings.classPrefix, "Even{background-color: ").concat((_h = this.settings.style) === null || _h === void 0 ? void 0 : _h.nthEvenBgColor, ";}") : null;
+        style =
+            React.createElement("style", null,
+                fixedHeader,
+                fixedCaption,
+                hoverColor,
+                hoverBgColor,
+                oddBgColor,
+                evenBgColor);
+        var table = React.createElement(react_1.Fragment, null,
+            style,
+            React.createElement("table", { className: this.className, key: 'jt-table' },
+                caption,
+                header,
+                React.createElement(gridBody_1.GridBody, { key: 'jt-body', settings: this.settings, columns: this.columns, rows: this.props.rows, onClickRow: this.props.onClickRow, onClickCell: this.props.onClickCell }),
+                footer));
+        return table;
     };
     JsonTable.prototype.createSettings = function () {
         if (this.props.settings) {
@@ -542,7 +559,7 @@ var GridHeader = /** @class */ (function (_super) {
     }
     GridHeader.prototype.render = function () {
         var groupHeader = this.props.grouping ? React.createElement(gridHeaderRow_1.GridHeaderRow, { columns: this.props.columns, onClickHeader: this.props.onClickHeader, settings: this.props.settings, groupCell: true }) : null;
-        return React.createElement("thead", { className: this.props.theadClassName },
+        return React.createElement("thead", { className: this.props.theadClassName || "".concat(this.props.settings.classPrefix, "Header") },
             groupHeader,
             React.createElement(gridHeaderRow_1.GridHeaderRow, { columns: this.props.columns, onClickHeader: this.props.onClickHeader, settings: this.props.settings, groupCell: false, grouping: this.props.grouping }));
     };
@@ -550,130 +567,6 @@ var GridHeader = /** @class */ (function (_super) {
 }(React.Component));
 exports.GridHeader = GridHeader;
 //# sourceMappingURL=gridHeader.js.map
-
-/***/ }),
-
-/***/ 690:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.polyfills = polyfills;
-function polyfills() {
-    // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
-    if (!Array.prototype.findIndex) {
-        Object.defineProperty(Array.prototype, 'findIndex', {
-            value: function (predicate) {
-                // 1. Let O be ? ToObject(this value).
-                if (this == null) {
-                    throw new TypeError('"this" is null or not defined');
-                }
-                var o = Object(this);
-                // 2. Let len be ? ToLength(? Get(O, "length")).
-                var len = o.length >>> 0;
-                // 3. If IsCallable(predicate) is false, throw a TypeError exception.
-                if (typeof predicate !== 'function') {
-                    throw new TypeError('predicate must be a function');
-                }
-                // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-                var thisArg = arguments[1];
-                // 5. Let k be 0.
-                var k = 0;
-                // 6. Repeat, while k < len
-                while (k < len) {
-                    // a. Let Pk be ! ToString(k).
-                    // b. Let kValue be ? Get(O, Pk).
-                    // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
-                    // d. If testResult is true, return k.
-                    var kValue = o[k];
-                    if (predicate.call(thisArg, kValue, k, o)) {
-                        return k;
-                    }
-                    // e. Increase k by 1.
-                    k++;
-                }
-                // 7. Return -1.
-                return -1;
-            }
-        });
-    }
-    // Production steps of ECMA-262, Edition 6, 22.1.2.1
-    if (!Array.from) {
-        Array.from = (function () {
-            var toStr = Object.prototype.toString;
-            var isCallable = function (fn) {
-                return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
-            };
-            var toInteger = function (value) {
-                var number = Number(value);
-                if (isNaN(number)) {
-                    return 0;
-                }
-                if (number === 0 || !isFinite(number)) {
-                    return number;
-                }
-                return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
-            };
-            var maxSafeInteger = Math.pow(2, 53) - 1;
-            var toLength = function (value) {
-                var len = toInteger(value);
-                return Math.min(Math.max(len, 0), maxSafeInteger);
-            };
-            // The length property of the from method is 1.
-            return function from(arrayLike /*, mapFn, thisArg */) {
-                // 1. Let C be the this value.
-                var C = this;
-                // 2. Let items be ToObject(arrayLike).
-                var items = Object(arrayLike);
-                // 3. ReturnIfAbrupt(items).
-                if (arrayLike == null) {
-                    throw new TypeError('Array.from requires an array-like object - not null or undefined');
-                }
-                // 4. If mapfn is undefined, then let mapping be false.
-                var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
-                var T;
-                if (typeof mapFn !== 'undefined') {
-                    // 5. else
-                    // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
-                    if (!isCallable(mapFn)) {
-                        throw new TypeError('Array.from: when provided, the second argument must be a function');
-                    }
-                    // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
-                    if (arguments.length > 2) {
-                        T = arguments[2];
-                    }
-                }
-                // 10. Let lenValue be Get(items, "length").
-                // 11. Let len be ToLength(lenValue).
-                var len = toLength(items.length);
-                // 13. If IsConstructor(C) is true, then
-                // 13. a. Let A be the result of calling the [[Construct]] internal method
-                // of C with an argument list containing the single item len.
-                // 14. a. Else, Let A be ArrayCreate(len).
-                var A = isCallable(C) ? Object(new C(len)) : new Array(len);
-                // 16. Let k be 0.
-                var k = 0;
-                // 17. Repeat, while k < len… (also steps a - h)
-                var kValue;
-                while (k < len) {
-                    kValue = items[k];
-                    if (mapFn) {
-                        A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
-                    }
-                    else {
-                        A[k] = kValue;
-                    }
-                    k += 1;
-                }
-                // 18. Let putStatus be Put(A, "length", len, true).
-                A.length = len;
-                // 20. Return A.
-                return A;
-            };
-        }());
-    }
-}
-//# sourceMappingURL=polyfills.js.map
 
 /***/ }),
 
@@ -766,7 +659,7 @@ var GridFooter = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     GridFooter.prototype.render = function () {
-        return React.createElement("tfoot", null);
+        return React.createElement("tfoot", { className: this.props.className });
     };
     return GridFooter;
 }(React.Component));

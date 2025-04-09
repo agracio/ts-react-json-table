@@ -1,4 +1,19 @@
+div.jsonTableOuter{
+    border-color: #e5e7eb;
+    border-radius: 8px;
+    border-top-width: 1px;
+    width: 100%;
+    overflow: hidden;
+}
+
+div.jsonTableInner{
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+
 /*
+Fixed header table with scrollable body
 Based on https://stackoverflow.com/a/25819112
 */
 

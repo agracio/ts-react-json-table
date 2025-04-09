@@ -15,7 +15,7 @@ export class GridRow extends React.Component<RowProps, {}> {
         return <tr className={className} onClick={this.onClick.bind(this, this.props.row)}>
             {this.props.columns.map((column: ColumnSetting | any, index: number) =>{
 
-                let item;
+                let item: any;
                 if(typeof column.cell === 'function'){
                     item = column.cell(this.props.row, column.key);
                 }
