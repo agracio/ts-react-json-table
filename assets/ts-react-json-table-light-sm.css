@@ -15,8 +15,7 @@ table.jsonTable thead {
 }
 
 table.jsonTable thead th, table caption {
-    border: 1px solid #efefef;
-    border-top: none;
+    border-bottom: 1px solid #E8E9EA;
     color: #646566;
     outline: 0;
     background: #f9fafb;
@@ -28,7 +27,7 @@ table.jsonTable thead th, table caption {
 }
 
 table.jsonTable td {
-    border: 1px solid #efefef;
+    border-bottom: 1px solid #f5f5f5;
     padding: 8px 18px;
 }
 

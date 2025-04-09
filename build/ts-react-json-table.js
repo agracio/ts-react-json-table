@@ -380,7 +380,7 @@ var JsonTable = /** @class */ (function (_super) {
         if (this.props.fixedHeader && !caption) {
             fixedHeader += "\ntable.".concat(tableClassName, " thead{ top:0;}");
         }
-        //let fixedCaption = this.settings.fixedHeader ? null : `table.${this.tableClassName} caption{border-bottom: none;}`;
+        var fixedCaption = this.props.fixedHeader ? null : "table.".concat(tableClassName, " caption{border-bottom: none;}");
         var hoverColor = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.hoverColor) ? "table.".concat(tableClassName, " tbody tr:hover{color: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.hoverColor, ";}") : null;
         var hoverBgColor = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.hoverBgColor) ? "table.".concat(tableClassName, " tbody tr:hover{background-color: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.hoverBgColor, ";}") : null;
         var oddBgColor = ((_e = this.settings.style) === null || _e === void 0 ? void 0 : _e.nthOddBgColor) ? ".".concat(this.settings.classPrefix, "Odd{background-color: ").concat((_f = this.settings.style) === null || _f === void 0 ? void 0 : _f.nthOddBgColor, ";}") : null;
@@ -388,6 +388,7 @@ var JsonTable = /** @class */ (function (_super) {
         style =
             React.createElement("style", null,
                 fixedHeader,
+                fixedCaption,
                 hoverColor,
                 hoverBgColor,
                 oddBgColor,
