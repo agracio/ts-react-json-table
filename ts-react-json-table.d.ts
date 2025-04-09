@@ -7,7 +7,6 @@ interface TableSettings{
     keyField?: string,
     rowClass?: Function,
     cellRenderer?: Function
-    fixedHeader?: boolean,
     style?: StyleSettings,
 }
 
@@ -25,6 +24,7 @@ interface TableProps{
     excludeColumns?: string[],
     className?: string,
     theadClassName?: string,
+    fixedHeader?: boolean,
     caption?: string,
     settings?: TableSettings,
     onClickCell?: Function,

@@ -32,8 +32,8 @@ export class JsonTable extends React.Component<TableProps, {}> {
         let footer = <GridFooter className={`${this.settings.classPrefix}Footer`} key={'jt-footer'}/>;
 
         // styles
-        let fixedHeader = this.settings.fixedHeader ? `table.${tableClassName} thead th{position: sticky;}\ntable.${tableClassName} thead {position: sticky;}\ntable.${tableClassName} caption {position: sticky;}` : `table.${tableClassName} thead{ top:0;}`;
-        if(this.settings.fixedHeader && !caption){
+        let fixedHeader = this.props.fixedHeader ? `table.${tableClassName} thead th{position: sticky;}\ntable.${tableClassName} thead {position: sticky;}\ntable.${tableClassName} caption {position: sticky;}` : `table.${tableClassName} thead{ top:0;}`;
+        if(this.props.fixedHeader && !caption){
             fixedHeader += `\ntable.${tableClassName} thead{ top:0;}`;
         }
         //let fixedCaption = this.settings.fixedHeader ? null : `table.${this.tableClassName} caption{border-bottom: none;}`;
