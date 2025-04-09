@@ -350,9 +350,7 @@ var React = __webpack_require__(45);
 var gridHeader_1 = __webpack_require__(669);
 var gridBody_1 = __webpack_require__(336);
 var gridFooter_1 = __webpack_require__(815);
-// import {polyfills} from "./polyfills";
 var react_1 = __webpack_require__(45);
-// polyfills();
 var JsonTable = /** @class */ (function (_super) {
     __extends(JsonTable, _super);
     function JsonTable() {
