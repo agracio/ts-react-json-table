@@ -10,18 +10,13 @@ table.jsonTable{
     text-align: left;
 }
 
-table.jsonTable td:last-child {
-    border-right: none;
-}
-
-table.jsonTable thead th:last-child {
-    border-right: none;
+table.jsonTable thead {
+    top:30px;
 }
 
 table.jsonTable thead th, table caption {
     border: 1px solid #2B2B30;
     border-top: none;
-    border-left: none;
     color: #9f9fa9;
     outline: 0;
     background: #1E1E21;
@@ -34,8 +29,6 @@ table.jsonTable thead th, table caption {
 
 table.jsonTable td {
     border: 1px solid #2B2B30;
-    border-left: none;
-    border-bottom: none;
     padding: 6px 12px;
 }
 

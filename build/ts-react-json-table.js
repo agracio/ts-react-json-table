@@ -371,23 +371,23 @@ var JsonTable = /** @class */ (function (_super) {
         this.columns = this.createColumns();
         this.className = this.props.className || "".concat(this.settings.classPrefix, "Table");
         var style;
+        var tableClassName = this.className.split(' ')[0].trim();
         var caption = this.props.caption ? React.createElement("caption", null, this.props.caption) : null;
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var footer = React.createElement(gridFooter_1.GridFooter, { className: "".concat(this.settings.classPrefix, "Footer"), key: 'jt-footer' });
         // styles
-        var fixedHeader = this.settings.fixedHeader ? "table.".concat(this.className, " thead th{position: sticky;}\ntable.").concat(this.className, " thead {position: sticky;}\ntable.").concat(this.className, " caption {position: sticky;}") : "table.".concat(this.className, " thead{ top:0;}");
+        var fixedHeader = this.settings.fixedHeader ? "table.".concat(tableClassName, " thead th{position: sticky;}\ntable.").concat(tableClassName, " thead {position: sticky;}\ntable.").concat(tableClassName, " caption {position: sticky;}") : "table.".concat(tableClassName, " thead{ top:0;}");
         if (this.settings.fixedHeader && !caption) {
-            fixedHeader += "\ntable.".concat(this.className, " thead{ top:0;}");
+            fixedHeader += "\ntable.".concat(tableClassName, " thead{ top:0;}");
         }
-        var fixedCaption = this.settings.fixedHeader ? null : "table.".concat(this.className, " caption{border-bottom: none;}");
-        var hoverColor = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.hoverColor) ? "table.".concat(this.className, " tbody tr:hover{color: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.hoverColor, ";}") : null;
-        var hoverBgColor = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.hoverBgColor) ? "table.".concat(this.className, " tbody tr:hover{background-color: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.hoverBgColor, ";}") : null;
+        //let fixedCaption = this.settings.fixedHeader ? null : `table.${this.tableClassName} caption{border-bottom: none;}`;
+        var hoverColor = ((_a = this.settings.style) === null || _a === void 0 ? void 0 : _a.hoverColor) ? "table.".concat(tableClassName, " tbody tr:hover{color: ").concat((_b = this.settings.style) === null || _b === void 0 ? void 0 : _b.hoverColor, ";}") : null;
+        var hoverBgColor = ((_c = this.settings.style) === null || _c === void 0 ? void 0 : _c.hoverBgColor) ? "table.".concat(tableClassName, " tbody tr:hover{background-color: ").concat((_d = this.settings.style) === null || _d === void 0 ? void 0 : _d.hoverBgColor, ";}") : null;
         var oddBgColor = ((_e = this.settings.style) === null || _e === void 0 ? void 0 : _e.nthOddBgColor) ? ".".concat(this.settings.classPrefix, "Odd{background-color: ").concat((_f = this.settings.style) === null || _f === void 0 ? void 0 : _f.nthOddBgColor, ";}") : null;
         var evenBgColor = ((_g = this.settings.style) === null || _g === void 0 ? void 0 : _g.nthEvenBgColor) ? ".".concat(this.settings.classPrefix, "Even{background-color: ").concat((_h = this.settings.style) === null || _h === void 0 ? void 0 : _h.nthEvenBgColor, ";}") : null;
         style =
             React.createElement("style", null,
                 fixedHeader,
-                fixedCaption,
                 hoverColor,
                 hoverBgColor,
                 oddBgColor,

@@ -41,6 +41,16 @@ npm install ts-react-json-table
 [ts-react-json-table.js](https://rawgit.com/agracio/ts-react-json-table/master/build/ts-react-json-table.js)  
 [ts-react-json-table.min.js](https://rawgit.com/agracio/ts-react-json-table/master/build/ts-react-json-table.min.js)
 
+#### CSS Themes
+
+Light [ts-react-json-table-light.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-light.css)  
+Light small [ts-react-json-table-light-sm.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-light-sm.css)  
+Light extra small [ts-react-json-table-light-xs.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-light-xs.css)  
+  
+Dark [ts-react-json-table-dark.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-dark.css)  
+Dark small [ts-react-json-table-dark-sm.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-dark-sm.css)  
+Dark extra small [ts-react-json-table-dark-xs.css](https://rawgit.com/agracio/ts-react-json-table/master/assets/ts-react-json-table-dark-xs.css)
+
 ## Quickstart
 
 ```js

@@ -25,27 +25,27 @@ export class JsonTable extends React.Component<TableProps, {}> {
         this.columns = this.createColumns();
         this.className = this.props.className || `${this.settings.classPrefix}Table`;
         let style: React.JSX.Element;
+        let tableClassName = this.className.split(' ')[0].trim();
 
         let caption = this.props.caption ? <caption>{this.props.caption}</caption> : null;
         let header = this.settings.header ? <GridHeader theadClassName={this.props.theadClassName} key={'jt-header'} settings={this.settings} columns={this.columns} onClickHeader={this.props.onClickHeader} grouping={this.headerGrouping}/> : null;
         let footer = <GridFooter className={`${this.settings.classPrefix}Footer`} key={'jt-footer'}/>;
 
         // styles
-        let fixedHeader = this.settings.fixedHeader ? `table.${this.className} thead th{position: sticky;}\ntable.${this.className} thead {position: sticky;}\ntable.${this.className} caption {position: sticky;}` : `table.${this.className} thead{ top:0;}`;
+        let fixedHeader = this.settings.fixedHeader ? `table.${tableClassName} thead th{position: sticky;}\ntable.${tableClassName} thead {position: sticky;}\ntable.${tableClassName} caption {position: sticky;}` : `table.${tableClassName} thead{ top:0;}`;
         if(this.settings.fixedHeader && !caption){
-            fixedHeader += `\ntable.${this.className} thead{ top:0;}`;
+            fixedHeader += `\ntable.${tableClassName} thead{ top:0;}`;
         }
-        let fixedCaption = this.settings.fixedHeader ? null : `table.${this.className} caption{border-bottom: none;}`;
+        //let fixedCaption = this.settings.fixedHeader ? null : `table.${this.tableClassName} caption{border-bottom: none;}`;
 
-        let hoverColor = this.settings.style?.hoverColor ? `table.${this.className} tbody tr:hover{color: ${this.settings.style?.hoverColor};}` : null;
-        let hoverBgColor = this.settings.style?.hoverBgColor ? `table.${this.className} tbody tr:hover{background-color: ${this.settings.style?.hoverBgColor};}` : null;
+        let hoverColor = this.settings.style?.hoverColor ? `table.${tableClassName} tbody tr:hover{color: ${this.settings.style?.hoverColor};}` : null;
+        let hoverBgColor = this.settings.style?.hoverBgColor ? `table.${tableClassName} tbody tr:hover{background-color: ${this.settings.style?.hoverBgColor};}` : null;
         let oddBgColor = this.settings.style?.nthOddBgColor ? `.${this.settings.classPrefix}Odd{background-color: ${this.settings.style?.nthOddBgColor};}` : null;
         let evenBgColor = this.settings.style?.nthEvenBgColor ? `.${this.settings.classPrefix}Even{background-color: ${this.settings.style?.nthEvenBgColor};}` : null;
 
         style =
             <style>
                 {fixedHeader}
-                {fixedCaption}
                 {hoverColor}
                 {hoverBgColor}
                 {oddBgColor}
