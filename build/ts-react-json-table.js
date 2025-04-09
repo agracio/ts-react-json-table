@@ -376,8 +376,8 @@ var JsonTable = /** @class */ (function (_super) {
         var header = this.settings.header ? React.createElement(gridHeader_1.GridHeader, { theadClassName: this.props.theadClassName, key: 'jt-header', settings: this.settings, columns: this.columns, onClickHeader: this.props.onClickHeader, grouping: this.headerGrouping }) : null;
         var footer = React.createElement(gridFooter_1.GridFooter, { className: "".concat(this.settings.classPrefix, "Footer"), key: 'jt-footer' });
         // styles
-        var fixedHeader = this.settings.fixedHeader ? "table.".concat(tableClassName, " thead th{position: sticky;}\ntable.").concat(tableClassName, " thead {position: sticky;}\ntable.").concat(tableClassName, " caption {position: sticky;}") : "table.".concat(tableClassName, " thead{ top:0;}");
-        if (this.settings.fixedHeader && !caption) {
+        var fixedHeader = this.props.fixedHeader ? "table.".concat(tableClassName, " thead th{position: sticky;}\ntable.").concat(tableClassName, " thead {position: sticky;}\ntable.").concat(tableClassName, " caption {position: sticky;}") : "table.".concat(tableClassName, " thead{ top:0;}");
+        if (this.props.fixedHeader && !caption) {
             fixedHeader += "\ntable.".concat(tableClassName, " thead{ top:0;}");
         }
         //let fixedCaption = this.settings.fixedHeader ? null : `table.${this.tableClassName} caption{border-bottom: none;}`;
