@@ -64,7 +64,7 @@ function webpack(cb){
 }
 
 function copy(cb) {
-    copyFileSync('./assets/ts-react-json-table.css', paths.webpack + 'ts-react-json-table.css');
+    //copyFileSync('./assets/ts-react-json-table.css', paths.webpack + 'ts-react-json-table.css');
     cb();
 }
 
