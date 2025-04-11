@@ -1,10 +1,9 @@
 interface TableSettings{
     header?: boolean,
     classPrefix?: string,
-    noRowsMessage?: string,
+    noRowsMessage?: string | any,
     cellClass?: Function,
     headerClass?: Function,
-    keyField?: string,
     rowClass?: Function,
     cellRenderer?: Function
     style?: StyleSettings,

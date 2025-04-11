@@ -29,6 +29,7 @@ It attempts to be backward compatible with `react-json-table`.
 - [Support for complex JSON objects](#table-supports-complex-json-objects)
 - Support for fixed header.
 - Support for duplicate `id` fields in JSON input.
+- [Table row styling](#style-settings).
 
 ## Installation
 ```bash
@@ -75,8 +76,8 @@ ReactDOM.render(<JsonTable rows = {items} />, document.body);
 | rows           | Array\[Object\] (required)                   | JSON data.                                                                                                                                               |
 | columns        | *Array\[string\|ColumnSettings\]* (optional) | Table columns, if not defined `rows` JSON data is used. See [column settings](#column-settings).                                                         |
 | excludeColumns | *Array\[string\]* (optional)                 | Exclude columns by key, allows to quickly exclude elements from `rows` JSON data without defining all `columns`. See [exclude columns](#exclude-columns) |
-| className      | *string* (optional)                          | Class to use for `<table>` element.                                                                                                                      |
-| theadClassName | *string* (optional)                          | Class to use for `<thead>` element.                                                                                                                      |
+| className      | *string* (optional)                          | Class to use for `<table>` element. Default `jsonTable`.                                                                                                 |
+| theadClassName | *string* (optional)                          | Class to use for `<thead>` element. Default none.                                                                                                        |
 | caption        | *string* (optional)                          | Table `<caption>` element contents. If not defined `<caption>` element will not be rendered.                                                             |
 | fixedHeader    | *boolean* (optional)                         | Applies CSS styles to fix header in place when scrolling table contents.                                                                                 |
 | settings       | *TableSettings* (optional)                   | Table settings, see [table settings](#table-settings).                                                                                                   |
@@ -188,12 +189,26 @@ If both `columns` and `excludeColumns` props are passed, columns will be exclude
 
 ### Table settings
 
-| Setting name  | Type                                   | Description                                                                                                                                                                                                     |
-|---------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| header        | *boolean* (optional)                   | Determines whether to show table header. Default is `true`.                                                                                                                                                     |
-| classPrefix   | *string* (optional)                    | JsonTable uses `class` attributes for its markup like `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in case it is conflicting with other classes in your app. |
-| noRowsMessage | *string*\|*ReactComponent*  (optional) | Message shown when the table has no rows. Default is *"No items"*.                                                                                                                                              |
-| cellClass     | *Function* (optional)                  | Cell custom class using `fn(currentClass, columnKey, rowData)`.                                                                                                                                                 |
-| headerClass   | *Function* (optional)                  | Header custom class using `fn(currentClass, columnKey)`.                                                                                                                                                        |
-| rowClass      | *Function* (optional)                  | Row custom class using `fn(currentClass, rowData)`.                                                                                                                                                             |
-| cellRenderer  | *Function* (optional)                  | If provided, this function will be used to render all the cells' content. If not provided, the cell contents will be `item[field]`, the value of the item for that field.                                       |
+| Setting name  | Type                                   | Description                                                                                                                                                                                                                 |
+|---------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| header        | *boolean* (optional)                   | Determines whether to show table header. Default is `true`.                                                                                                                                                                 |
+| classPrefix   | *string* (optional)                    | JsonTable uses `class` attributes for its markup like `jsonTable` `jsonRow` or `jsonCell`. The default prefix is `json` but you can use this setting to change it in case it is conflicting with other classes in your app. |
+| noRowsMessage | *string*\|*ReactComponent*  (optional) | Message shown when the table has no rows. Default is *"No items"*.                                                                                                                                                          |
+| cellClass     | *Function* (optional)                  | Cell custom class using `fn(currentClass, columnKey, rowData)`.                                                                                                                                                             |
+| headerClass   | *Function* (optional)                  | Header custom class using `fn(currentClass, columnKey)`.                                                                                                                                                                    |
+| rowClass      | *Function* (optional)                  | Row custom class using `fn(currentClass, rowData)`.                                                                                                                                                                         |
+| cellRenderer  | *Function* (optional)                  | Function `function(item, field)`. If provided, this function will be used to render all the cells' content. If not provided, the cell contents will be `item[field]`, the value of the item for that field.                 |
+| style         | StyleSettings (optional)               | Provides styling options. [style settings](#style-settings)                                                                                                                                                                 |
+
+
+### Style settings
+
+| Setting name   | Type                | Description                                                      |
+|----------------|---------------------|------------------------------------------------------------------|
+| hoverColor     | *string* (optional) | Table row hover text color, must be a valid CSS color.           |
+| hoverBgColor   | *string* (optional) | Table row hover background color, must be a valid CSS color.     |
+| nthOddBgColor  | *string* (optional) | nth-child(odd) row background color, must be a valid CSS color.  |
+| nthEvenBgColor | *string* (optional) | nth-child(even) row background color, must be a valid CSS color. |
+
+**Styling example: https://codepen.io/agracio/pen/YPzmypy**
+
